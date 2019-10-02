@@ -1,0 +1,282 @@
+object RoomDetailForm: TRoomDetailForm
+  Left = 0
+  Top = 0
+  Caption = 'RoomDetailForm'
+  ClientHeight = 608
+  ClientWidth = 457
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  DesignerMasterStyle = 3
+  object Layout1: TLayout
+    Align = Client
+    Size.Width = 457.000000000000000000
+    Size.Height = 608.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object DetailList: TListBox
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 447.000000000000000000
+      Size.Height = 550.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      DisableFocusEffect = True
+      ItemHeight = 50.000000000000000000
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 447.000000000000000000
+      Viewport.Height = 550.000000000000000000
+      object ListBoxGroupHeader1: TListBoxGroupHeader
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.HorzAlign = Center
+        StyledSettings = [Family, Size, Style, FontColor]
+        Size.Width = 447.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1082#1074#1072#1088#1090#1080#1088#1099
+      end
+      object CityLB: TListBoxItem
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claChocolate
+        StyledSettings = [Family, Other]
+        Padding.Left = 90.000000000000000000
+        Padding.Right = 20.000000000000000000
+        Position.Y = 50.000000000000000000
+        Size.Width = 447.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        Text = #1043#1086#1088#1086#1076
+        object CityEdit: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = VertCenter
+          TabOrder = 1
+          Position.X = 90.000000000000000000
+          Position.Y = 9.000000000000000000
+          Size.Width = 337.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+      object AdressLB: TListBoxItem
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claChocolate
+        StyledSettings = [Family, Other]
+        Padding.Left = 90.000000000000000000
+        Padding.Right = 20.000000000000000000
+        Position.Y = 100.000000000000000000
+        Size.Width = 447.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = #1040#1076#1088#1077#1089
+        object AdressEdit: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = VertCenter
+          TabOrder = 2
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          Position.X = 90.000000000000000000
+          Position.Y = 9.000000000000000000
+          Size.Width = 337.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, FontColor]
+          OnChange = NumberSpinChange
+        end
+      end
+      object HomeRoomNumLB: TListBoxItem
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claChocolate
+        StyledSettings = [Family, Other]
+        Padding.Left = 70.000000000000000000
+        Padding.Right = 20.000000000000000000
+        Position.Y = 150.000000000000000000
+        Size.Width = 447.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = #1044#1086#1084
+        object NumRoomEdit: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Right
+          TabOrder = 3
+          KeyboardType = NumberPad
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.HorzAlign = Center
+          Position.X = 214.000000000000000000
+          Position.Y = 9.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Size.Width = 63.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, FontColor]
+        end
+        object RoomLbl: TLabel
+          Align = Right
+          StyledSettings = [Family]
+          Margins.Left = 5.000000000000000000
+          Position.X = 142.000000000000000000
+          Size.Width = 67.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claChocolate
+          Text = #1050#1074#1072#1088#1090#1080#1088#1072
+          TabOrder = 0
+        end
+        object Label1: TLabel
+          Align = Right
+          StyledSettings = [Family]
+          Margins.Left = 5.000000000000000000
+          Position.X = 282.000000000000000000
+          Size.Width = 65.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claChocolate
+          Text = #1050#1086#1083'. '#1082#1086#1084
+          TabOrder = 1
+        end
+        object NumberSpin: TSpinBox
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Right
+          TabOrder = 5
+          Cursor = crIBeam
+          Position.X = 352.000000000000000000
+          Position.Y = 9.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Size.Width = 75.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+          OnChange = NumberSpinChange
+        end
+        object HomeNumEdit: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = VertCenter
+          TabOrder = 2
+          KeyboardType = NumberPad
+          TextSettings.HorzAlign = Center
+          Position.X = 70.000000000000000000
+          Position.Y = 9.000000000000000000
+          Size.Width = 67.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+        end
+      end
+      object ListBoxItem3: TListBoxItem
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claChocolate
+        StyledSettings = [Family, Other]
+        Padding.Left = 100.000000000000000000
+        Padding.Right = 10.000000000000000000
+        Position.Y = 200.000000000000000000
+        Size.Width = 447.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = #1062#1077#1085#1072' ('#1095#1072#1089')'
+        object PriceEdit: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = VertCenter
+          TabOrder = 6
+          KeyboardType = DecimalNumberPad
+          TextSettings.HorzAlign = Center
+          Position.X = 100.000000000000000000
+          Position.Y = 9.000000000000000000
+          Size.Width = 337.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          OnChange = NumberSpinChange
+        end
+      end
+    end
+    object ToolBar1: TToolBar
+      Align = Bottom
+      Position.Y = 560.000000000000000000
+      Size.Width = 457.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      TintColor = claSilver
+      object GridPanelLayout1: TGridPanelLayout
+        Align = Client
+        Size.Width = 457.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ColumnCollection = <
+          item
+            Value = 50.000000000000000000
+          end
+          item
+            Value = 50.000000000000000000
+          end>
+        ControlCollection = <
+          item
+            Column = 0
+            Control = CancelBtn
+            Row = 0
+          end
+          item
+            Column = 1
+            Control = SaveBtn
+            Row = 0
+          end>
+        RowCollection = <
+          item
+            Value = 100.000000000000000000
+          end
+          item
+            SizeStyle = Auto
+          end>
+        object CancelBtn: TButton
+          Align = VertCenter
+          Margins.Left = 10.000000000000000000
+          Margins.Top = 10.000000000000000000
+          Margins.Right = 10.000000000000000000
+          Margins.Bottom = 10.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 2.000000000000000000
+          Size.Width = 208.500000000000000000
+          Size.Height = 44.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 8
+          Text = #1054#1090#1084#1077#1085#1072
+          TintColor = claDarkviolet
+          OnClick = CancelBtnClick
+        end
+        object SaveBtn: TButton
+          Align = VertCenter
+          ModalResult = 1
+          Margins.Left = 10.000000000000000000
+          Margins.Top = 10.000000000000000000
+          Margins.Right = 10.000000000000000000
+          Margins.Bottom = 10.000000000000000000
+          Position.X = 238.500000000000000000
+          Position.Y = 2.000000000000000000
+          Size.Width = 208.500000000000000000
+          Size.Height = 44.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 6
+          Text = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+          TintColor = claSpringgreen
+        end
+      end
+    end
+  end
+end

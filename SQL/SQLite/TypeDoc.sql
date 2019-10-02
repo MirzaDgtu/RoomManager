@@ -1,0 +1,8 @@
+INSERT INTO ColumnDB(Name, TableID)
+VALUES				('"ID"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE', 3)
+
+INSERT INTO ColumnDB(Name, TableID)
+VALUES				('"Name"	Varchar(10) NOT NULL', 3)
+
+INSERT INTO ColumnDB(Name, TableID)
+VALUES				('"Description"	VARCHAR(50)', 3)

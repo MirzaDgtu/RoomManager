@@ -1,0 +1,11 @@
+INSERT INTO ColumnDB(Name, TableID)
+VALUES				('"ID"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE', 1)
+
+INSERT INTO ColumnDB(Name, TableID)
+VALUES				('"Adress"	VARCHAR(200) NOT NULL', 1)
+
+INSERT INTO ColumnDB(Name, TableID)
+VALUES				('"Number"	INTEGER', 1)
+
+INSERT INTO ColumnDB(Name, TableID)
+VALUES				('"Price"	REAL', 1)
