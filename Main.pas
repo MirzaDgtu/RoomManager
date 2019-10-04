@@ -31,13 +31,13 @@ type
     OrdersBS: TBindSourceDB;
     OrdersBL: TBindingsList;
     LinkListControlToField1: TLinkListControlToField;
-    ImageList: TImageList;
     procedure MenuBtnClick(Sender: TObject);
     procedure RoomBtnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure OrdersViewClick(Sender: TObject);
     procedure Rectangle1Click(Sender: TObject);
     procedure AddBtnClick(Sender: TObject);
+    procedure RefreshBtnClick(Sender: TObject);
   private
     { Private declarations }
     procedure PanelMenuHide();
@@ -73,6 +73,7 @@ begin
            DateEOrder.Date := Now();
            TimeBOrder.Time := Now();
            TimeEOrder.Time := Now();
+           PstatusCorr := False;
 
 
            {$IFDEF ANDROID}
@@ -91,6 +92,7 @@ begin
                                                                   PriceEdit.Text,
                                                                   1);
                                       finally
+                                           RefreshBtnClick(Self);
                                       end;
                                     except
                                         on Err: Exception do
@@ -115,17 +117,8 @@ begin
                                                   PhoneEdit.Text,
                                                   PriceEdit.Text,
                                                   1);
-
-                                    {   ModuleData.OrderDBQuery.SQL.Text := Format(SSQLAddOrder, [FormatDateTime('yyyy-mm-dd hh:MM:ss', Now),
-                                                  DateB,
-                                                  DateE,
-                                                  IdRoom.ToInteger,
-                                                  PhoneEdit.Text,
-                                                  PriceEdit.Text,
-                                                  1]);
-
-                                                  ShowMessage(ModuleData.OrderDBQuery.SQL.Text); }
                       finally
+                          RefreshBtnClick(Self);
                       end;
                     except
                         on Err: Exception do
@@ -203,6 +196,22 @@ begin
       {$IFDEF MSWINDOWS}
           FreeAndNil(Room);
       {$ENDIF}
+    end;
+end;
+
+procedure TMainForm.RefreshBtnClick(Sender: TObject);
+begin
+    PanelMenuHide();
+
+    try
+       OrdersView.BeginUpdate;
+         ModuleData.OrderQuery.Active := False;
+         ModuleData.OrderQuery.SQL.Text := SSQLGetOrders;
+         ModuleData.OrderQuery.Active := True;
+
+         OrdersBS.DataSet.Refresh;
+    finally
+       OrdersView.EndUpdate;
     end;
 end;
 

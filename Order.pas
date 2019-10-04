@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
   FMX.Layouts, FMX.Controls.Presentation, FMX.DateTimeCtrls, FMX.ListBox,
-  FMX.Edit, System.DateUtils;
+  FMX.Edit, System.DateUtils,  FMX.DialogService;
 
 type
   TOrderForm = class(TForm)
@@ -34,6 +34,7 @@ type
     procedure DateBOrderChange(Sender: TObject);
     procedure RoomBtnClick(Sender: TObject);
     procedure PriceEditClick(Sender: TObject);
+    procedure CancelBtnClick(Sender: TObject);
   private
     FPstatusCorr: Boolean;
     FIDRoom: string;
@@ -67,6 +68,24 @@ implementation
 {$R *.fmx}
 
 uses sConsts, AppData, Room;
+
+procedure TOrderForm.CancelBtnClick(Sender: TObject);
+begin
+      case PstatusCorr of
+          True: TDialogService.MessageDialog('ѕри выходе вы потер€ете все изменени€!' + #13 + '¬ы действительно хотите выйти?', System.UITypes.TMsgDlgType.mtInformation,
+                                [System.UITypes.TMsgDlgBtn.mbYes, System.UITypes.TMsgDlgBtn.mbNo],
+                                 System.UITypes.TMsgDlgBtn.mbYes, 0,
+
+                                 procedure(const AResult: TModalResult)
+                                 begin
+                                   case AResult of
+                                    mrYES: Close();
+                                    mrNo: Exit;
+                                   end;
+                                 end);
+          False: Close();
+      end;
+end;
 
 procedure TOrderForm.DateBOrderChange(Sender: TObject);
 begin
@@ -131,9 +150,13 @@ begin
                           Begin
                             if ModalResult = mrOK then
                               Begin
-                                RoomLbl.Text := 'г. ' + RoomF.City + ', ' + RoomF.AdressRoom + ' ' + RoomF.NumHome + ', кв. ' + RoomF.NumApartment;
-                                IDRoom := RoomF.IdRoom;
-                                PriceRoom := RoomF.PriceRoom;
+                                try
+                                    RoomLbl.Text := 'г. ' + RoomF.City + ', ' + RoomF.AdressRoom + ' ' + RoomF.NumHome + ', кв. ' + RoomF.NumApartment;
+                                    IDRoom := RoomF.IdRoom;
+                                    PriceRoom := RoomF.PriceRoom;
+                                finally
+                                   DateBOrderChange(Self);
+                                end;
                               End;
                           End
                         );
@@ -142,9 +165,13 @@ begin
       {$IFDEF MSWINDOWS}
           if RoomF.ShowModal = mrOk then
             Begin
+              try
                 RoomLbl.Text :=  'г. ' + RoomF.City + ', ' + RoomF.AdressRoom + ' ' + RoomF.NumHome + ', кв. ' + RoomF.NumApartment;
                 IDRoom := RoomF.IdRoom;
                 PriceRoom := RoomF.PriceRoom;
+              finally
+                DateBOrderChange(Self);
+              end;
             End;
       {$ENDIF}
 

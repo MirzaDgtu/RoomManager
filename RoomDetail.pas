@@ -39,7 +39,7 @@ type
   public
     { Public declarations }
 
-    property corrStatus: Boolean read FcorrStatus write SetcorrStatus default false;
+    property corrStatus: Boolean read FcorrStatus write SetcorrStatus;
   end;
 
 var
@@ -53,7 +53,6 @@ uses RoomBehaviors, AppData;
 
 procedure TRoomDetailForm.CancelBtnClick(Sender: TObject);
 begin
-
       case corrStatus of
           True: TDialogService.MessageDialog('При выходе вы потеряете все изменения!' + #13 + 'Вы действительно хотите выйти?', System.UITypes.TMsgDlgType.mtInformation,
                                 [System.UITypes.TMsgDlgBtn.mbYes, System.UITypes.TMsgDlgBtn.mbNo],
@@ -84,7 +83,7 @@ end;
 
 procedure TRoomDetailForm.SetcorrStatus(const Value: Boolean);
 begin
-  FcorrStatus := Value;
+   FcorrStatus := Value;
 end;
 
 end.

@@ -38,6 +38,8 @@ type
     OrderQueryTypeDoc: TIntegerField;
     OrderQueryCorrDate: TWideMemoField;
     OrderQueryRoomStr: TWideStringField;
+    RoomQueryScreen: TBlobField;
+    OrderQueryScreen: TBlobField;
     procedure ConnectionBeforeConnect(Sender: TObject);
   private
     { Private declarations }

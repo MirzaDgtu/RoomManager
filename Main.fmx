@@ -66,7 +66,6 @@ object MainForm: TMainForm
         ItemEditAppearanceClassName = 'TDynamicAppearance'
         HeaderAppearanceClassName = 'TListHeaderObjects'
         FooterAppearanceClassName = 'TListHeaderObjects'
-        Images = ImageList
         Align = Client
         Size.Width = 403.000000000000000000
         Size.Height = 682.000000000000000000
@@ -76,6 +75,7 @@ object MainForm: TMainForm
           item
             AppearanceObjectName = 'Room'
             AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Font.Size = 10.000000000000000000
             Appearance.Font.StyleExt = {00070000000000000004000000}
             Appearance.Width = 217.000000000000000000
             Appearance.Height = 44.000000000000000000
@@ -87,10 +87,12 @@ object MainForm: TMainForm
             Appearance.Width = 39.000000000000000000
             Appearance.Height = 44.000000000000000000
             Appearance.VertAlign = Center
+            Appearance.PlaceOffset.X = -4.000000000000000000
           end
           item
             AppearanceObjectName = 'Price'
             AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Font.Size = 10.000000000000000000
             Appearance.Font.StyleExt = {00070000000000000004000000}
             Appearance.TextColor = claSpringgreen
             Appearance.Width = 129.000000000000000000
@@ -101,19 +103,41 @@ object MainForm: TMainForm
           item
             AppearanceObjectName = 'DateFinish'
             AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Font.Size = 10.000000000000000000
             Appearance.Font.StyleExt = {00070000000000000004000000}
             Appearance.TextColor = claTeal
             Appearance.Width = 129.000000000000000000
             Appearance.Height = 22.000000000000000000
             Appearance.PlaceOffset.X = 254.000000000000000000
             Appearance.PlaceOffset.Y = 21.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'ID'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 100.000000000000000000
+            Appearance.Height = 22.000000000000000000
+            Appearance.Visible = False
+            Appearance.PlaceOffset.X = 280.000000000000000000
+            Appearance.PlaceOffset.Y = -22.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'DateBeg'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Font.Size = 10.000000000000000000
+            Appearance.Font.StyleExt = {00070000000000000004000000}
+            Appearance.TextColor = claTeal
+            Appearance.Width = 129.000000000000000000
+            Appearance.Height = 24.000000000000000000
+            Appearance.PlaceOffset.X = 254.000000000000000000
+            Appearance.PlaceOffset.Y = -24.000000000000000000
           end>
         ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
           item
             AppearanceObjectName = 'Text1'
             AppearanceClassName = 'TTextObjectAppearance'
           end>
-        ItemAppearanceObjects.HeaderObjects.Text.Width = 383.000000000000000000
+        ItemAppearanceObjects.HeaderObjects.Text.TextColor = claRed
+        ItemAppearanceObjects.HeaderObjects.Text.Width = 255.000000000000000000
         ItemAppearanceObjects.HeaderObjects.Text.Height = 24.000000000000000000
         ItemAppearanceObjects.FooterObjects.Text.Width = 383.000000000000000000
         ItemAppearanceObjects.FooterObjects.Text.Height = 24.000000000000000000
@@ -228,6 +252,7 @@ object MainForm: TMainForm
               StyleLookup = 'refreshtoolbutton'
               TabOrder = 4
               Text = 'AddBtn'
+              OnClick = RefreshBtnClick
             end
           end
         end
@@ -265,55 +290,32 @@ object MainForm: TMainForm
       Control = OrdersView
       FillExpressions = <
         item
-          SourceMemberName = 'Price'
-          ControlMemberName = 'Price'
+          SourceMemberName = 'RoomStr'
+          ControlMemberName = 'Room'
+        end
+        item
+          SourceMemberName = 'ID'
+          ControlMemberName = 'ID'
         end
         item
           SourceMemberName = 'DateEnd'
           ControlMemberName = 'DateFinish'
         end
         item
-          SourceMemberName = 'RoomStr'
-          ControlMemberName = 'Room'
+          SourceMemberName = 'Price'
+          ControlMemberName = 'Price'
+        end
+        item
+          SourceMemberName = 'Screen'
+          ControlMemberName = 'ProfilIcon'
+        end
+        item
+          SourceMemberName = 'DateBeg'
+          ControlMemberName = 'DateBeg'
         end>
       FillHeaderExpressions = <>
+      FillHeaderFieldName = 'ID'
       FillBreakGroups = <>
     end
-  end
-  object ImageList: TImageList
-    Source = <
-      item
-        MultiResBitmap.LoadSize = 0
-        MultiResBitmap = <
-          item
-            Width = 16
-            Height = 16
-            PNG = {
-              89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
-              61000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-              012C49444154384FA592314B825114863F93826871A8A5A0301C7289A0A521A7
-              065B9BFA07FE0C07FF80FE0137B7867E440E4108E5100D35D4F20DBA38A89004
-              3DEFE739F279D5087CE1E1BDE772EFEBB9C72F5A5719F32A7CC3187EB481B2E6
-              07F004774915C8032E41179E61A20DB4697E0C6FA0F00579C0B9F92DECC20B84
-              9DA4EB6DD8825A189087436842D849BA3E0305B6C3803AB4A00337B0033DE883
-              54326F9877BCBD7D733FD8852388E11314F46AAE331F20C51BB67015CD97C9BB
-              9D5318A076A53DD03015E8A1BE9EFB91700665508B9A830E8E60080AD453F4AC
-              B46633D064AF619054D3892BE0020AF00557566B5FDF85147B802E3E82A6AF6E
-              B43E055D7CB7F503E44067355C6961882E9FC109F89B7DED75A25501FFD6B2BF
-              A662FE97F4B5DE839EBC8EA2E817037139A34B9A17010000000049454E44AE42
-              6082}
-            FileName = 'D:\Projects\RoomManager\Icons\RoomIcon16.png'
-          end>
-        Name = 'RoomIcon16'
-      end>
-    Destination = <
-      item
-        Layers = <
-          item
-            Name = 'RoomIcon16'
-          end>
-      end>
-    Left = 240
-    Top = 265
   end
 end

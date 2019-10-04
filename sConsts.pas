@@ -27,14 +27,16 @@ resourcestring
   SSQLDeleteRoom  = 'DELETE FROM ROOM ' +
                     'WHERE ID = %d';
 
-  SSQLGetRoom     = 'SELECT    ID, ' +
-                    '          City, ' +
-                    '          Adress, ' +
-                    '          NumHome, '  +
-                    '          NumApartment, ' +
-                    '          CountRoom, ' +
-                    '          Price ' +
-                    'FROM	 Room ' +
+  SSQLGetRoom     = 'SELECT    O.ID, ' +
+                    '          O.City, ' +
+                    '          O.Adress, ' +
+                    '          O.NumHome, '  +
+                    '          O.NumApartment, ' +
+                    '          O.CountRoom, ' +
+                    '          O.Price, ' +
+                    '          I.Screen ' +
+                    'FROM	 Room O' +
+                    '      LEFT JOIN ImageIcon I ON I.ID = 1 ' +
                     'ORDER BY CountRoom';
 
 
@@ -87,9 +89,11 @@ resourcestring
                           '        O.Phone,       ' +
                           '        O.Price,       ' +
                           '        O.DateCorr,    ' +
-                          '        O.TypeDoc      ' +
+                          '        O.TypeDoc,     ' +
+                          '        I.Screen       ' +
                           'FROM Orders O          ' +
-                          'LEFT JOIN Room R On R.ID = O.Room';
+                          'LEFT JOIN Room R On R.ID = O.Room' +
+                          '     LEFT JOIN ImageIcon I ON I.ID = 2 ';
                         //  'WHERE DATE(O.DateBeg) = DATE(''%s'')';                                     // Получение реестра заказов
 implementation
 

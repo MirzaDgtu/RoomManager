@@ -55,15 +55,17 @@ object RoomForm: TRoomForm
         Appearance.Font.Size = 11.000000000000000000
         Appearance.Font.StyleExt = {00070000000000000004000000}
         Appearance.TextAlign = Leading
-        Appearance.Width = 255.000000000000000000
+        Appearance.Width = 264.000000000000000000
         Appearance.Height = 43.000000000000000000
-        Appearance.PlaceOffset.X = 46.000000000000000000
+        Appearance.PlaceOffset.X = 38.000000000000000000
       end
       item
         AppearanceObjectName = 'IconProfil'
         AppearanceClassName = 'TImageObjectAppearance'
-        Appearance.Width = 48.000000000000000000
-        Appearance.Height = 44.000000000000000000
+        Appearance.Width = 42.000000000000000000
+        Appearance.Height = 40.000000000000000000
+        Appearance.PlaceOffset.X = -4.000000000000000000
+        Appearance.PlaceOffset.Y = 2.000000000000000000
       end
       item
         AppearanceObjectName = 'Price'
@@ -254,6 +256,10 @@ object RoomForm: TRoomForm
         item
           SourceMemberName = 'City'
           ControlMemberName = 'City'
+        end
+        item
+          SourceMemberName = 'Screen'
+          ControlMemberName = 'IconProfil'
         end>
       FillHeaderExpressions = <>
       FillHeaderFieldName = 'City'

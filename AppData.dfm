@@ -58,6 +58,9 @@ object ModuleData: TModuleData
     object FloatField1: TFloatField
       FieldName = 'Price'
     end
+    object RoomQueryScreen: TBlobField
+      FieldName = 'Screen'
+    end
   end
   object OrderDBQuery: TFDQuery
     Connection = Connection
@@ -106,6 +109,9 @@ object ModuleData: TModuleData
     object OrderQueryRoomStr: TWideStringField
       FieldName = 'RoomStr'
       Size = 150
+    end
+    object OrderQueryScreen: TBlobField
+      FieldName = 'Screen'
     end
   end
 end

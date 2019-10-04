@@ -74,6 +74,7 @@ object OrderForm: TOrderForm
           Text = #1054#1090#1084#1077#1085#1072
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TintColor = claDarkviolet
+          OnClick = CancelBtnClick
         end
         object SaveBtn: TButton
           Align = VertCenter

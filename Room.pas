@@ -181,6 +181,7 @@ begin
               NumberSpin.Value := NumberRoom.ToSingle;
               AdressEdit.Text := AdressRoom;
               PriceEdit.Text := PriceRoom;
+              corrStatus  := False;
 
               ShowModal(
                          procedure(ModalResult: TModalResult)
@@ -277,8 +278,18 @@ begin
                                  begin
                                    case AResult of
                                     mrYES: try
-                                              ModuleData.RoomDBQuery.SQL.Text := Format(SSQLDeleteRoom, [IdRoom.ToInteger]);
-                                              ModuleData.RoomDBQuery.ExecSQL;
+                                              try
+                                                  ModuleData.RoomDBQuery.SQL.Text := Format(SSQLDeleteRoom, [IdRoom.ToInteger]);
+                                                  ModuleData.RoomDBQuery.ExecSQL;
+                                              finally
+                                                Self.RoomView.BeginUpdate;
+                                                  ModuleData.RoomQuery.Active := False;
+                                                  ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
+                                                  ModuleData.RoomQuery.Active := True;
+
+                                                  RoomBS.DataSet.Refresh;
+                                                Self.RoomView.EndUpdate;
+                                              end;
                                            except
                                               on Err: Exception do
                                                 Showmessage('Ошибка удаления квартиры!' + #13 + 'Сообщение: ' + Err.Message);
@@ -288,13 +299,13 @@ begin
                                  end);
         End;
    finally
-        Self.RoomView.BeginUpdate;
-          ModuleData.RoomQuery.Active := False;
-          ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
-          ModuleData.RoomQuery.Active := True;
+      Self.RoomView.BeginUpdate;
+        ModuleData.RoomQuery.Active := False;
+        ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
+        ModuleData.RoomQuery.Active := True;
 
-          RoomBS.DataSet.Refresh;
-        Self.RoomView.EndUpdate;
+        RoomBS.DataSet.Refresh;
+      Self.RoomView.EndUpdate;
    end;
 end;
 
