@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
   FMX.Layouts, FMX.Controls.Presentation, FMX.DateTimeCtrls, FMX.ListBox,
-  FMX.Edit, System.DateUtils,  FMX.DialogService;
+  FMX.Edit, System.DateUtils,  FMX.DialogService, MaskUtils;
 
 type
   TOrderForm = class(TForm)
@@ -30,11 +30,14 @@ type
     PriceEdit: TEdit;
     PhoneItemBox: TListBoxItem;
     PhoneEdit: TEdit;
+    ClearEditButton1: TClearEditButton;
+    ClearEditButton2: TClearEditButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DateBOrderChange(Sender: TObject);
     procedure RoomBtnClick(Sender: TObject);
     procedure PriceEditClick(Sender: TObject);
     procedure CancelBtnClick(Sender: TObject);
+    procedure PhoneEditExit(Sender: TObject);
   private
     FPstatusCorr: Boolean;
     FIDRoom: string;
@@ -129,6 +132,11 @@ begin
       End
   else
       Result := 0;
+end;
+
+procedure TOrderForm.PhoneEditExit(Sender: TObject);
+begin
+    PhoneEdit.Text := MaskDoFormatText('#-###-###-##-##;#0', PhoneEdit.Text, #0);
 end;
 
 procedure TOrderForm.PriceEditClick(Sender: TObject);

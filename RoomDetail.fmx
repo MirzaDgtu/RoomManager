@@ -2,8 +2,8 @@ object RoomDetailForm: TRoomDetailForm
   Left = 0
   Top = 0
   Caption = 'RoomDetailForm'
-  ClientHeight = 608
-  ClientWidth = 457
+  ClientHeight = 355
+  ClientWidth = 430
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -11,18 +11,20 @@ object RoomDetailForm: TRoomDetailForm
   DesignerMasterStyle = 3
   object Layout1: TLayout
     Align = Client
-    Size.Width = 457.000000000000000000
-    Size.Height = 608.000000000000000000
+    Size.Width = 430.000000000000000000
+    Size.Height = 355.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     object DetailList: TListBox
-      Align = Client
+      Align = VertCenter
       Margins.Left = 5.000000000000000000
       Margins.Top = 5.000000000000000000
       Margins.Right = 5.000000000000000000
       Margins.Bottom = 5.000000000000000000
-      Size.Width = 447.000000000000000000
-      Size.Height = 550.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 420.000000000000000000
+      Size.Height = 297.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       DisableFocusEffect = True
@@ -30,13 +32,13 @@ object RoomDetailForm: TRoomDetailForm
       DefaultItemStyles.ItemStyle = ''
       DefaultItemStyles.GroupHeaderStyle = ''
       DefaultItemStyles.GroupFooterStyle = ''
-      Viewport.Width = 447.000000000000000000
-      Viewport.Height = 550.000000000000000000
+      Viewport.Width = 420.000000000000000000
+      Viewport.Height = 297.000000000000000000
       object ListBoxGroupHeader1: TListBoxGroupHeader
         TextSettings.Font.StyleExt = {00070000000000000004000000}
         TextSettings.HorzAlign = Center
         StyledSettings = [Family, Size, Style, FontColor]
-        Size.Width = 447.000000000000000000
+        Size.Width = 420.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
@@ -50,7 +52,7 @@ object RoomDetailForm: TRoomDetailForm
         Padding.Left = 90.000000000000000000
         Padding.Right = 20.000000000000000000
         Position.Y = 50.000000000000000000
-        Size.Width = 447.000000000000000000
+        Size.Width = 420.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 4
@@ -61,9 +63,17 @@ object RoomDetailForm: TRoomDetailForm
           TabOrder = 1
           Position.X = 90.000000000000000000
           Position.Y = 9.000000000000000000
-          Size.Width = 337.000000000000000000
+          Size.Width = 310.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
+          object ClearEditButton1: TClearEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Size.Width = 32.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+          end
         end
       end
       object AdressLB: TListBoxItem
@@ -74,7 +84,7 @@ object RoomDetailForm: TRoomDetailForm
         Padding.Left = 90.000000000000000000
         Padding.Right = 20.000000000000000000
         Position.Y = 100.000000000000000000
-        Size.Width = 447.000000000000000000
+        Size.Width = 420.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
@@ -86,11 +96,19 @@ object RoomDetailForm: TRoomDetailForm
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           Position.X = 90.000000000000000000
           Position.Y = 9.000000000000000000
-          Size.Width = 337.000000000000000000
+          Size.Width = 310.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Family, FontColor]
           OnChange = NumberSpinChange
+          object ClearEditButton2: TClearEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Size.Width = 32.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+          end
         end
       end
       object HomeRoomNumLB: TListBoxItem
@@ -99,9 +117,9 @@ object RoomDetailForm: TRoomDetailForm
         TextSettings.FontColor = claChocolate
         StyledSettings = [Family, Other]
         Padding.Left = 90.000000000000000000
-        Padding.Right = 20.000000000000000000
+        Padding.Right = 10.000000000000000000
         Position.Y = 150.000000000000000000
-        Size.Width = 447.000000000000000000
+        Size.Width = 420.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 3
@@ -113,10 +131,10 @@ object RoomDetailForm: TRoomDetailForm
           KeyboardType = NumberPad
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
-          Position.X = 214.000000000000000000
+          Position.X = 211.000000000000000000
           Position.Y = 9.000000000000000000
           Margins.Left = 5.000000000000000000
-          Size.Width = 63.000000000000000000
+          Size.Width = 47.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Family, FontColor]
@@ -125,8 +143,8 @@ object RoomDetailForm: TRoomDetailForm
           Align = Right
           StyledSettings = [Family]
           Margins.Left = 5.000000000000000000
-          Position.X = 158.000000000000000000
-          Size.Width = 51.000000000000000000
+          Position.X = 165.000000000000000000
+          Size.Width = 41.000000000000000000
           Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 14.000000000000000000
@@ -140,7 +158,7 @@ object RoomDetailForm: TRoomDetailForm
           Align = Right
           StyledSettings = [Family]
           Margins.Left = 5.000000000000000000
-          Position.X = 282.000000000000000000
+          Position.X = 263.000000000000000000
           Size.Width = 65.000000000000000000
           Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
@@ -155,10 +173,10 @@ object RoomDetailForm: TRoomDetailForm
           Align = Right
           TabOrder = 5
           Cursor = crIBeam
-          Position.X = 352.000000000000000000
+          Position.X = 333.000000000000000000
           Position.Y = 9.000000000000000000
           Margins.Left = 5.000000000000000000
-          Size.Width = 75.000000000000000000
+          Size.Width = 77.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Family, Style, FontColor]
@@ -172,21 +190,21 @@ object RoomDetailForm: TRoomDetailForm
           TextSettings.HorzAlign = Center
           Position.X = 90.000000000000000000
           Position.Y = 9.000000000000000000
-          Size.Width = 63.000000000000000000
+          Size.Width = 70.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Family, Style, FontColor]
         end
       end
-      object ListBoxItem3: TListBoxItem
+      object PriceLB: TListBoxItem
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00070000000000000004000000}
         TextSettings.FontColor = claChocolate
         StyledSettings = [Family, Other]
-        Padding.Left = 100.000000000000000000
-        Padding.Right = 10.000000000000000000
+        Padding.Left = 90.000000000000000000
+        Padding.Right = 20.000000000000000000
         Position.Y = 200.000000000000000000
-        Size.Width = 447.000000000000000000
+        Size.Width = 420.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
@@ -197,26 +215,34 @@ object RoomDetailForm: TRoomDetailForm
           TabOrder = 6
           KeyboardType = DecimalNumberPad
           TextSettings.HorzAlign = Center
-          Position.X = 100.000000000000000000
+          Position.X = 90.000000000000000000
           Position.Y = 9.000000000000000000
-          Size.Width = 337.000000000000000000
+          Size.Width = 310.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           OnChange = NumberSpinChange
+          object ClearEditButton3: TClearEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Size.Width = 32.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+          end
         end
       end
     end
     object ToolBar1: TToolBar
       Align = Bottom
-      Position.Y = 560.000000000000000000
-      Size.Width = 457.000000000000000000
+      Position.Y = 307.000000000000000000
+      Size.Width = 430.000000000000000000
       Size.Height = 48.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       TintColor = claSilver
       object GridPanelLayout1: TGridPanelLayout
         Align = Client
-        Size.Width = 457.000000000000000000
+        Size.Width = 430.000000000000000000
         Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
@@ -253,7 +279,7 @@ object RoomDetailForm: TRoomDetailForm
           Margins.Bottom = 10.000000000000000000
           Position.X = 10.000000000000000000
           Position.Y = 2.000000000000000000
-          Size.Width = 208.500000000000000000
+          Size.Width = 195.000000000000000000
           Size.Height = 44.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 8
@@ -268,9 +294,9 @@ object RoomDetailForm: TRoomDetailForm
           Margins.Top = 10.000000000000000000
           Margins.Right = 10.000000000000000000
           Margins.Bottom = 10.000000000000000000
-          Position.X = 238.500000000000000000
+          Position.X = 225.000000000000000000
           Position.Y = 2.000000000000000000
-          Size.Width = 208.500000000000000000
+          Size.Width = 195.000000000000000000
           Size.Height = 44.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 6

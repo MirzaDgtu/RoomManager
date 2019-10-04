@@ -10,7 +10,7 @@ uses
   FMX.Layouts, FMX.TabControl, FMX.Ani, System.ImageList, FMX.ImgList,
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, System.Rtti, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.Components, Data.Bind.GenData, Fmx.Bind.GenData,
-  Data.Bind.ObjectScope, FMX.Menus, Data.Bind.DBScope;
+  Data.Bind.ObjectScope, FMX.Menus, Data.Bind.DBScope, FMX.DialogService;
 
 type
   TMainForm = class(TForm)
@@ -38,11 +38,17 @@ type
     procedure Rectangle1Click(Sender: TObject);
     procedure AddBtnClick(Sender: TObject);
     procedure RefreshBtnClick(Sender: TObject);
+    procedure DeleteBtnClick(Sender: TObject);
+    procedure OrdersViewItemClick(const Sender: TObject;
+      const AItem: TListViewItem);
   private
+    FIdOrder: string;
     { Private declarations }
     procedure PanelMenuHide();
+    procedure SetIdOrder(const Value: string);
   public
     { Public declarations }
+    property IdOrder: string read FIdOrder write SetIdOrder;
   end;
 
 var
@@ -99,7 +105,7 @@ begin
                                           ShowMessage('Ошибка создания заявки!' + #13 + 'Сообщение: ' + Err.Message);
                                     end;
                                 end;
-                          end;
+                          end
                         );
            {$ENDIF}
 
@@ -135,6 +141,57 @@ begin
 
 end;
 
+procedure TMainForm.DeleteBtnClick(Sender: TObject);
+begin
+      PanelMenuHide();
+
+       try
+         if Length(IdOrder) > 0 then
+          Begin
+           TDialogService.MessageDialog('Вы действительно хотите удалить эту заявку?', System.UITypes.TMsgDlgType.mtInformation,
+                                  [System.UITypes.TMsgDlgBtn.mbYes, System.UITypes.TMsgDlgBtn.mbNo],
+                                   System.UITypes.TMsgDlgBtn.mbYes, 0,
+
+                                   procedure(const AResult: TModalResult)
+                                   begin
+                                     case AResult of
+                                      mrYES: try
+                                                try
+                                                  ModuleData.Connection.StartTransaction;
+                                                    ModuleData.OrderDBQuery.SQL.Text := Format(SSQLDeleteOrder, [IdOrder.ToInteger]);
+                                                    ModuleData.OrderDBQuery.ExecSQL;
+                                                  ModuleData.Connection.Commit;
+                                                finally
+                                                  Self.OrdersView.BeginUpdate;
+                                                    ModuleData.RoomQuery.Active := False;
+                                                    ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
+                                                    ModuleData.RoomQuery.Active := True;
+
+                                                    OrdersBS.DataSet.Refresh;
+                                                  Self.OrdersView.EndUpdate;
+                                                end;
+                                             except
+                                                on Err: Exception do
+                                                  Begin
+                                                    ModuleData.Connection.Rollback;
+                                                    Showmessage('Ошибка удаления заявки!' + #13 + 'Сообщение: ' + Err.Message);
+                                                  End;
+                                             end;
+                                      mrNo: ;
+                                     end;
+                                   end);
+        End;
+   finally
+      Self.OrdersView.BeginUpdate;
+        ModuleData.RoomQuery.Active := False;
+        ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
+        ModuleData.RoomQuery.Active := True;
+
+        OrdersBS.DataSet.Refresh;
+      Self.OrdersView.EndUpdate;
+   end;
+end;
+
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
      ModuleData := TModuleData.Create(Application);
@@ -167,6 +224,12 @@ end;
 procedure TMainForm.OrdersViewClick(Sender: TObject);
 begin
    PanelMenuHide();
+end;
+
+procedure TMainForm.OrdersViewItemClick(const Sender: TObject;
+  const AItem: TListViewItem);
+begin
+    IdOrder := AItem.Data['ID'].asString;
 end;
 
 procedure TMainForm.PanelMenuHide;
@@ -235,6 +298,11 @@ begin
           FreeAndNil(Room);
       {$ENDIF}
     end;
+end;
+
+procedure TMainForm.SetIdOrder(const Value: string);
+begin
+  FIdOrder := Value;
 end;
 
 end.

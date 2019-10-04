@@ -175,13 +175,15 @@ begin
 
 
    try
-      {$IFDEF ANDROID}
         with RoomD do
           Begin
-              NumberSpin.Value := NumberRoom.ToSingle;
+          {$IFDEF ANDROID}
+              CityEdit.Text := City;
               AdressEdit.Text := AdressRoom;
+              HomeNumEdit.Text := NumHome;
+              NumRoomEdit.Text := NumApartment;
+              NumberSpin.Value := CountRoom.ToSingle;
               PriceEdit.Text := PriceRoom;
-              corrStatus  := False;
 
               ShowModal(
                          procedure(ModalResult: TModalResult)
@@ -212,23 +214,13 @@ begin
                                end;
                           end
                        );
-          end;
-      {$ENDIF}
+          {$ENDIF}
 
-      {$IFDEF MSWINDOWS}
-
-          with RoomD do
-          Begin
-              CityEdit.Text := City;
-              AdressEdit.Text := AdressRoom;
-              HomeNumEdit.Text := NumHome;
-              NumRoomEdit.Text := NumApartment;
-              NumberSpin.Value := CountRoom.ToSingle;
-              PriceEdit.Text := PriceRoom;
+          {$IFDEF MSWINDOWS}
 
               if ShowModal = mrOk then
               Begin
-               if (RoomD.NumberSpin.Value > 0) and
+               if (NumberSpin.Value > 0) and
                   (Length(Trim(RoomD.AdressEdit.Text)) > 0) then
                   Begin
                     try
@@ -242,9 +234,9 @@ begin
                     finally
                     end;
                   End;
-               End;
-          End;
-      {$ENDIF}
+              End;
+          {$ENDIF}
+      End;
    finally
       {$IFDEF MSWINDOWS}
          FreeAndNil(RoomD);

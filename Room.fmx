@@ -55,21 +55,23 @@ object RoomForm: TRoomForm
         Appearance.Font.Size = 11.000000000000000000
         Appearance.Font.StyleExt = {00070000000000000004000000}
         Appearance.TextAlign = Leading
-        Appearance.Width = 264.000000000000000000
+        Appearance.Width = 249.000000000000000000
         Appearance.Height = 43.000000000000000000
+        Appearance.VertAlign = Center
         Appearance.PlaceOffset.X = 38.000000000000000000
       end
       item
         AppearanceObjectName = 'IconProfil'
         AppearanceClassName = 'TImageObjectAppearance'
         Appearance.Width = 42.000000000000000000
-        Appearance.Height = 40.000000000000000000
+        Appearance.Height = 36.000000000000000000
         Appearance.PlaceOffset.X = -4.000000000000000000
-        Appearance.PlaceOffset.Y = 2.000000000000000000
+        Appearance.PlaceOffset.Y = 4.000000000000000000
       end
       item
         AppearanceObjectName = 'Price'
         AppearanceClassName = 'TTextObjectAppearance'
+        Appearance.Font.Size = 11.000000000000000000
         Appearance.Font.StyleExt = {00070000000000000004000000}
         Appearance.TextColor = claSeagreen
         Appearance.Width = 78.000000000000000000
@@ -89,28 +91,31 @@ object RoomForm: TRoomForm
       item
         AppearanceObjectName = 'NumHome'
         AppearanceClassName = 'TTextObjectAppearance'
+        Appearance.Font.Size = 11.000000000000000000
         Appearance.Font.StyleExt = {00070000000000000004000000}
-        Appearance.Width = 42.000000000000000000
+        Appearance.Width = 37.000000000000000000
         Appearance.Height = 43.000000000000000000
-        Appearance.PlaceOffset.X = 301.000000000000000000
+        Appearance.PlaceOffset.X = 287.000000000000000000
       end
       item
         AppearanceObjectName = 'NumRoom'
         AppearanceClassName = 'TTextObjectAppearance'
+        Appearance.Font.Size = 11.000000000000000000
         Appearance.Font.StyleExt = {00070000000000000004000000}
-        Appearance.Width = 35.000000000000000000
+        Appearance.Width = 54.000000000000000000
         Appearance.Height = 22.000000000000000000
-        Appearance.PlaceOffset.X = 343.000000000000000000
+        Appearance.PlaceOffset.X = 324.000000000000000000
         Appearance.PlaceOffset.Y = 22.000000000000000000
       end
       item
         AppearanceObjectName = 'CountRoom'
         AppearanceClassName = 'TTextObjectAppearance'
+        Appearance.Font.Size = 11.000000000000000000
         Appearance.Font.StyleExt = {00070000000000000004000000}
         Appearance.TextColor = claChocolate
-        Appearance.Width = 35.000000000000000000
+        Appearance.Width = 54.000000000000000000
         Appearance.Height = 22.000000000000000000
-        Appearance.PlaceOffset.X = 343.000000000000000000
+        Appearance.PlaceOffset.X = 324.000000000000000000
       end
       item
         AppearanceObjectName = 'City'

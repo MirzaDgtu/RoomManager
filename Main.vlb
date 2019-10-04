@@ -1,24 +1,24 @@
 ﻿[AnimalMenu]
-Coordinates=126,155,75,33
+Coordinates=126,155,86,36
 
 [OrdersTab]
-Coordinates=750,40,66,33
+Coordinates=750,40,76,36
 Visible=False
 
 [ToolBar1]
-Coordinates=351,10,58,33
+Coordinates=351,10,67,36
 Visible=False
 
 [Shop_Layout]
-Coordinates=428,10,79,33
+Coordinates=428,10,90,36
 Visible=False
 
 [Tabs]
-Coordinates=840,40,40,33
+Coordinates=840,40,43,36
 Visible=False
 
 [MenuBtn]
-Coordinates=10,336,58,51
+Coordinates=10,336,66,58
 
 []
 Coordinates=569,420,62,33
@@ -27,53 +27,53 @@ ExplicitSubNodes=
 LayerNames=
 
 [ReportTab]
-Coordinates=272,10,65,33
+Coordinates=272,10,75,36
 Visible=False
 
 [OrdersView]
-Coordinates=10,32,89,249
+Coordinates=10,32,107,300
 Visible=True
 
 [RoomBtn]
-Coordinates=95,420,60,51
+Coordinates=95,420,68,58
 
 [ModuleData.StoredProc]
-Coordinates=102,336,131,51
+Coordinates=102,336,152,58
 
 [ModuleData.RoomDBQuery]
-Coordinates=189,420,149,51
+Coordinates=189,420,174,58
 
 [ModuleData.RoomQuery]
-Coordinates=365,10,134,33
+Coordinates=365,10,156,36
 Visible=False
 
 [DeleteBtn]
-Coordinates=389,420,62,51
+Coordinates=389,420,71,58
 
 [RoundRect1]
-Coordinates=10,504,74,33
+Coordinates=10,504,86,36
 
 [RefreshBtn]
-Coordinates=280,336,69,51
+Coordinates=280,336,79,58
 
 [AddBtn]
-Coordinates=486,420,51,51
+Coordinates=486,420,56,58
 
 [CorrBtn]
-Coordinates=10,420,53,51
+Coordinates=10,420,59,58
 
 [ModuleData.OrderQuery]
-Coordinates=127,10,133,33
+Coordinates=127,10,155,36
 Visible=False
 
 [ModuleData.OrderDBQuery]
-Coordinates=385,336,148,51
+Coordinates=385,336,173,58
 
 [OrdersBL]
-Coordinates=307,241,61,33
+Coordinates=307,241,69,36
 
 [OrdersBS]
-Coordinates=197,10,119,285
+Coordinates=197,10,142,336
 
 [Module Settings]
 ModelLayerNames=1;0

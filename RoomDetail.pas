@@ -17,7 +17,7 @@ type
     CancelBtn: TButton;
     SaveBtn: TButton;
     AdressLB: TListBoxItem;
-    ListBoxItem3: TListBoxItem;
+    PriceLB: TListBoxItem;
     AdressEdit: TEdit;
     NumberSpin: TSpinBox;
     PriceEdit: TEdit;
@@ -29,6 +29,9 @@ type
     HomeNumEdit: TEdit;
     CityLB: TListBoxItem;
     CityEdit: TEdit;
+    ClearEditButton1: TClearEditButton;
+    ClearEditButton2: TClearEditButton;
+    ClearEditButton3: TClearEditButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure CancelBtnClick(Sender: TObject);
     procedure NumberSpinChange(Sender: TObject);

@@ -13,9 +13,6 @@ Coordinates=334,197,58,51
 [NumberSpin]
 Coordinates=348,10,75,51
 
-[ListBoxItem3]
-Coordinates=105,258,79,33
-
 [AdressLB]
 Coordinates=122,319,62,33
 
@@ -63,4 +60,7 @@ Coordinates=194,258,108,33
 
 [CityEdit]
 Coordinates=88,197,40,51
+
+[PriceLB]
+Coordinates=105,258,79,33
 

@@ -64,7 +64,7 @@ resourcestring
                   'WHERE ID = %d        ';                                                // Корректировка заказа
 
 
-  SSQLDeleteOrder = 'DELETE FROM Order ' +                                                // Удаление заказва
+  SSQLDeleteOrder = 'DELETE FROM Orders ' +                                                // Удаление заказва
                     'WHERE ID = %d';
 
   SSQLGetOrderDetail    = 'SELECT   O.ID, ' +
@@ -85,7 +85,7 @@ resourcestring
                           '        O.DateBeg,     ' +
                           '        O.DateEnd,     ' +
                           '        O.Room,        ' +
-                          '        printf(''%s - %d, %d'', R.Adress, R.NumHome, NumApartment) as ''RoomStr'', ' +
+                          '        printf(''%s, %s - %d, %d'', R.City, R.Adress, R.NumHome, NumApartment) as ''RoomStr'', ' +
                           '        O.Phone,       ' +
                           '        O.Price,       ' +
                           '        O.DateCorr,    ' +
