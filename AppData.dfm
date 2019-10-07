@@ -46,6 +46,10 @@ object ModuleData: TModuleData
       FieldName = 'Adress'
       Size = 200
     end
+    object RoomQueryAdressStr: TWideStringField
+      FieldName = 'AdressStr'
+      Size = 50
+    end
     object RoomQueryNumHome: TIntegerField
       FieldName = 'NumHome'
     end

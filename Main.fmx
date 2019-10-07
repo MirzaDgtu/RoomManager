@@ -67,6 +67,7 @@ object MainForm: TMainForm
         HeaderAppearanceClassName = 'TListHeaderObjects'
         FooterAppearanceClassName = 'TListHeaderObjects'
         Align = Client
+        ClipParent = True
         Size.Width = 403.000000000000000000
         Size.Height = 682.000000000000000000
         Size.PlatformDefault = False
@@ -141,11 +142,11 @@ object MainForm: TMainForm
         ItemAppearanceObjects.HeaderObjects.Text.Height = 24.000000000000000000
         ItemAppearanceObjects.FooterObjects.Text.Width = 383.000000000000000000
         ItemAppearanceObjects.FooterObjects.Text.Height = 24.000000000000000000
-        StyleLookup = 'listviewstyle'
         OnClick = OrdersViewClick
+        CanSwipeDelete = False
         OnItemClick = OrdersViewItemClick
         SearchVisible = True
-        NativeOptions = [Grouped, Indexed, Styled]
+        NativeOptions = [Grouped, Indexed]
         object Shop_Layout: TLayout
           Anchors = [akRight, akBottom]
           Padding.Left = 5.000000000000000000

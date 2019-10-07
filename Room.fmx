@@ -48,6 +48,8 @@ object RoomForm: TRoomForm
     Size.Height = 654.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
+    ParentShowHint = False
+    ShowHint = False
     ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
       item
         AppearanceObjectName = 'Adress'
@@ -55,7 +57,7 @@ object RoomForm: TRoomForm
         Appearance.Font.Size = 11.000000000000000000
         Appearance.Font.StyleExt = {00070000000000000004000000}
         Appearance.TextAlign = Leading
-        Appearance.Width = 249.000000000000000000
+        Appearance.Width = 263.000000000000000000
         Appearance.Height = 43.000000000000000000
         Appearance.VertAlign = Center
         Appearance.PlaceOffset.X = 38.000000000000000000
@@ -75,9 +77,8 @@ object RoomForm: TRoomForm
         Appearance.Font.StyleExt = {00070000000000000004000000}
         Appearance.TextColor = claSeagreen
         Appearance.Width = 78.000000000000000000
-        Appearance.Height = 23.000000000000000000
+        Appearance.Height = 44.000000000000000000
         Appearance.PlaceOffset.X = 300.000000000000000000
-        Appearance.PlaceOffset.Y = -22.000000000000000000
       end
       item
         AppearanceObjectName = 'ID'
@@ -95,6 +96,7 @@ object RoomForm: TRoomForm
         Appearance.Font.StyleExt = {00070000000000000004000000}
         Appearance.Width = 37.000000000000000000
         Appearance.Height = 43.000000000000000000
+        Appearance.Visible = False
         Appearance.PlaceOffset.X = 287.000000000000000000
       end
       item
@@ -104,6 +106,7 @@ object RoomForm: TRoomForm
         Appearance.Font.StyleExt = {00070000000000000004000000}
         Appearance.Width = 54.000000000000000000
         Appearance.Height = 22.000000000000000000
+        Appearance.Visible = False
         Appearance.PlaceOffset.X = 324.000000000000000000
         Appearance.PlaceOffset.Y = 22.000000000000000000
       end
@@ -115,6 +118,7 @@ object RoomForm: TRoomForm
         Appearance.TextColor = claChocolate
         Appearance.Width = 54.000000000000000000
         Appearance.Height = 22.000000000000000000
+        Appearance.Visible = False
         Appearance.PlaceOffset.X = 324.000000000000000000
       end
       item
@@ -132,10 +136,11 @@ object RoomForm: TRoomForm
       end>
     ItemAppearanceObjects.HeaderObjects.Text.Width = 301.000000000000000000
     ItemAppearanceObjects.HeaderObjects.Text.Height = 24.000000000000000000
-    StyleLookup = 'listviewstyle'
     OnClick = RoomViewClick
+    CanSwipeDelete = False
     OnItemClick = RoomViewItemClick
     SearchVisible = True
+    NativeOptions = [Grouped]
     object Menu_Layout: TLayout
       Anchors = [akRight, akBottom]
       Position.X = 289.000000000000000000
@@ -235,24 +240,8 @@ object RoomForm: TRoomForm
       Control = RoomView
       FillExpressions = <
         item
-          SourceMemberName = 'Adress'
-          ControlMemberName = 'Adress'
-        end
-        item
           SourceMemberName = 'Price'
           ControlMemberName = 'Price'
-        end
-        item
-          SourceMemberName = 'NumHome'
-          ControlMemberName = 'NumHome'
-        end
-        item
-          SourceMemberName = 'NumApartment'
-          ControlMemberName = 'NumRoom'
-        end
-        item
-          SourceMemberName = 'CountRoom'
-          ControlMemberName = 'CountRoom'
         end
         item
           SourceMemberName = 'ID'
@@ -265,6 +254,10 @@ object RoomForm: TRoomForm
         item
           SourceMemberName = 'Screen'
           ControlMemberName = 'IconProfil'
+        end
+        item
+          SourceMemberName = 'AdressStr'
+          ControlMemberName = 'Adress'
         end>
       FillHeaderExpressions = <>
       FillHeaderFieldName = 'City'

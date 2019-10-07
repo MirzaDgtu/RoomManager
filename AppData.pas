@@ -40,6 +40,7 @@ type
     OrderQueryRoomStr: TWideStringField;
     RoomQueryScreen: TBlobField;
     OrderQueryScreen: TBlobField;
+    RoomQueryAdressStr: TWideStringField;
     procedure ConnectionBeforeConnect(Sender: TObject);
   private
     { Private declarations }

@@ -30,6 +30,7 @@ resourcestring
   SSQLGetRoom     = 'SELECT    O.ID, ' +
                     '          O.City, ' +
                     '          O.Adress, ' +
+                    '          PrintF(''%s - %d, кв. %d'', O.Adress, O.NumHome, O.NumApartment) as ''AdressStr'', ' +
                     '          O.NumHome, '  +
                     '          O.NumApartment, ' +
                     '          O.CountRoom, ' +
@@ -37,7 +38,7 @@ resourcestring
                     '          I.Screen ' +
                     'FROM	 Room O' +
                     '      LEFT JOIN ImageIcon I ON I.ID = 1 ' +
-                    'ORDER BY CountRoom';
+                    'ORDER BY O.City';
 
 
 
@@ -50,7 +51,6 @@ resourcestring
                  '                   Price,        ' +
                  '                   TypeDoc)      ' +
                  'VALUES				(''%s'', ''%s'', ''%s'', %d, ''%s'', ''%s'', %d)';        // Создание нового заказа
-
 
   SSQLCorrOrder = 'UPDATE Orders ' +
                   '  SET Date_Create = ''%s'', ' +
