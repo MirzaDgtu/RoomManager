@@ -33,6 +33,17 @@ object MainForm: TMainForm
       Text = 'MenuBtn'
       OnClick = MenuBtnClick
     end
+    object SettingBtn: TButton
+      Align = Left
+      Position.X = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'detailstoolbutton'
+      TabOrder = 1
+      OnClick = SettingBtnClick
+    end
   end
   object Tabs: TTabControl
     Align = Client
@@ -147,118 +158,6 @@ object MainForm: TMainForm
         OnItemClick = OrdersViewItemClick
         SearchVisible = True
         NativeOptions = [Grouped, Indexed]
-        object Shop_Layout: TLayout
-          Anchors = [akRight, akBottom]
-          Padding.Left = 5.000000000000000000
-          Padding.Right = 5.000000000000000000
-          Margins.Left = 10.000000000000000000
-          Margins.Top = 10.000000000000000000
-          Margins.Right = 10.000000000000000000
-          Margins.Bottom = 10.000000000000000000
-          Position.X = 296.000000000000000000
-          Size.Width = 104.000000000000000000
-          Size.Height = 730.000000000000000000
-          Size.PlatformDefault = False
-          Visible = False
-          TabOrder = 0
-          object AnimalMenu: TFloatAnimation
-            AnimationType = InOut
-            Duration = 0.500000000000000000
-            Interpolation = Circular
-            PropertyName = 'Position.Y'
-            StartValue = 0.000000000000000000
-            StopValue = 0.000000000000000000
-          end
-          object RoundRect1: TRoundRect
-            Fill.Color = claBlack
-            Padding.Top = 50.000000000000000000
-            Padding.Bottom = 50.000000000000000000
-            Opacity = 0.699999988079071000
-            Position.X = 6.000000000000000000
-            Position.Y = 216.000000000000000000
-            Size.Width = 95.000000000000000000
-            Size.Height = 321.000000000000000000
-            Size.PlatformDefault = False
-            object RoomBtn: TButton
-              Align = Top
-              Anchors = [akRight, akBottom]
-              StyledSettings = [Family, Size, Style, FontColor, Other]
-              IconTintColor = claPowderblue
-              Margins.Left = 5.000000000000000000
-              Margins.Top = 5.000000000000000000
-              Margins.Right = 5.000000000000000000
-              Margins.Bottom = 5.000000000000000000
-              Position.X = 23.000000000000000000
-              Position.Y = 55.000000000000000000
-              Size.Width = 48.000000000000000000
-              Size.Height = 48.000000000000000000
-              Size.PlatformDefault = False
-              StyleLookup = 'bookmarkstoolbutton'
-              TabOrder = 0
-              Text = #1050#1074#1072#1088#1090#1080#1088#1099
-              TextSettings.Font.Size = 14.000000000000000000
-              TextSettings.Font.StyleExt = {00070000000000000004000000}
-              TextSettings.FontColor = claAqua
-              TextSettings.FontColorForState.Hot = claTomato
-              TextSettings.FontColorForState.Pressed = claSteelblue
-              TextSettings.Trimming = Word
-              TintColor = claDimgray
-              OnClick = RoomBtnClick
-            end
-            object AddBtn: TButton
-              Align = Top
-              Anchors = [akRight, akBottom]
-              IconTintColor = claPowderblue
-              Position.X = 24.000000000000000000
-              Position.Y = 108.000000000000000000
-              Size.Width = 48.000000000000000000
-              Size.Height = 48.000000000000000000
-              Size.PlatformDefault = False
-              StyleLookup = 'additembutton'
-              TabOrder = 1
-              Text = 'AddBtn'
-              OnClick = AddBtnClick
-            end
-            object CorrBtn: TButton
-              Align = Top
-              IconTintColor = claPowderblue
-              Position.X = 24.000000000000000000
-              Position.Y = 156.000000000000000000
-              Size.Width = 48.000000000000000000
-              Size.Height = 48.000000000000000000
-              Size.PlatformDefault = False
-              StyleLookup = 'composetoolbutton'
-              TabOrder = 2
-              Text = 'AddBtn'
-            end
-            object DeleteBtn: TButton
-              Align = Top
-              IconTintColor = claPowderblue
-              Position.X = 24.000000000000000000
-              Position.Y = 204.000000000000000000
-              Size.Width = 48.000000000000000000
-              Size.Height = 48.000000000000000000
-              Size.PlatformDefault = False
-              StyleLookup = 'trashtoolbutton'
-              TabOrder = 3
-              Text = 'AddBtn'
-              OnClick = DeleteBtnClick
-            end
-            object RefreshBtn: TButton
-              Align = Top
-              IconTintColor = claPowderblue
-              Position.X = 24.000000000000000000
-              Position.Y = 252.000000000000000000
-              Size.Width = 48.000000000000000000
-              Size.Height = 48.000000000000000000
-              Size.PlatformDefault = False
-              StyleLookup = 'refreshtoolbutton'
-              TabOrder = 4
-              Text = 'AddBtn'
-              OnClick = RefreshBtnClick
-            end
-          end
-        end
       end
     end
     object ReportTab: TTabItem
@@ -276,17 +175,299 @@ object MainForm: TMainForm
       ExplicitSize.cy = 49.000000000000000000
     end
   end
+  object SettingLayout: TLayout
+    Padding.Left = 5.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Size.Width = 104.000000000000000000
+    Size.Height = 731.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 4
+    object SettingRect: TRoundRect
+      Align = VertCenter
+      Fill.Color = claBlack
+      Padding.Left = 5.000000000000000000
+      Padding.Top = 50.000000000000000000
+      Padding.Right = 5.000000000000000000
+      Padding.Bottom = 50.000000000000000000
+      Opacity = 0.699999988079071000
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 180.000000000000000000
+      Size.Width = 79.000000000000000000
+      Size.Height = 370.000000000000000000
+      Size.PlatformDefault = False
+      object RangeRectBtn: TRectangle
+        Align = Top
+        Fill.Bitmap.Bitmap.PNG = {
+          89504E470D0A1A0A0000000D49484452000000230000002308060000001ED9B3
+          59000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+          039E494441545847ED97DB4B14511CC77FE7ECCEB8AE869AE56DB58B1581178A
+          482A03092AEBA1E80205513DF4D0430FDDA1BFA05E820AA3DE8A28AA070B84EA
+          C1C8922CECA2D4834B3D94A25D34D774CD75D6CBEE9CD339B3BF55A6DDC675CA
+          A8F00387F97D7F7366CE77CE9C99DF0C4CF3AB54577BD5FAFA7A27CA8490FDE5
+          71282784E2D6923B758DCBD4597E9F9F3BDBEFD6357A306D49CDE3C7057EAE76
+          A833BF75D7D43F5D8A694B1232A313BE45744DA3403D22AEC4B42524EC5C274E
+          9E2746480746B661DA1282DB31165669F9BAC2CE32C657502033646E53F6E7E4
+          B599BD2E19DFEACA0D36FA678FC8D88AF28C9EA41DB95D6E193FECCD1CBED7ED
+          199231031EA0843F0F51E7B14F07523ECB5C14D3CC2CAC6249BA83DD17E10E4A
+          C91CB13743B6502068189184B52177346FD5C25AD030220905865CD1BC715E42
+          773AF4706D513537AD279319A668AB45A608A5011B19015DD3500933FE3E00CE
+          50FD04C6443F3F0A719BB541E023A3A822504A4BB4DEC172940626339C402E86
+          E3700E3D831C0540F78088C7655CE46E5F60BC932F206E4E9C0B10839B1E0693
+          997850970B9A0632E1F2331D2E3684A15DC99397857BE343C4FE36472E5C7CA2
+          C3A5E73A340FCE36CE3311A6B3261112F73DA216CC819694627897510A4A5636
+          66AD51B373E05D7A0978DDC5A0E61760D6CC8FE399CC94E5D11518C640541588
+          A2A04A0CD95F1EF7337E1CCFF4689F6F1A3D140CB12A94538E5BA1870F95A9E7
+          519ACD3C680DEF06C2AFA39C7A38D9B37E81F306AA8917F09FE4FF3013D63978
+          DBFB635A6B67007B4C1EDB6BE6534F104E5C7A8D6A9CF93929706A5F4245FAF7
+          AD99AF03915A999EAAC2E6559EB156519AD87B281EBF6CA630271576AD9937D6
+          362C8FAD288962DF4C7FC4CCD78161385DFD06CEDC7E0BB54D5DA2464E50B82C
+          B06DC6AF45AA7067EF1074F605E1D5FB3EB856D706371FB51B793BD85EC07206
+          3A7C1AB85D4EC84E7719B322CD284E0A578EAF14B534E6BB2D96DFB58087433A
+          64091333C502962CF2A41ADB5098413FCEDA64B16DE6E44D2FEC3FF7022ED7B6
+          1ABAED4BE4034CCECC8CE4C915D428B6CD6C5C2EBE6B040D2D3E3878A119AE3E
+          6833F49A255986213BD83653519A0547B62F365E72F296A5A528B0B53C1FF6AE
+          2BC41E93E76FAEDA7C18833F02E7DCF87D8962324389A399010BA19C52E4388C
+          3B9A501A98CCAC2DA41D62EA8E8AAEF69ECD8461A38491C31B17D18F983088FB
+          66AAFBC03CA0EB658C137BCFA805E26F32C4A8E365E55CDA89A969FE2500BE03
+          6E53563DA86B02AD0000000049454E44AE426082}
+        Fill.Bitmap.WrapMode = TileOriginal
+        Fill.Kind = Bitmap
+        Margins.Left = 15.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 15.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 20.000000000000000000
+        Position.Y = 55.000000000000000000
+        Size.Width = 39.000000000000000000
+        Size.Height = 39.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object SettingRectBtn: TRectangle
+        Align = Top
+        Fill.Bitmap.Bitmap.PNG = {
+          89504E470D0A1A0A0000000D49484452000000230000002308060000001ED9B3
+          59000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+          077B494441545847CD987D4C5BD715C0CFF37BF6F3B38D8DC1C101CC6780E074
+          8C9026903440BE58599B4E49372DD3B2BFA67552354D5A132D53A4FD413B4D5A
+          A5A95DA66952B5759A344DFBA3AB9A764DC9AAD025849084902683B6184C4980
+          38801DC05FF8E37DD86FF73E5F7FBC3A69C0FD673FE9C9EF9CFBEEBDE7DD7BEE
+          39E79982AF40CFAB43D5B2CC3244048AE2A581D35DF344DC30051BB3AFEFA2C9
+          64D02F592D069EA860351865450D67BF706A7B84A8368486FC6E188ED577D757
+          58A5E33D2D25E9ABDE51224222D64D1ED930051BA3D3D3CFD555965888A8506B
+          2FB61858E63011374C41C6F4F5C9B8DFD395B6A29482505566A628907B41960B
+          DAFE0D75EAFDF56839CBC1CBB22C7FC75E6A62BFDDD56C224D19DE199A5CF3AE
+          ACF1B4467E5B90E0E5FE5F742C91A6C7B22E6390B332C516631FADA17EDAD1EC
+          3035D7DA182D4393D67C04310193B33E69646A612D9190FF100C457E35F8CA01
+          89343F129531F88498CDC64B4879232E26CE6A38FF6561CD5A6CD233035BABAD
+          755D2DB5468651EFAC944842025D34AD01065DB948521286C66723EE7BAB3331
+          900E58AA3CC1C0B46337A767BE974CC21E1E74FB734F9ECA9823AFDD78ADA1AA
+          E42765C80D671602FE85E53506A8A47C687BAD716B6D59269E2C2C8761727E19
+          E6BD416091713AAD06783109029ABCDA6E01678D0DCA4BB3FEE442AB34383E17
+          402EAAD96C35424345B1D51B8CF0531EFF1FCF9D6CFF39792C6B4CEF6FAED572
+          2C33F6C3C36D662D79C3A42C432426429141A7C8F8FEE2ADBB0072027ADB3683
+          B3D202DA9C95129131AEFB41F8F0F612501A1A0EECA803835EABB485A3021839
+          2D68908B630429017F3D3F161425BEB5FFD4DE39ACCB8CA4D3D16F746EAF36A6
+          0DC1E08E694356825178F78A0BF63F510AA78E3AE1EB35569521182C633D6EEF
+          7696C0D92117AC84624A1B1E276D0846877CAEABB5CAA4A5756F1055CA98EFBE
+          F5160D32658F45A5873A195E91F3239FC38F0FD5C3AE8652A2FD72DA1B6DF0A3
+          83F570FEFA3444E322D1AA89C5243121835D991FA118F3CF63C7127298DA3BEA
+          F68C8D4CDC4FBD4A0E976EDF85233B2BA0A62CEF247F297576131CDE518EFACF
+          124D9611D7FDD8C7939E3108519D787EACCB9C4FF7E09FC4CDBB7FF0F7404438
+          288892ADCA6E51F6073BEB822F00C73A6B94E7D2C8E8BAE6F225FF3638B3FAAF
+          118F74730679BB06F4553693EA50386C46B8FC99178A8B383071A92DBFFAC95C
+          646CC637CA33CB87FA4FEF8B2B4A846AD3512C88F382F092E74128F3C0143A35
+          BD6DE5444A81FC1ADEBCE00EBD7DEDDEF5396FF44848121A67D12F926FBC3930
+          13C286A6C1966167C7E3A4F13C08C76312FFD2BF7FF66C26C962D41E88A034D4
+          93E536B39188E0F185C0E950A520189E584A4E7AC2B7CF9EDCB5F7C22F9F1ABE
+          706AAF0FFFBE73A27DCF84C73F363CE553963DCD36D41F878134288D18A804B5
+          838819F28C6118664BA999D3E37B1CD0689A429EAF7E6C70C2E78F08E24922AA
+          08F3F2C9A14FBC28A66461B5343A49285424536B86B68C6375DA7A45C8E1612B
+          53A2459D3171510263B676CA108809743CCABB89A8C200E2943F2AE4E50A238A
+          37313E755875687C4686BC6399678C9C945745945B307A2D031132402EC546BD
+          C472EC3622AA1064E6099443F33A45D0F1464155B9C7B94BA260451172C83346
+          92A41914A81407C6B906253A25CCE7B2FF6B6556839E7E9D882AB07E5F8BDD4A
+          44051E4D8E774883F70A1108C762BC20DE51841CF2F600ADCCC78BCB219CBC14
+          BF719499C1E509426B6D76FCA79ACAE889F9400BF5FAE830F29D137C8C1FD7B1
+          FAD6228E3EE374146FEB68DCA4DAA609D41FE7AC34F797C35199966F1131836A
+          6550D6D6B33ADD19C726B36208666BB50DE59A4522A5C051FD856F34998F7755
+          EFAEB3179DB3159BBC5BCA4DEF1FEFAC697FA1678B3937D06097C5B90A8F93C6
+          B1A948CF31EC996FFEBE9F252A854CBFE7FA6E1A3496C4C5B6868A968E6D951C
+          512B7C70D50DDDCD25D0DE941D70BD5C9D7C00D7A603F0EC9E46A2498123F098
+          7B615C0AD107CFBDB2338A75CACAE0DC4015C9C3BB9A1CAD5F3404B3BFAD0EDE
+          BBB90073BE35A2591F77BD6BF0C1AD45D4BF9668B274382BB9279B1DAD6096AF
+          E4E526A0642F6760F2CF3102A7FE673A1AE0CF1FDD81D1CFF30EC14319995E86
+          BFFCE70E3CB3BB3153467C118E63B4288C79D3B929E333829078F1CAEDB9B088
+          025D1A5CCFE03A04536A31C0D14E275CFA6C057EFBAE0BC6E7FC4AFD920B96B1
+          1EB70FB956E1F92E27A000AAB4E171F07869703D939A4F7891A8D495DEB750A5
+          D7B48E4A6F71250CEE7B2BB0889228766606BD9E8442009EAB1C7D31345595AA
+          2A3D5C0F7FF4DFD908256BA80A9B497A6CA58729A406465F0A4A10635180548F
+          96AA812F7F3ABF3635FFE06E3C21F5D0BA603019B376EBB5F4F328EEB4F3B26E
+          DF236BE047B1D1AF03116D015E8DEB935FE1EBE071FC5F7C37E581BE188FFE6E
+          D4FDFD9E96862243366E85A33CFC63E0D3E9F74EECDC8A9C29EBADEB44ED00EB
+          054D9404EADC9C37A89A7076D18FBDF8FD420CC114660C222E48FDB34BFE6CC5
+          8498F50683487F9E881BA6B06D42E09367E00C3E9381C994A8E1B8C02628AEAC
+          D0FF670A3606D3F3EA4D0B2BC732ABCB535C72E0F44ED56AAD1F80FF01F43557
+          6BFC04BE830000000049454E44AE426082}
+        Fill.Bitmap.WrapMode = TileOriginal
+        Fill.Kind = Bitmap
+        Margins.Left = 15.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 15.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 20.000000000000000000
+        Position.Y = 104.000000000000000000
+        Size.Width = 39.000000000000000000
+        Size.Height = 39.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+    end
+    object AnimalSetting: TFloatAnimation
+      AnimationType = InOut
+      Duration = 0.500000000000000000
+      PropertyName = 'Position.Y'
+      StartValue = 0.000000000000000000
+      StopValue = 0.000000000000000000
+    end
+  end
+  object Shop_Layout: TLayout
+    Padding.Left = 10.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Position.X = 298.000000000000000000
+    Size.Width = 104.000000000000000000
+    Size.Height = 729.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 5
+    object AnimalMenu: TFloatAnimation
+      AnimationType = InOut
+      Duration = 0.500000000000000000
+      Interpolation = Circular
+      PropertyName = 'Position.Y'
+      StartValue = 0.000000000000000000
+      StopValue = 0.000000000000000000
+    end
+    object MenuRect: TRoundRect
+      Align = VertCenter
+      Fill.Color = claBlack
+      Padding.Left = 5.000000000000000000
+      Padding.Top = 50.000000000000000000
+      Padding.Right = 5.000000000000000000
+      Padding.Bottom = 50.000000000000000000
+      Opacity = 0.699999988079071000
+      Margins.Left = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Position.X = 15.000000000000000000
+      Position.Y = 179.000000000000000000
+      Size.Width = 74.000000000000000000
+      Size.Height = 370.000000000000000000
+      Size.PlatformDefault = False
+      object RoomBtn: TButton
+        Align = Top
+        Anchors = [akRight, akBottom]
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        IconTintColor = claPowderblue
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 13.000000000000000000
+        Position.Y = 55.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'bookmarkstoolbutton'
+        TabOrder = 0
+        Text = #1050#1074#1072#1088#1090#1080#1088#1099
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claAqua
+        TextSettings.FontColorForState.Hot = claTomato
+        TextSettings.FontColorForState.Pressed = claSteelblue
+        TextSettings.Trimming = Word
+        TintColor = claDimgray
+        OnClick = RoomBtnClick
+      end
+      object AddBtn: TButton
+        Align = Top
+        Anchors = [akRight, akBottom]
+        IconTintColor = claPowderblue
+        Position.X = 13.000000000000000000
+        Position.Y = 108.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'additembutton'
+        TabOrder = 1
+        Text = 'AddBtn'
+        OnClick = AddBtnClick
+      end
+      object CorrBtn: TButton
+        Align = Top
+        IconTintColor = claPowderblue
+        Position.X = 13.000000000000000000
+        Position.Y = 156.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'composetoolbutton'
+        TabOrder = 2
+        Text = 'AddBtn'
+        OnClick = CorrBtnClick
+      end
+      object DeleteBtn: TButton
+        Align = Top
+        IconTintColor = claPowderblue
+        Position.X = 13.000000000000000000
+        Position.Y = 204.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'trashtoolbutton'
+        TabOrder = 3
+        Text = 'AddBtn'
+        OnClick = DeleteBtnClick
+      end
+      object RefreshBtn: TButton
+        Align = Top
+        IconTintColor = claPowderblue
+        Position.X = 13.000000000000000000
+        Position.Y = 252.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'refreshtoolbutton'
+        TabOrder = 4
+        Text = 'AddBtn'
+        OnClick = RefreshBtnClick
+      end
+    end
+  end
   object OrdersBS: TBindSourceDB
     DataSet = ModuleData.OrderQuery
     ScopeMappings = <>
-    Left = 48
-    Top = 312
+    Left = 126
+    Top = 296
   end
   object OrdersBL: TBindingsList
     Methods = <>
     OutputConverters = <>
-    Left = 52
-    Top = 253
+    Left = 124
+    Top = 245
     object LinkListControlToField1: TLinkListControlToField
       Category = 'Quick Bindings'
       DataSource = OrdersBS

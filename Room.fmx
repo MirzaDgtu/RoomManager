@@ -143,6 +143,12 @@ object RoomForm: TRoomForm
     NativeOptions = [Grouped]
     object Menu_Layout: TLayout
       Anchors = [akRight, akBottom]
+      Padding.Left = 10.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 10.000000000000000000
       Position.X = 289.000000000000000000
       Position.Y = -20.000000000000000000
       Size.Width = 116.000000000000000000
@@ -158,20 +164,23 @@ object RoomForm: TRoomForm
         StartValue = 0.000000000000000000
         StopValue = 0.000000000000000000
       end
-      object RoundRect1: TRoundRect
+      object MenuRound: TRoundRect
+        Align = VertCenter
         Fill.Color = claBlack
         Padding.Top = 50.000000000000000000
         Padding.Bottom = 50.000000000000000000
         Opacity = 0.699999988079071000
-        Position.X = 3.000000000000000000
-        Position.Y = 240.000000000000000000
-        Size.Width = 106.000000000000000000
+        Margins.Left = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Position.X = 15.000000000000000000
+        Position.Y = 187.000000000000000000
+        Size.Width = 86.000000000000000000
         Size.Height = 297.000000000000000000
         Size.PlatformDefault = False
         object AddBtn: TButton
           Align = Top
           IconTintColor = claPowderblue
-          Position.X = 29.000000000000000000
+          Position.X = 19.000000000000000000
           Position.Y = 50.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -184,7 +193,7 @@ object RoomForm: TRoomForm
         object CorrBtn: TButton
           Align = Top
           IconTintColor = claPowderblue
-          Position.X = 29.000000000000000000
+          Position.X = 19.000000000000000000
           Position.Y = 98.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -197,7 +206,7 @@ object RoomForm: TRoomForm
         object DeleteBtn: TButton
           Align = Top
           IconTintColor = claPowderblue
-          Position.X = 29.000000000000000000
+          Position.X = 19.000000000000000000
           Position.Y = 146.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -210,7 +219,7 @@ object RoomForm: TRoomForm
         object RefreshBtn: TButton
           Align = Top
           IconTintColor = claPowderblue
-          Position.X = 29.000000000000000000
+          Position.X = 19.000000000000000000
           Position.Y = 194.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000

@@ -23,7 +23,7 @@ type
     AnimalMenu: TFloatAnimation;
     OrdersView: TListView;
     RoomBtn: TButton;
-    RoundRect1: TRoundRect;
+    MenuRect: TRoundRect;
     AddBtn: TButton;
     CorrBtn: TButton;
     DeleteBtn: TButton;
@@ -31,6 +31,12 @@ type
     OrdersBS: TBindSourceDB;
     OrdersBL: TBindingsList;
     LinkListControlToField1: TLinkListControlToField;
+    SettingBtn: TButton;
+    SettingLayout: TLayout;
+    SettingRect: TRoundRect;
+    AnimalSetting: TFloatAnimation;
+    RangeRectBtn: TRectangle;
+    SettingRectBtn: TRectangle;
     procedure MenuBtnClick(Sender: TObject);
     procedure RoomBtnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -41,10 +47,19 @@ type
     procedure DeleteBtnClick(Sender: TObject);
     procedure OrdersViewItemClick(const Sender: TObject;
       const AItem: TListViewItem);
+    procedure SettingBtnClick(Sender: TObject);
+    procedure CorrBtnClick(Sender: TObject);
   private
     FIdOrder: string;
     { Private declarations }
+
+    function getDate(dateValue: string): TDate;
+    function getTime(timeValue: string): TTime;
+
+    procedure PanelMenuView();
     procedure PanelMenuHide();
+    procedure PanelSettingView();
+    procedure PanelSettingHide();
     procedure SetIdOrder(const Value: string);
   public
     { Public declarations }
@@ -141,6 +156,46 @@ begin
 
 end;
 
+procedure TMainForm.CorrBtnClick(Sender: TObject);
+var
+    OrderF: TOrderForm;
+begin
+
+   PanelMenuHide();
+   OrderF := TOrderForm.Create(MainForm);
+
+   try
+     try
+      if Length(Trim(IdOrder)) > 0 then
+        Begin
+          ModuleData.OrderDBQuery.Active := False;
+          ModuleData.OrderDBQuery.SQL.Text := Format(SSQLGetOrderDetail, [IdOrder.ToInteger]);
+          ModuleData.OrderDBQuery.Active := True;
+
+          with OrderF do
+            Begin
+              DateBOrder.Date := getDate(ModuleData.OrderDBQuery.FieldByName('DateBeg').AsString);
+              DateEOrder.Date := getDate(ModuleData.OrderDBQuery.FieldByName('DateEnd').AsString);
+              TimeBOrder.Time := getTime(ModuleData.OrderDBQuery.FieldByName('DateBeg').AsString);
+              TimeEOrder.Time := getTime(ModuleData.OrderDBQuery.FieldByName('DateEnd').AsString);
+              RoomLbl.Text    := ModuleData.OrderDBQuery.FieldByName('RoomStr').AsString;
+              PhoneEdit.Text  := ModuleData.OrderDBQuery.FieldByName('Phone').AsString;
+              PriceEdit.Text  := ModuleData.OrderDBQuery.FieldByName('Price').AsString;
+              IDRoom          := ModuleData.OrderDBQuery.FieldByName('Room').AsString;
+              PriceRoom       := ModuleData.OrderDBQuery.FieldByName('PriceRoom').AsString;
+
+              ShowModal();
+            End;
+        End;
+
+     finally
+
+     end;
+   finally
+      FreeAndNil(OrderF);
+   end;
+end;
+
 procedure TMainForm.DeleteBtnClick(Sender: TObject);
 begin
       PanelMenuHide();
@@ -211,19 +266,37 @@ begin
 end;
 
 
+function TMainForm.getDate(dateValue: string): TDate;
+var
+    strYear, strMonth, strDay: string;
+begin
+    strYear := Copy(dateValue, 7, 4);
+    strMonth := Copy(dateValue, 4, 2);
+    strDay  := Copy(dateValue, 1, 2);
+
+    Result := StrToDate(strDay + '.' + strMonth + '.' + strYear);
+end;
+
+function TMainForm.getTime(timeValue: string): TTime;
+var
+    strHour, strMinute: string;
+begin
+    strHour := Copy(timeValue, 12, 2);
+    strMinute := Copy(timeValue, 15, 2);
+
+    Result := StrToTime(strHour + ':' + strMinute);
+end;
+
 procedure TMainForm.MenuBtnClick(Sender: TObject);
 begin
-    Shop_Layout.Position.Y := MainForm.Height + 20;
-    Shop_Layout.Visible := True;
-
-    AnimalMenu.Inverse := False;
-    AnimalMenu.StartValue := MainForm.Height + 20;
-    AnimalMenu.Start;
+    PanelSettingHide();
+    PanelMenuView();
 end;
 
 procedure TMainForm.OrdersViewClick(Sender: TObject);
 begin
    PanelMenuHide();
+   PanelSettingHide();
 end;
 
 procedure TMainForm.OrdersViewItemClick(const Sender: TObject;
@@ -237,6 +310,33 @@ begin
    Shop_Layout.Visible := False;
    AnimalMenu.Inverse := true;
    AnimalMenu.Start;
+end;
+
+procedure TMainForm.PanelMenuView;
+begin
+    Shop_Layout.Position.Y := MainForm.Height + 20;
+    Shop_Layout.Visible := True;
+
+    AnimalMenu.Inverse := False;
+    AnimalMenu.StartValue := MainForm.Height + 20;
+    AnimalMenu.Start;
+end;
+
+procedure TMainForm.PanelSettingHide;
+begin
+   SettingLayout.Visible := False;
+   AnimalSetting.Inverse := true;
+   AnimalSetting.Start;
+end;
+
+procedure TMainForm.PanelSettingView();
+begin
+    SettingLayout.Position.Y := MainForm.Height + 20;
+    SettingLayout.Visible := True;
+
+    AnimalSetting.Inverse := False;
+    AnimalSetting.StartValue := MainForm.Height + 20;
+    AnimalSetting.Start;
 end;
 
 procedure TMainForm.Rectangle1Click(Sender: TObject);
@@ -303,6 +403,12 @@ end;
 procedure TMainForm.SetIdOrder(const Value: string);
 begin
   FIdOrder := Value;
+end;
+
+procedure TMainForm.SettingBtnClick(Sender: TObject);
+begin
+    PanelMenuHide();
+    PanelSettingView();
 end;
 
 end.

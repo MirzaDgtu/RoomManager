@@ -39,9 +39,6 @@ Visible=True
 [RefreshBtn]
 Coordinates=294,380,69,51
 
-[RoundRect1]
-Coordinates=368,464,74,33
-
 []
 Coordinates=0,0,91,36
 
@@ -56,4 +53,7 @@ Coordinates=366,10,133,249
 
 [ModuleData.OrderDBQuery]
 Coordinates=95,380,148,51
+
+[MenuRound]
+Coordinates=368,464,74,33
 

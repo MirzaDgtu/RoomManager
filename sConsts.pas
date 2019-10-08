@@ -72,11 +72,14 @@ resourcestring
                           '         O.DateBeg,     ' +
                           '         O.DateEnd,     ' +
                           '         O.Room,        ' +
+                          '        (''г. '' || R.City || '', '' || R.Adress || '' - '' || R.NumHome || '', '' || NumApartment) as ''RoomStr'', ' +
                           '         O.Phone,       ' +
                           '         O.Price,       ' +
+                          '         R.Price as ''PriceRoom'', ' +
                           '         O.DateCorr,    ' +
                           '         O.TypeDoc      ' +
                           'FROM Orders O            ' +
+                          '     LEFT JOIN Room R ON R.ID = O.Room ' +
                           'WHERE O.ID = %d';                                              // Получение детализации по заказу
 
 

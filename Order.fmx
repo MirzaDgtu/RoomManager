@@ -272,8 +272,7 @@ object OrderForm: TOrderForm
           Size.PlatformDefault = False
           StyledSettings = [Family, Size, FontColor]
           Caret.Color = claTomato
-          OnChange = DateBOrderChange
-          OnExit = PhoneEditExit
+          OnChange = PhoneEditChange
           object ClearEditButton1: TClearEditButton
             CanFocus = False
             Cursor = crArrow
@@ -307,7 +306,7 @@ object OrderForm: TOrderForm
           Size.Width = 320.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
-          OnChange = DateBOrderChange
+          OnChange = PriceEditChange
           OnClick = PriceEditClick
           object ClearEditButton2: TClearEditButton
             CanFocus = False

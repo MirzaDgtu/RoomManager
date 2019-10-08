@@ -50,9 +50,6 @@ Visible=False
 [DeleteBtn]
 Coordinates=389,420,71,58
 
-[RoundRect1]
-Coordinates=10,504,86,36
-
 [RefreshBtn]
 Coordinates=280,336,79,58
 
@@ -80,4 +77,7 @@ ModelLayerNames=1;0
 
 [RoomForm.RoomBS]
 Coordinates=365,10,120,213
+
+[MenuRect]
+Coordinates=10,504,86,36
 

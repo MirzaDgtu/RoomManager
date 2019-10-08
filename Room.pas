@@ -22,7 +22,7 @@ type
     RefreshBtn: TButton;
     CorrBtn: TButton;
     MenuAnimation: TFloatAnimation;
-    RoundRect1: TRoundRect;
+    MenuRound: TRoundRect;
     RoomBS: TBindSourceDB;
     RoomBL: TBindingsList;
     LinkListControlToField1: TLinkListControlToField;

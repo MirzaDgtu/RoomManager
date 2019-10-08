@@ -37,7 +37,8 @@ type
     procedure RoomBtnClick(Sender: TObject);
     procedure PriceEditClick(Sender: TObject);
     procedure CancelBtnClick(Sender: TObject);
-    procedure PhoneEditExit(Sender: TObject);
+    procedure PhoneEditChange(Sender: TObject);
+    procedure PriceEditChange(Sender: TObject);
   private
     FPstatusCorr: Boolean;
     FIDRoom: string;
@@ -134,9 +135,14 @@ begin
       Result := 0;
 end;
 
-procedure TOrderForm.PhoneEditExit(Sender: TObject);
+procedure TOrderForm.PhoneEditChange(Sender: TObject);
 begin
-    PhoneEdit.Text := MaskDoFormatText('#-###-###-##-##;#0', PhoneEdit.Text, #0);
+   PstatusCorr := True;
+end;
+
+procedure TOrderForm.PriceEditChange(Sender: TObject);
+begin
+      PstatusCorr := True;
 end;
 
 procedure TOrderForm.PriceEditClick(Sender: TObject);
