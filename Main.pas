@@ -49,8 +49,11 @@ type
       const AItem: TListViewItem);
     procedure SettingBtnClick(Sender: TObject);
     procedure CorrBtnClick(Sender: TObject);
+    procedure RangeRectBtnClick(Sender: TObject);
   private
     FIdOrder: string;
+    FEndDate: variant;
+    FBegDate: variant;
     { Private declarations }
 
     function getDate(dateValue: string): TDate;
@@ -61,9 +64,13 @@ type
     procedure PanelSettingView();
     procedure PanelSettingHide();
     procedure SetIdOrder(const Value: string);
+    procedure SetBegDate(const Value: variant);
+    procedure SetEndDate(const Value: variant);
   public
     { Public declarations }
     property IdOrder: string read FIdOrder write SetIdOrder;
+    property BegDate: variant read FBegDate write SetBegDate;
+    property EndDate: variant read FEndDate write SetEndDate;
   end;
 
 var
@@ -73,7 +80,7 @@ implementation
 
 {$R *.fmx}
 
-uses Room, AppData, RoomBehaviors, sConsts, Order, OrderBehavior;
+uses Room, AppData, RoomBehaviors, sConsts, Order, OrderBehavior, Range;
 
 procedure TMainForm.AddBtnClick(Sender: TObject);
 var
@@ -159,10 +166,12 @@ end;
 procedure TMainForm.CorrBtnClick(Sender: TObject);
 var
     OrderF: TOrderForm;
+    OrderA: TOrderAction;
 begin
 
    PanelMenuHide();
    OrderF := TOrderForm.Create(MainForm);
+   OrderA := TOrderAction.Create;
 
    try
      try
@@ -184,15 +193,59 @@ begin
               IDRoom          := ModuleData.OrderDBQuery.FieldByName('Room').AsString;
               PriceRoom       := ModuleData.OrderDBQuery.FieldByName('PriceRoom').AsString;
 
-              ShowModal();
+              {$IFDEF ANDROID}
+                  ShowModal  (
+                                procedure(ModalResult: TModalResult)
+                                  Begin
+                                      if ModalResult = mrOk then
+                                        Begin
+                                           try
+                                              OrderA.correction(FormatDateTime('yyyy-mm-dd hh:MM:ss', Now()),
+                                                                DateB,
+                                                                DateE,
+                                                                IDRoom.ToInteger,
+                                                                PhoneEdit.Text,
+                                                                PriceEdit.Text,
+                                                                1,
+                                                                IdOrder.ToInteger);
+                                           finally
+                                              RefreshBtnClick(Self);
+                                           end;
+                                        End;
+                                  End
+                              );
+              {$ENDIF}
+
+              {$IFDEF MSWINDOWS}
+                  if ShowModal = 1 then
+                    Begin
+                      try
+                        OrderA.correction(FormatDateTime('yyyy-mm-dd hh:MM:ss', Now()),
+                                          DateB,
+                                          DateE,
+                                          IDRoom.ToInteger,
+                                          PhoneEdit.Text,
+                                          PriceEdit.Text,
+                                          1,
+                                          IdOrder.ToInteger);
+                      finally
+                         RefreshBtnClick(Self);
+                      end;
+
+
+                    End;
+              {$ENDIF}
             End;
         End;
-
      finally
-
+        RefreshBtnClick(Self);
      end;
    finally
-      FreeAndNil(OrderF);
+      {$IFDEF MSWINDOWS}
+          FreeAndNil(OrderF);
+      {$ENDIF}
+      FreeAndNil(OrderA);
+      RefreshBtnClick(Self);
    end;
 end;
 
@@ -250,6 +303,8 @@ end;
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
      ModuleData := TModuleData.Create(Application);
+     BegDate := FormatDateTime('yyyy-mm-dd', Now());
+     EndDate := FormatDateTime('yyyy-mm-dd', Now());
 
      with ModuleData do
       Begin
@@ -260,7 +315,8 @@ begin
          RoomQuery.Active := True;
 
          OrderQuery.Active := False;
-         OrderQuery.SQL.Text := SSQLGetOrders;
+         OrderQuery.SQL.Text := Format(SSQLGetOrders, [BegDate,
+                                                       EndDate]);
          OrderQuery.Active := True;
       end;
 end;
@@ -339,6 +395,53 @@ begin
     AnimalSetting.Start;
 end;
 
+procedure TMainForm.RangeRectBtnClick(Sender: TObject);
+var
+    RangeF: TRangeForm;
+begin
+   RangeF := TRangeForm.Create(MainForm);
+   PanelSettingHide();
+
+   try
+      RangeF.DateBPicker.Date := Now();
+      RangeF.DateEndPicker.Date := Now();
+      {$IFDEF ANDROID}
+          RangeF.ShowModal(
+                     procedure (ModalResult: TModalResult)
+                      Begin
+                        if ModalResult =  mrOk then
+                          Begin
+                            try
+                              BegDate := FormatDateTime('yyyy-mm-dd', RangeF.DateBPicker.Date);
+                              EndDate := FormatDateTime('yyyy-mm-dd', RangeF.DateEndPicker.Date);
+                            finally
+                              RefreshBtnClick(Self);
+                            end;
+                          end;
+                      End
+                   );
+      {$ENDIF}
+
+      {$IFDEF MSWINDOWS}
+          if RangeF.ShowModal = 1 then
+            Begin
+                try
+                  BegDate := FormatDateTime('yyyy-mm-dd', RangeF.DateBPicker.Date);
+                  EndDate := FormatDateTime('yyyy-mm-dd', RangeF.DateEndPicker.Date);
+                finally
+                  RefreshBtnClick(Self);
+                end;
+            End;
+      {$ENDIF}
+   finally
+       {$IFDEF MSWINDOWS}
+          FreeAndNil(RangeF);
+       {$ENDIF}
+          RefreshBtnClick(Self);
+   end;
+
+end;
+
 procedure TMainForm.Rectangle1Click(Sender: TObject);
 var
     Room: TRoomForm;
@@ -369,7 +472,8 @@ begin
     try
        OrdersView.BeginUpdate;
          ModuleData.OrderQuery.Active := False;
-         ModuleData.OrderQuery.SQL.Text := SSQLGetOrders;
+         ModuleData.OrderQuery.SQL.Text := Format(SSQLGetOrders, [BegDate,
+                                                                  EndDate]);
          ModuleData.OrderQuery.Active := True;
 
          OrdersBS.DataSet.Refresh;
@@ -398,6 +502,17 @@ begin
           FreeAndNil(Room);
       {$ENDIF}
     end;
+end;
+
+
+procedure TMainForm.SetBegDate(const Value: variant);
+begin
+  FBegDate := Value;
+end;
+
+procedure TMainForm.SetEndDate(const Value: variant);
+begin
+  FEndDate := Value;
 end;
 
 procedure TMainForm.SetIdOrder(const Value: string);

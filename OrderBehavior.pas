@@ -53,12 +53,12 @@ begin
         try
             if ModuleData.ConnectionToLocalDB then
               Begin
-                ModuleData.OrderDBQuery.Sql.Text := Format(SSQLCorrOrder, [dateCorr,
-                                                                           dateBeg,
+                ModuleData.OrderDBQuery.Sql.Text := Format(SSQLCorrOrder, [dateBeg,
                                                                            dateEnd,
                                                                            room,
                                                                            phone,
                                                                            price,
+                                                                           dateCorr,
                                                                            typeDoc,
                                                                            IdOrder]);
                 ModuleData.OrderDBQuery.ExecSQL;

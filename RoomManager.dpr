@@ -10,7 +10,8 @@ uses
   RoomDetail in 'RoomDetail.pas' {RoomDetailForm},
   RoomBehaviors in 'RoomBehaviors.pas',
   Order in 'Order.pas' {OrderForm},
-  OrderBehavior in 'OrderBehavior.pas';
+  OrderBehavior in 'OrderBehavior.pas',
+  Range in 'Range.pas' {RangeForm};
 
 {$R *.res}
 

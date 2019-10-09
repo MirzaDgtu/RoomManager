@@ -53,14 +53,13 @@ resourcestring
                  'VALUES				(''%s'', ''%s'', ''%s'', %d, ''%s'', ''%s'', %d)';        // Создание нового заказа
 
   SSQLCorrOrder = 'UPDATE Orders ' +
-                  '  SET Date_Create = ''%s'', ' +
-                  '    DateBeg	=	''%s'', '      +
-                  '    DateEnd	=	''%s'', '      +
-                  '    Room =	%d, '              +
-                  '    Phone	= ''%s'', '        +
-                  '    Price	= ''%s'', '        +
-                  '    DateCorr = ''%s'', '      +
-                  '    TypeDoc	= %d    '        +
+                  '  SET DateBeg	=	''%s'', '      +
+                  '      DateEnd	=	''%s'', '      +
+                  '      Room =	%d,         '      +
+                  '      Phone	= ''%s'',   '      +
+                  '      Price	= ''%s'',   '      +
+                  '      DateCorr = ''%s'', '      +
+                  '      TypeDoc	= %d      '      +
                   'WHERE ID = %d        ';                                                // Корректировка заказа
 
 
@@ -88,7 +87,7 @@ resourcestring
                           '        O.DateBeg,     ' +
                           '        O.DateEnd,     ' +
                           '        O.Room,        ' +
-                          '        printf(''%s, %s - %d, %d'', R.City, R.Adress, R.NumHome, NumApartment) as ''RoomStr'', ' +
+                          '        printf(''г. '' || R.City || '', '' || R.Adress || '' - '' || R.NumHome || '', '' || NumApartment) as ''RoomStr'', ' +
                           '        O.Phone,       ' +
                           '        O.Price,       ' +
                           '        O.DateCorr,    ' +
@@ -96,8 +95,8 @@ resourcestring
                           '        I.Screen       ' +
                           'FROM Orders O          ' +
                           'LEFT JOIN Room R On R.ID = O.Room' +
-                          '     LEFT JOIN ImageIcon I ON I.ID = 2 ';
-                        //  'WHERE DATE(O.DateBeg) = DATE(''%s'')';                                     // Получение реестра заказов
+                          '     LEFT JOIN ImageIcon I ON I.ID = 2 ' +
+                          'WHERE DATE(Date_Create) Between ''%s'' and ''%s''';                                     // Получение реестра заказов
 implementation
 
 end.
