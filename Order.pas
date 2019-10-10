@@ -40,6 +40,7 @@ type
     procedure PhoneEditChange(Sender: TObject);
     procedure PriceEditChange(Sender: TObject);
   private
+    { Private declarations }
     FPstatusCorr: Boolean;
     FIDRoom: string;
     FPriceRoom: string;
@@ -54,7 +55,7 @@ type
     procedure SetPriceRoom(const Value: string);
     procedure SetDateB(const Value: string);
     procedure SetDateE(const Value: string);
-    { Private declarations }
+    procedure CorrectRangeDate();
   public
     { Public declarations }
     property PstatusCorr: Boolean read FPstatusCorr write SetPstatusCorr default False;
@@ -91,9 +92,19 @@ begin
       end;
 end;
 
+procedure TOrderForm.CorrectRangeDate;
+begin
+    if DateBOrder.Date > DateEOrder.Date then
+        DateEOrder.Date := DateBOrder.Date;
+
+    if TimeBOrder.Time > TimeEOrder.Time then
+        TimeEOrder.Time := TimeBOrder.Time;
+end;
+
 procedure TOrderForm.DateBOrderChange(Sender: TObject);
 begin
     PstatusCorr := True;
+    CorrectRangeDate();
     PriceEdit.Text := FloatToStr(getPrice());
 end;
 

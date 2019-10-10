@@ -117,5 +117,9 @@ object ModuleData: TModuleData
     object OrderQueryScreen: TBlobField
       FieldName = 'Screen'
     end
+    object OrderQueryMergeDate: TWideStringField
+      FieldName = 'MergeDate'
+      Size = 50
+    end
   end
 end

@@ -30,9 +30,9 @@ object RangeForm: TRangeForm
       Viewport.Width = 378.000000000000000000
       Viewport.Height = 176.000000000000000000
       object HeaderLB: TListBoxGroupHeader
-        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.Size = 16.000000000000000000
         TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.FontColor = claAqua
+        TextSettings.FontColor = claCadetblue
         TextSettings.HorzAlign = Center
         StyledSettings = [Family, Style]
         Size.Width = 378.000000000000000000
@@ -55,6 +55,7 @@ object RangeForm: TRangeForm
         Text = #1057
         object DateBPicker: TDateEdit
           Date = 43747.000000000000000000
+          OnChange = DateBPickerChange
           Align = VertCenter
           Position.X = 20.000000000000000000
           Position.Y = 6.000000000000000000
@@ -81,6 +82,7 @@ object RangeForm: TRangeForm
         Text = #1055#1086
         object DateEndPicker: TDateEdit
           Date = 43747.000000000000000000
+          OnChange = DateBPickerChange
           Align = VertCenter
           Position.X = 20.000000000000000000
           Position.Y = 6.000000000000000000
@@ -106,7 +108,7 @@ object RangeForm: TRangeForm
           Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          TintColor = claPaleturquoise
+          TintColor = claWhite
           object GridPanelLayout1: TGridPanelLayout
             Align = Client
             Padding.Left = 5.000000000000000000

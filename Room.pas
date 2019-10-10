@@ -177,66 +177,69 @@ begin
    try
         with RoomD do
           Begin
-          {$IFDEF ANDROID}
-              CityEdit.Text := City;
-              AdressEdit.Text := AdressRoom;
-              HomeNumEdit.Text := NumHome;
-              NumRoomEdit.Text := NumApartment;
-              NumberSpin.Value := CountRoom.ToSingle;
-              PriceEdit.Text := PriceRoom;
-
-              ShowModal(
-                         procedure(ModalResult: TModalResult)
-                          Begin
-                            if ModalResult = mrOk then
-                               Begin
-                                 if (RoomD.NumberSpin.Value > 0) and
-                                    (Length(Trim(RoomD.AdressEdit.Text)) > 0) then
-                                      Begin
-                                         try
-                                             RoomBeh.correction(RoomD.CityEdit.Text,
-                                                                RoomD.AdressEdit.Text,
-                                                                RoomD.HomeNumEdit.Text.ToInteger,
-                                                                RoomD.NumRoomEdit.Text.ToInteger,
-                                                                RoomD.NumberSpin.Value.ToString.ToInteger,
-                                                                RoomD.PriceEdit.Text,
-                                                                IdRoom.ToInteger);
-                                         finally
-                                            Self.RoomView.BeginUpdate;
-                                              ModuleData.RoomQuery.Active := False;
-                                              ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
-                                              ModuleData.RoomQuery.Active := True;
-
-                                              RoomBS.DataSet.Refresh;
-                                            Self.RoomView.EndUpdate;
-                                         end;
-                                      end;
-                               end;
-                          end
-                       );
-          {$ENDIF}
-
-          {$IFDEF MSWINDOWS}
-
-              if ShowModal = mrOk then
+            if Length(Trim(IdRoom)) > 0  then
               Begin
-               if (NumberSpin.Value > 0) and
-                  (Length(Trim(RoomD.AdressEdit.Text)) > 0) then
-                  Begin
-                    try
-                       RoomBeh.correction(RoomD.CityEdit.Text,
-                                          RoomD.AdressEdit.Text,
-                                          RoomD.HomeNumEdit.Text.ToInteger,
-                                          RoomD.NumRoomEdit.Text.ToInteger,
-                                          RoomD.NumberSpin.Value.ToString.ToInteger,
-                                          RoomD.PriceEdit.Text,
-                                          IdRoom.ToInteger);
-                    finally
-                    end;
-                  End;
+                  {$IFDEF ANDROID}
+                      CityEdit.Text := City;
+                      AdressEdit.Text := AdressRoom;
+                      HomeNumEdit.Text := NumHome;
+                      NumRoomEdit.Text := NumApartment;
+                      NumberSpin.Value := CountRoom.ToSingle;
+                      PriceEdit.Text := PriceRoom;
+
+                      ShowModal(
+                                 procedure(ModalResult: TModalResult)
+                                  Begin
+                                    if ModalResult = mrOk then
+                                       Begin
+                                         if (RoomD.NumberSpin.Value > 0) and
+                                            (Length(Trim(RoomD.AdressEdit.Text)) > 0) then
+                                              Begin
+                                                 try
+                                                     RoomBeh.correction(RoomD.CityEdit.Text,
+                                                                        RoomD.AdressEdit.Text,
+                                                                        RoomD.HomeNumEdit.Text.ToInteger,
+                                                                        RoomD.NumRoomEdit.Text.ToInteger,
+                                                                        RoomD.NumberSpin.Value.ToString.ToInteger,
+                                                                        RoomD.PriceEdit.Text,
+                                                                        IdRoom.ToInteger);
+                                                 finally
+                                                    Self.RoomView.BeginUpdate;
+                                                      ModuleData.RoomQuery.Active := False;
+                                                      ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
+                                                      ModuleData.RoomQuery.Active := True;
+
+                                                      RoomBS.DataSet.Refresh;
+                                                    Self.RoomView.EndUpdate;
+                                                 end;
+                                              end;
+                                       end;
+                                  end
+                               );
+                  {$ENDIF}
+
+                  {$IFDEF MSWINDOWS}
+
+                      if ShowModal = mrOk then
+                      Begin
+                       if (NumberSpin.Value > 0) and
+                          (Length(Trim(RoomD.AdressEdit.Text)) > 0) then
+                          Begin
+                            try
+                               RoomBeh.correction(RoomD.CityEdit.Text,
+                                                  RoomD.AdressEdit.Text,
+                                                  RoomD.HomeNumEdit.Text.ToInteger,
+                                                  RoomD.NumRoomEdit.Text.ToInteger,
+                                                  RoomD.NumberSpin.Value.ToString.ToInteger,
+                                                  RoomD.PriceEdit.Text,
+                                                  IdRoom.ToInteger);
+                            finally
+                            end;
+                          End;
+                      End;
+                  {$ENDIF}
               End;
-          {$ENDIF}
-      End;
+          End;
    finally
       {$IFDEF MSWINDOWS}
          FreeAndNil(RoomD);
@@ -354,6 +357,8 @@ begin
    NumApartment := AItem.Data['NumRoom'].AsString;
    CountRoom := AItem.Data['CountRoom'].AsString;
    PriceRoom := AItem.Data['Price'].AsString;
+
+//   ShowMessage(IdRoom + ' ' + City + ' ' + AdressRoom + ' ' + NumApartment + ' ' + CountRoom + ' ' + PriceRoom);
 
    if IsOwner = 'OrderForm' then
      ModalResult := mrOk;

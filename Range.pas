@@ -24,8 +24,10 @@ type
     SaveBtn: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure CancelBtnClick(Sender: TObject);
+    procedure DateBPickerChange(Sender: TObject);
   private
     { Private declarations }
+    procedure CorrectRangeDate();
   public
     { Public declarations }
   end;
@@ -40,6 +42,18 @@ implementation
 procedure TRangeForm.CancelBtnClick(Sender: TObject);
 begin
     Close();
+end;
+
+procedure TRangeForm.CorrectRangeDate;
+begin
+    if DateBPicker.Date > DateEndPicker.Date then
+      DateEndPicker.Date := DateBPicker.Date;
+
+end;
+
+procedure TRangeForm.DateBPickerChange(Sender: TObject);
+begin
+       CorrectRangeDate();
 end;
 
 procedure TRangeForm.FormClose(Sender: TObject; var Action: TCloseAction);

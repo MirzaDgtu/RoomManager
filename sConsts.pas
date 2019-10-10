@@ -30,13 +30,13 @@ resourcestring
   SSQLGetRoom     = 'SELECT    O.ID, ' +
                     '          O.City, ' +
                     '          O.Adress, ' +
-                    '          PrintF(''%s - %d, кв. %d'', O.Adress, O.NumHome, O.NumApartment) as ''AdressStr'', ' +
+                    '          PrintF(''%s - %d, кв. %d, %d - ком.'', O.Adress, O.NumHome, O.NumApartment, O.CountRoom) as ''AdressStr'', ' +
                     '          O.NumHome, '  +
                     '          O.NumApartment, ' +
                     '          O.CountRoom, ' +
                     '          O.Price, ' +
                     '          I.Screen ' +
-                    'FROM	 Room O' +
+                    'FROM	 Room O ' +
                     '      LEFT JOIN ImageIcon I ON I.ID = 1 ' +
                     'ORDER BY O.City';
 
@@ -86,6 +86,7 @@ resourcestring
                           '        O.Date_Create, ' +
                           '        O.DateBeg,     ' +
                           '        O.DateEnd,     ' +
+                          '        (''С '' || O.DateBeg || '' ПО '' || O.DateEnd) as ''MergeDate'', '  +
                           '        O.Room,        ' +
                           '        printf(''г. '' || R.City || '', '' || R.Adress || '' - '' || R.NumHome || '', '' || NumApartment) as ''RoomStr'', ' +
                           '        O.Phone,       ' +

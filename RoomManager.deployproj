@@ -120,7 +120,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="RoomManagerDB.db" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>RoomManager\</RemoteDir>
+            <RemoteDir>RoomManager\assets\internal\</RemoteDir>
             <RemoteName>RoomManagerDB.db</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>

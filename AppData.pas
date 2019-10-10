@@ -41,6 +41,7 @@ type
     RoomQueryScreen: TBlobField;
     OrderQueryScreen: TBlobField;
     RoomQueryAdressStr: TWideStringField;
+    OrderQueryMergeDate: TWideStringField;
     procedure ConnectionBeforeConnect(Sender: TObject);
   private
     { Private declarations }

@@ -14,7 +14,7 @@ uses
 
 type
   TMainForm = class(TForm)
-    ToolBar1: TToolBar;
+    TB: TToolBar;
     Tabs: TTabControl;
     OrdersTab: TTabItem;
     ReportTab: TTabItem;
