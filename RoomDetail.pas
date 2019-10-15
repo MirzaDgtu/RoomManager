@@ -35,6 +35,8 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure CancelBtnClick(Sender: TObject);
     procedure NumberSpinChange(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
   private
     FcorrStatus: Boolean;
     procedure SetcorrStatus(const Value: Boolean);
@@ -77,6 +79,13 @@ begin
     {$IFDEF ANDROID}
         Action := TCloseAction.caFree;
     {$ENDIF}
+end;
+
+procedure TRoomDetailForm.FormKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+    if Key = vkHardwareBack then
+        CancelBtnClick(Self);
 end;
 
 procedure TRoomDetailForm.NumberSpinChange(Sender: TObject);

@@ -68,36 +68,53 @@ resourcestring
 
   SSQLGetOrderDetail    = 'SELECT   O.ID, ' +
                           '         O.Date_Create, ' +
-                          '         O.DateBeg,     ' +
-                          '         O.DateEnd,     ' +
+                          '         date(O.DateBeg) as ''DateBeg'',     ' +
+                          '         date(O.DateEnd) as ''DateEnd'',     ' +
                           '         O.Room,        ' +
                           '        (''г. '' || R.City || '', '' || R.Adress || '' - '' || R.NumHome || '', '' || NumApartment) as ''RoomStr'', ' +
                           '         O.Phone,       ' +
                           '         O.Price,       ' +
                           '         R.Price as ''PriceRoom'', ' +
                           '         O.DateCorr,    ' +
-                          '         O.TypeDoc      ' +
-                          'FROM Orders O            ' +
+                          '         O.TypeDoc,     ' +
+                          '         T.Description,  ' +
+                          '         T.ID as ''TypeDocID'' ' +
+                          'FROM Orders O           ' +
                           '     LEFT JOIN Room R ON R.ID = O.Room ' +
+                          '     LEFT JOIN TypeDoc T ON T.ID = O.TypeDoc ' +
                           'WHERE O.ID = %d';                                              // Получение детализации по заказу
 
 
   SSQLGetOrders         = 'SELECT  O.ID, ' +
                           '        O.Date_Create, ' +
-                          '        O.DateBeg,     ' +
-                          '        O.DateEnd,     ' +
-                          '        (''С '' || O.DateBeg || '' ПО '' || O.DateEnd) as ''MergeDate'', '  +
+                          'date(O.DateBeg) as ''DateBeg'', ' +
+                          'date(O.DateEnd) as ''DateEnd'', ' +
+                         // '        O.DateBeg,     ' +
+                        //  '        O.DateEnd,     ' +
+                          '        (''С '' || O.DateBeg || '' по '' || O.DateEnd) as ''MergeDate'', '  +
                           '        O.Room,        ' +
                           '        printf(''г. '' || R.City || '', '' || R.Adress || '' - '' || R.NumHome || '', '' || NumApartment) as ''RoomStr'', ' +
                           '        O.Phone,       ' +
                           '        O.Price,       ' +
                           '        O.DateCorr,    ' +
                           '        O.TypeDoc,     ' +
-                          '        I.Screen       ' +
+                          '        I.Screen,      ' +
+                          '        T.Description,  ' +
+                          '        T.ID as ''TypeDocID'' ' +
                           'FROM Orders O          ' +
-                          'LEFT JOIN Room R On R.ID = O.Room' +
+                          '     LEFT JOIN Room R On R.ID = O.Room' +
                           '     LEFT JOIN ImageIcon I ON I.ID = 2 ' +
+                          '     LEFT JOIN TypeDoc T ON T.ID = O.TypeDoc ' +
                           'WHERE DATE(Date_Create) Between ''%s'' and ''%s''';                                     // Получение реестра заказов
+
+
+  SSQLGetStates         = 'SELECT T.ID, ' +
+                          '       T.Name, ' +
+                          '       T.Description, ' +
+                          '       I.Screen ' +
+                          'FROM TypeDoc T ' +
+                          '     LEFT JOIN ImageIcon I ON I.ID = 3';                                              // Получение списка статей для документа
+
 implementation
 
 end.

@@ -6,12 +6,16 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
   FMX.Layouts, FMX.Controls.Presentation, FMX.DateTimeCtrls, FMX.ListBox,
-  FMX.Edit, System.DateUtils,  FMX.DialogService, MaskUtils;
+  FMX.Edit, System.DateUtils,  FMX.DialogService, MaskUtils, FMX.Ani,
+  FMX.Objects, FMX.ListView.Types, FMX.ListView.Appearances,
+  FMX.ListView.Adapters.Base, FMX.ListView, System.Rtti,
+  System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt,
+  Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope;
 
 type
   TOrderForm = class(TForm)
     Layout: TLayout;
-    ToolBar1: TToolBar;
+    TB: TToolBar;
     GridPanelLayout1: TGridPanelLayout;
     CancelBtn: TButton;
     SaveBtn: TButton;
@@ -21,9 +25,7 @@ type
     DateEItemBox: TListBoxItem;
     RoomItemBox: TListBoxItem;
     DateBOrder: TDateEdit;
-    TimeBOrder: TTimeEdit;
     DateEOrder: TDateEdit;
-    TimeEOrder: TTimeEdit;
     RoomLbl: TLabel;
     RoomBtn: TButton;
     PriceItemBox: TListBoxItem;
@@ -32,6 +34,17 @@ type
     PhoneEdit: TEdit;
     ClearEditButton1: TClearEditButton;
     ClearEditButton2: TClearEditButton;
+    StateItemBox: TListBoxItem;
+    StateEdit: TEdit;
+    ClearEditButton3: TClearEditButton;
+    StateBtn: TButton;
+    StateLayout: TLayout;
+    StateAnimation: TFloatAnimation;
+    StateRect: TRectangle;
+    StateLV: TListView;
+    StateBS: TBindSourceDB;
+    StateBL: TBindingsList;
+    LinkListControlToField1: TLinkListControlToField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DateBOrderChange(Sender: TObject);
     procedure RoomBtnClick(Sender: TObject);
@@ -39,30 +52,34 @@ type
     procedure CancelBtnClick(Sender: TObject);
     procedure PhoneEditChange(Sender: TObject);
     procedure PriceEditChange(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure StateBtnClick(Sender: TObject);
+    procedure StateLVItemClick(const Sender: TObject;
+      const AItem: TListViewItem);
   private
     { Private declarations }
     FPstatusCorr: Boolean;
     FIDRoom: string;
     FPriceRoom: string;
-    FDateB: string;
-    FDateE: string;
+    FIdTypeDoc: string;
 
-    function getMinuts(): real;
     function getPrice(): real;
+    function getCountDay(): integer;
 
+    procedure PanelStateView();
+    procedure PanelStateHide();
     procedure SetPstatusCorr(const Value: Boolean);
     procedure SetIDRoom(const Value: string);
     procedure SetPriceRoom(const Value: string);
-    procedure SetDateB(const Value: string);
-    procedure SetDateE(const Value: string);
     procedure CorrectRangeDate();
+    procedure SetIdTypeDoc(const Value: string);
   public
     { Public declarations }
     property PstatusCorr: Boolean read FPstatusCorr write SetPstatusCorr default False;
     property IDRoom: string read FIDRoom write SetIDRoom;
     property PriceRoom: string read FPriceRoom write SetPriceRoom;
-    property DateB: string read FDateB write SetDateB;
-    property DateE: string read FDateE write SetDateE;
+    property IdTypeDoc: string read FIdTypeDoc write SetIdTypeDoc;
   end;
 
 var
@@ -96,9 +113,6 @@ procedure TOrderForm.CorrectRangeDate;
 begin
     if DateBOrder.Date > DateEOrder.Date then
         DateEOrder.Date := DateBOrder.Date;
-
-    if TimeBOrder.Time > TimeEOrder.Time then
-        TimeEOrder.Time := TimeBOrder.Time;
 end;
 
 procedure TOrderForm.DateBOrderChange(Sender: TObject);
@@ -115,35 +129,43 @@ begin
   {$ENDIF}
 end;
 
-function TOrderForm.getMinuts: real;
-var
-   DTBeg, DTEnd: string;
-   DTTotal: Int64;
+procedure TOrderForm.FormKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
 begin
-   try
-    DTBeg := StringReplace(DateToStr(DateBOrder.Date) + TimeToStr(TimeBOrder.Time), '-', '/', [rfReplaceAll]);
-    DTEnd := StringReplace(DateToStr(DateEOrder.Date) + TimeToStr(TimeEOrder.Time), '-', '/', [rfReplaceAll]);
+    if Key = vkHardwareBack then
+      CancelBtnClick(Self);
+end;
 
-    DateB := DateToStr(DateBOrder.Date) + ' ' + TimeToStr(TimeBOrder.Time);
-    DateE := DateToStr(DateEOrder.Date) + ' ' + TimeToStr(TimeEOrder.Time);
-   finally
-      Result := MinutesBetween(StrToDateTime(DTBeg), StrToDateTime(DTEnd)).ToDouble;
-   end;
 
+function TOrderForm.getCountDay: integer;
+begin
+   Result := DaysBetween(DateBOrder.Date, DateEOrder.Date);
 end;
 
 function TOrderForm.getPrice: real;
-var
-    minPrice: real;
 begin
   if (Length(PriceRoom) > 0) and
-     (getMinuts > 0) then
-      Begin
-         minPrice := PriceRoom.ToDouble / 60;
-         Result := getMinuts * minPrice;
-      End
+     (getCountDay > 0) then
+         Result := getCountDay.ToDouble * PriceRoom.ToDouble
   else
       Result := 0;
+end;
+
+procedure TOrderForm.PanelStateHide;
+begin
+   StateLayout.Visible := False;
+   StateAnimation.Inverse := true;
+   StateAnimation.Start;
+end;
+
+procedure TOrderForm.PanelStateView;
+begin
+    StateLayout.Position.Y := Self.Height + 20;
+    StateLayout.Visible := True;
+
+    StateAnimation.Inverse := False;
+    StateAnimation.StartValue := Self.Height + 20;
+    StateAnimation.Start;
 end;
 
 procedure TOrderForm.PhoneEditChange(Sender: TObject);
@@ -153,7 +175,7 @@ end;
 
 procedure TOrderForm.PriceEditChange(Sender: TObject);
 begin
-      PstatusCorr := True;
+   PstatusCorr := True;
 end;
 
 procedure TOrderForm.PriceEditClick(Sender: TObject);
@@ -208,19 +230,14 @@ begin
     end;
 end;
 
-procedure TOrderForm.SetDateB(const Value: string);
-begin
-  FDateB := Value;
-end;
-
-procedure TOrderForm.SetDateE(const Value: string);
-begin
-  FDateE := Value;
-end;
-
 procedure TOrderForm.SetIDRoom(const Value: string);
 begin
   FIDRoom := Value;
+end;
+
+procedure TOrderForm.SetIdTypeDoc(const Value: string);
+begin
+  FIdTypeDoc := Value;
 end;
 
 procedure TOrderForm.SetPriceRoom(const Value: string);
@@ -231,6 +248,22 @@ end;
 procedure TOrderForm.SetPstatusCorr(const Value: Boolean);
 begin
    FPstatusCorr := Value;
+end;
+
+procedure TOrderForm.StateBtnClick(Sender: TObject);
+begin
+    ModuleData.StateQuery.Active := False;
+    ModuleData.StateQuery.SQL.Text := SSQLGetStates;
+    ModuleData.StateQuery.Active := True;
+    PanelStateView();
+end;
+
+procedure TOrderForm.StateLVItemClick(const Sender: TObject;
+  const AItem: TListViewItem);
+begin
+    PanelStateHide();
+    StateEdit.Text := AItem.Data['Description'].AsString;
+    IdTypeDoc := AItem.Data['ID'].AsString;
 end;
 
 end.

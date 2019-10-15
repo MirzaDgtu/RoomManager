@@ -358,8 +358,6 @@ begin
    CountRoom := AItem.Data['CountRoom'].AsString;
    PriceRoom := AItem.Data['Price'].AsString;
 
-//   ShowMessage(IdRoom + ' ' + City + ' ' + AdressRoom + ' ' + NumApartment + ' ' + CountRoom + ' ' + PriceRoom);
-
    if IsOwner = 'OrderForm' then
      ModalResult := mrOk;
 end;

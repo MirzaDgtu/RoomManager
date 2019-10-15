@@ -2,34 +2,35 @@ object OrderForm: TOrderForm
   Left = 0
   Top = 0
   Caption = 'OrderForm'
-  ClientHeight = 361
-  ClientWidth = 440
+  ClientHeight = 404
+  ClientWidth = 456
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnClose = FormClose
+  OnKeyDown = FormKeyDown
   DesignerMasterStyle = 3
   object Layout: TLayout
     Align = Client
-    Size.Width = 440.000000000000000000
-    Size.Height = 361.000000000000000000
+    Size.Width = 456.000000000000000000
+    Size.Height = 404.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    object ToolBar1: TToolBar
+    object TB: TToolBar
       Align = Bottom
       Padding.Left = 5.000000000000000000
       Padding.Top = 5.000000000000000000
       Padding.Right = 5.000000000000000000
       Padding.Bottom = 5.000000000000000000
-      Position.Y = 313.000000000000000000
-      Size.Width = 440.000000000000000000
+      Position.Y = 356.000000000000000000
+      Size.Width = 456.000000000000000000
       Size.Height = 48.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       TintColor = claSilver
       object GridPanelLayout1: TGridPanelLayout
         Align = Client
-        Size.Width = 430.000000000000000000
+        Size.Width = 446.000000000000000000
         Size.Height = 38.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
@@ -67,7 +68,7 @@ object OrderForm: TOrderForm
           Margins.Bottom = 15.000000000000000000
           Position.X = 15.000000000000000000
           Position.Y = -3.000000000000000000
-          Size.Width = 185.000000000000000000
+          Size.Width = 193.000000000000000000
           Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
@@ -84,9 +85,9 @@ object OrderForm: TOrderForm
           Margins.Top = 15.000000000000000000
           Margins.Right = 15.000000000000000000
           Margins.Bottom = 15.000000000000000000
-          Position.X = 230.000000000000000000
+          Position.X = 238.000000000000000000
           Position.Y = -4.000000000000000000
-          Size.Width = 185.000000000000000000
+          Size.Width = 193.000000000000000000
           Size.Height = 46.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
@@ -103,9 +104,9 @@ object OrderForm: TOrderForm
       Margins.Right = 5.000000000000000000
       Margins.Bottom = 5.000000000000000000
       Position.X = 5.000000000000000000
-      Position.Y = 6.000000000000000000
-      Size.Width = 430.000000000000000000
-      Size.Height = 300.000000000000000000
+      Position.Y = 3.000000000000000000
+      Size.Width = 446.000000000000000000
+      Size.Height = 351.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       DisableFocusEffect = True
@@ -113,13 +114,13 @@ object OrderForm: TOrderForm
       DefaultItemStyles.ItemStyle = ''
       DefaultItemStyles.GroupHeaderStyle = ''
       DefaultItemStyles.GroupFooterStyle = ''
-      Viewport.Width = 430.000000000000000000
-      Viewport.Height = 300.000000000000000000
+      Viewport.Width = 446.000000000000000000
+      Viewport.Height = 351.000000000000000000
       object ListBoxGroupHeader1: TListBoxGroupHeader
         TextSettings.Font.StyleExt = {00070000000000000004000000}
         TextSettings.HorzAlign = Center
         StyledSettings = [Family, Size, Style, FontColor]
-        Size.Width = 430.000000000000000000
+        Size.Width = 446.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
@@ -132,7 +133,7 @@ object OrderForm: TOrderForm
         Padding.Left = 90.000000000000000000
         Padding.Right = 10.000000000000000000
         Position.Y = 50.000000000000000000
-        Size.Width = 430.000000000000000000
+        Size.Width = 446.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
@@ -144,27 +145,13 @@ object OrderForm: TOrderForm
           Margins.Right = 20.000000000000000000
           Position.X = 90.000000000000000000
           Position.Y = 9.000000000000000000
-          Size.Width = 210.000000000000000000
+          Size.Width = 326.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Family, Size, FontColor]
           TabOrder = 0
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
-        end
-        object TimeBOrder: TTimeEdit
-          Time = 0.715235011574074100
-          OnChange = DateBOrderChange
-          Align = Right
-          Position.X = 320.000000000000000000
-          Position.Y = 9.000000000000000000
-          Size.Width = 100.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          StyledSettings = [Family, Size, FontColor]
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
-          TextSettings.HorzAlign = Center
-          TabOrder = 1
         end
       end
       object DateEItemBox: TListBoxItem
@@ -174,39 +161,25 @@ object OrderForm: TOrderForm
         Padding.Left = 90.000000000000000000
         Padding.Right = 10.000000000000000000
         Position.Y = 100.000000000000000000
-        Size.Width = 430.000000000000000000
+        Size.Width = 446.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
         Text = #1055#1086
         object DateEOrder: TDateEdit
-          Date = 43737.000000000000000000
+          Date = 43753.000000000000000000
           OnChange = DateBOrderChange
           Align = VertCenter
           Margins.Right = 20.000000000000000000
           Position.X = 90.000000000000000000
           Position.Y = 9.000000000000000000
-          Size.Width = 210.000000000000000000
+          Size.Width = 326.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Family, Size, FontColor]
           TabOrder = 0
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
-        end
-        object TimeEOrder: TTimeEdit
-          Time = 0.718354432870370400
-          OnChange = DateBOrderChange
-          Align = Right
-          Position.X = 320.000000000000000000
-          Position.Y = 9.000000000000000000
-          Size.Width = 100.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          StyledSettings = [Family, Size, FontColor]
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
-          TextSettings.HorzAlign = Center
-          TabOrder = 1
         end
       end
       object RoomItemBox: TListBoxItem
@@ -216,7 +189,7 @@ object OrderForm: TOrderForm
         Padding.Left = 90.000000000000000000
         Padding.Right = 10.000000000000000000
         Position.Y = 150.000000000000000000
-        Size.Width = 430.000000000000000000
+        Size.Width = 446.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 3
@@ -226,7 +199,7 @@ object OrderForm: TOrderForm
           StyledSettings = [Family, FontColor]
           Position.X = 90.000000000000000000
           Position.Y = 3.000000000000000000
-          Size.Width = 282.000000000000000000
+          Size.Width = 298.000000000000000000
           Size.Height = 44.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.StyleExt = {00070000000000000004000000}
@@ -234,7 +207,7 @@ object OrderForm: TOrderForm
         end
         object RoomBtn: TButton
           Align = Right
-          Position.X = 372.000000000000000000
+          Position.X = 388.000000000000000000
           Position.Y = 1.000000000000000000
           Size.Width = 48.000000000000000000
           Size.Height = 48.000000000000000000
@@ -245,14 +218,60 @@ object OrderForm: TOrderForm
           OnClick = RoomBtnClick
         end
       end
+      object StateItemBox: TListBoxItem
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claChocolate
+        StyledSettings = [Family, Other]
+        Padding.Left = 90.000000000000000000
+        Padding.Right = 10.000000000000000000
+        Position.Y = 200.000000000000000000
+        Size.Width = 446.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 6
+        Text = #1057#1090#1072#1090#1100#1103
+        object StateEdit: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = VertCenter
+          TabOrder = 0
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.HorzAlign = Center
+          Position.X = 90.000000000000000000
+          Position.Y = 9.000000000000000000
+          Size.Width = 298.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Size, FontColor]
+          object ClearEditButton3: TClearEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Size.Width = 32.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+          end
+        end
+        object StateBtn: TButton
+          Align = Right
+          Position.X = 388.000000000000000000
+          Position.Y = 1.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'drawertoolbutton'
+          TabOrder = 1
+          Text = 'StateBtn'
+          OnClick = StateBtnClick
+        end
+      end
       object PhoneItemBox: TListBoxItem
         TextSettings.Font.StyleExt = {00070000000000000004000000}
         TextSettings.FontColor = claChocolate
         StyledSettings = [Family, Other]
         Padding.Left = 90.000000000000000000
         Padding.Right = 20.000000000000000000
-        Position.Y = 200.000000000000000000
-        Size.Width = 430.000000000000000000
+        Position.Y = 250.000000000000000000
+        Size.Width = 446.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 5
@@ -267,7 +286,7 @@ object OrderForm: TOrderForm
           TextSettings.HorzAlign = Center
           Position.X = 90.000000000000000000
           Position.Y = 9.000000000000000000
-          Size.Width = 320.000000000000000000
+          Size.Width = 336.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Family, Size, FontColor]
@@ -289,8 +308,8 @@ object OrderForm: TOrderForm
         StyledSettings = [Family, Other]
         Padding.Left = 90.000000000000000000
         Padding.Right = 20.000000000000000000
-        Position.Y = 250.000000000000000000
-        Size.Width = 430.000000000000000000
+        Position.Y = 300.000000000000000000
+        Size.Width = 446.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 4
@@ -303,7 +322,7 @@ object OrderForm: TOrderForm
           TextSettings.HorzAlign = Center
           Position.X = 90.000000000000000000
           Position.Y = 9.000000000000000000
-          Size.Width = 320.000000000000000000
+          Size.Width = 336.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           OnChange = PriceEditChange
@@ -318,6 +337,118 @@ object OrderForm: TOrderForm
           end
         end
       end
+    end
+    object StateLayout: TLayout
+      Align = Client
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Size.Width = 420.000000000000000000
+      Size.Height = 293.000000000000000000
+      Size.PlatformDefault = False
+      Visible = False
+      TabOrder = 2
+      object StateAnimation: TFloatAnimation
+        AnimationType = InOut
+        Duration = 0.500000000000000000
+        PropertyName = 'Position.Y'
+        StartValue = 0.000000000000000000
+        StopValue = 0.000000000000000000
+      end
+      object StateRect: TRectangle
+        Align = Client
+        Fill.Color = claBlack
+        Opacity = 0.699999988079071000
+        Size.Width = 420.000000000000000000
+        Size.Height = 293.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object StateLV: TListView
+        ItemAppearanceClassName = 'TDynamicAppearance'
+        ItemEditAppearanceClassName = 'TDynamicAppearance'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Align = Client
+        Margins.Left = 20.000000000000000000
+        Margins.Top = 20.000000000000000000
+        Margins.Right = 20.000000000000000000
+        Margins.Bottom = 20.000000000000000000
+        Size.Width = 380.000000000000000000
+        Size.Height = 253.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'Description'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Font.StyleExt = {00070000000000000004000000}
+            Appearance.TextColor = claBlack
+            Appearance.Width = 324.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.VertAlign = Center
+            Appearance.PlaceOffset.X = 35.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'Screen'
+            AppearanceClassName = 'TImageObjectAppearance'
+            Appearance.Width = 35.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'ID'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 100.000000000000000000
+            Appearance.Visible = False
+          end
+          item
+            AppearanceObjectName = 'Name'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 50.000000000000000000
+            Appearance.Visible = False
+          end>
+        ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'Text1'
+            AppearanceClassName = 'TTextObjectAppearance'
+          end>
+        OnItemClick = StateLVItemClick
+      end
+    end
+  end
+  object StateBS: TBindSourceDB
+    DataSet = ModuleData.StateQuery
+    ScopeMappings = <>
+    Left = 392
+    Top = 8
+  end
+  object StateBL: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 348
+    Top = 8
+    object LinkListControlToField1: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = StateBS
+      Control = StateLV
+      FillExpressions = <
+        item
+          SourceMemberName = 'ID'
+          ControlMemberName = 'ID'
+        end
+        item
+          SourceMemberName = 'Description'
+          ControlMemberName = 'Description'
+        end
+        item
+          SourceMemberName = 'Name'
+          ControlMemberName = 'Name'
+        end
+        item
+          SourceMemberName = 'Screen'
+          ControlMemberName = 'Screen'
+        end>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
     end
   end
 end

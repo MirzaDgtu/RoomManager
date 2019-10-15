@@ -54,10 +54,15 @@ type
     FIdOrder: string;
     FEndDate: variant;
     FBegDate: variant;
+    FIdRoomOrder: string;
+    FIdTypeDocOrder: string;
+    FEndDateOrder: string;
+    FBegDateOrder: string;
+    FDescription: string;
+    FPriceOrder: string;
     { Private declarations }
 
     function getDate(dateValue: string): TDate;
-    function getTime(timeValue: string): TTime;
 
     procedure PanelMenuView();
     procedure PanelMenuHide();
@@ -66,11 +71,26 @@ type
     procedure SetIdOrder(const Value: string);
     procedure SetBegDate(const Value: variant);
     procedure SetEndDate(const Value: variant);
+    procedure SetBegDateOrder(const Value: string);
+    procedure SetDescription(const Value: string);
+    procedure SetEndDateOrder(const Value: string);
+    procedure SetIdRoomOrder(const Value: string);
+    procedure SetIdTypeDocOrder(const Value: string);
+    procedure SetPriceOrder(const Value: string);
+
   public
     { Public declarations }
-    property IdOrder: string read FIdOrder write SetIdOrder;
     property BegDate: variant read FBegDate write SetBegDate;
     property EndDate: variant read FEndDate write SetEndDate;
+
+    // Свойства документа
+    property IdOrder: string read FIdOrder write SetIdOrder;
+    property BegDateOrder: string read FBegDateOrder write SetBegDateOrder;
+    property EndDateOrder: string read FEndDateOrder write SetEndDateOrder;
+    property Description: string read FDescription write SetDescription;
+    property IdTypeDocOrder: string read FIdTypeDocOrder write SetIdTypeDocOrder;
+    property PriceOrder: string read FPriceOrder write SetPriceOrder;
+    property IdRoomOrder: string read FIdRoomOrder write SetIdRoomOrder;
   end;
 
 var
@@ -99,8 +119,6 @@ begin
         begin
            DateBOrder.Date := Now();
            DateEOrder.Date := Now();
-           TimeBOrder.Time := Now();
-           TimeEOrder.Time := Now();
            PstatusCorr := False;
 
 
@@ -113,12 +131,12 @@ begin
                                     try
                                       try
                                         OrderA.add(FormatDateTime('yyyy-mm-dd hh:MM:ss', Now),
-                                                                  DateB,
-                                                                  DateE,
+                                                                  FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
+                                                                  FormatDateTime('yyyy-mm-dd', DateEOrder.Date),
                                                                   IdRoom.ToInteger,
                                                                   PhoneEdit.Text,
                                                                   PriceEdit.Text,
-                                                                  1);
+                                                                  IdTypeDoc.ToInteger);
                                       finally
                                            RefreshBtnClick(Self);
                                       end;
@@ -139,12 +157,12 @@ begin
                     try
                       try
                         OrderA.add(FormatDateTime('yyyy-mm-dd hh:MM:ss', Now),
-                                                  DateB,
-                                                  DateE,
+                                                  FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
+                                                  FormatDateTime('yyyy-mm-dd', DateEOrder.Date),
                                                   IdRoom.ToInteger,
                                                   PhoneEdit.Text,
                                                   PriceEdit.Text,
-                                                  1);
+                                                  IdTypeDoc.ToInteger);
                       finally
                           RefreshBtnClick(Self);
                       end;
@@ -183,15 +201,16 @@ begin
 
           with OrderF do
             Begin
-              DateBOrder.Date := getDate(ModuleData.OrderDBQuery.FieldByName('DateBeg').AsString);
-              DateEOrder.Date := getDate(ModuleData.OrderDBQuery.FieldByName('DateEnd').AsString);
-              TimeBOrder.Time := getTime(ModuleData.OrderDBQuery.FieldByName('DateBeg').AsString);
-              TimeEOrder.Time := getTime(ModuleData.OrderDBQuery.FieldByName('DateEnd').AsString);
               RoomLbl.Text    := ModuleData.OrderDBQuery.FieldByName('RoomStr').AsString;
               PhoneEdit.Text  := ModuleData.OrderDBQuery.FieldByName('Phone').AsString;
               PriceEdit.Text  := ModuleData.OrderDBQuery.FieldByName('Price').AsString;
               IDRoom          := ModuleData.OrderDBQuery.FieldByName('Room').AsString;
               PriceRoom       := ModuleData.OrderDBQuery.FieldByName('PriceRoom').AsString;
+              DateBOrder.Date := getDate(ModuleData.OrderDBQuery.FieldByName('DateBeg').AsString);
+              DateEOrder.Date := getDate(ModuleData.OrderDBQuery.FieldByName('DateEnd').AsString);
+              IdTypeDoc       := ModuleData.OrderDBQuery.FieldByName('TypeDocID').AsString;
+              StateEdit.Text  := ModuleData.OrderDBQuery.FieldByName('Decription').AsString;
+
 
               {$IFDEF ANDROID}
                   ShowModal  (
@@ -201,8 +220,8 @@ begin
                                         Begin
                                            try
                                               OrderA.correction(FormatDateTime('yyyy-mm-dd hh:MM:ss', Now()),
-                                                                DateB,
-                                                                DateE,
+                                                                FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
+                                                                FormatDateTime('yyyy-mm-dd', DateEOrder.Date),
                                                                 IDRoom.ToInteger,
                                                                 PhoneEdit.Text,
                                                                 PriceEdit.Text,
@@ -221,8 +240,8 @@ begin
                     Begin
                       try
                         OrderA.correction(FormatDateTime('yyyy-mm-dd hh:MM:ss', Now()),
-                                          DateB,
-                                          DateE,
+                                          FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
+                                          FormatDateTime('yyyy-mm-dd', DateEOrder.Date),
                                           IDRoom.ToInteger,
                                           PhoneEdit.Text,
                                           PriceEdit.Text,
@@ -326,22 +345,13 @@ function TMainForm.getDate(dateValue: string): TDate;
 var
     strYear, strMonth, strDay: string;
 begin
-    strYear := Copy(dateValue, 7, 4);
-    strMonth := Copy(dateValue, 4, 2);
-    strDay  := Copy(dateValue, 1, 2);
+    strYear := Copy(dateValue, 0, 4);
+    strMonth := Copy(dateValue, 6, 2);
+    strDay  := Copy(dateValue, 9, 2);
 
     Result := StrToDate(strDay + '.' + strMonth + '.' + strYear);
 end;
 
-function TMainForm.getTime(timeValue: string): TTime;
-var
-    strHour, strMinute: string;
-begin
-    strHour := Copy(timeValue, 12, 2);
-    strMinute := Copy(timeValue, 15, 2);
-
-    Result := StrToTime(strHour + ':' + strMinute);
-end;
 
 procedure TMainForm.MenuBtnClick(Sender: TObject);
 begin
@@ -510,14 +520,44 @@ begin
   FBegDate := Value;
 end;
 
+procedure TMainForm.SetBegDateOrder(const Value: string);
+begin
+  FBegDateOrder := Value;
+end;
+
+procedure TMainForm.SetDescription(const Value: string);
+begin
+  FDescription := Value;
+end;
+
 procedure TMainForm.SetEndDate(const Value: variant);
 begin
   FEndDate := Value;
 end;
 
+procedure TMainForm.SetEndDateOrder(const Value: string);
+begin
+  FEndDateOrder := Value;
+end;
+
 procedure TMainForm.SetIdOrder(const Value: string);
 begin
   FIdOrder := Value;
+end;
+
+procedure TMainForm.SetIdRoomOrder(const Value: string);
+begin
+  FIdRoomOrder := Value;
+end;
+
+procedure TMainForm.SetIdTypeDocOrder(const Value: string);
+begin
+  FIdTypeDocOrder := Value;
+end;
+
+procedure TMainForm.SetPriceOrder(const Value: string);
+begin
+  FPriceOrder := Value;
 end;
 
 procedure TMainForm.SettingBtnClick(Sender: TObject);

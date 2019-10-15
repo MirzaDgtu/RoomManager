@@ -8,6 +8,7 @@ object RoomDetailForm: TRoomDetailForm
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnClose = FormClose
+  OnKeyDown = FormKeyDown
   DesignerMasterStyle = 3
   object Layout1: TLayout
     Align = Client

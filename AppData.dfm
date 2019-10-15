@@ -83,16 +83,6 @@ object ModuleData: TModuleData
       BlobType = ftWideMemo
       Size = 30
     end
-    object OrderQueryDateBeg: TWideMemoField
-      FieldName = 'DateBeg'
-      BlobType = ftWideMemo
-      Size = 30
-    end
-    object OrderQueryDateEnd: TWideMemoField
-      FieldName = 'DateEnd'
-      BlobType = ftWideMemo
-      Size = 30
-    end
     object OrderQueryRoom: TIntegerField
       FieldName = 'Room'
     end
@@ -119,6 +109,40 @@ object ModuleData: TModuleData
     end
     object OrderQueryMergeDate: TWideStringField
       FieldName = 'MergeDate'
+      Size = 50
+    end
+    object OrderQueryDateBeg: TWideStringField
+      FieldName = 'DateBeg'
+      Size = 50
+    end
+    object OrderQueryDateEnd: TWideStringField
+      FieldName = 'DateEnd'
+      Size = 50
+    end
+    object OrderQueryDescription: TStringField
+      FieldName = 'Description'
+      Size = 50
+    end
+    object OrderQueryTypeDocID: TIntegerField
+      FieldName = 'TypeDocID'
+    end
+  end
+  object StateQuery: TFDQuery
+    Connection = Connection
+    Left = 176
+    Top = 72
+    object StateQueryID: TIntegerField
+      FieldName = 'ID'
+    end
+    object StateQueryScreen: TBlobField
+      FieldName = 'Screen'
+    end
+    object StateQueryName: TStringField
+      FieldName = 'Name'
+      Size = 10
+    end
+    object StateQueryDescription: TStringField
+      FieldName = 'Description'
       Size = 50
     end
   end
