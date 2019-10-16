@@ -1,7 +1,7 @@
 object RangeForm: TRangeForm
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'RangeForm'
   ClientHeight = 180
   ClientWidth = 383
   FormFactor.Width = 320

@@ -209,7 +209,7 @@ object RoomDetailForm: TRoomDetailForm
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        Text = #1062#1077#1085#1072' ('#1095#1072#1089')'
+        Text = #1062#1077#1085#1072' ('#1089#1091#1090#1082#1080')'
         object PriceEdit: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = VertCenter

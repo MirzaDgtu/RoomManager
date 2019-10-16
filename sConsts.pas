@@ -96,6 +96,7 @@ resourcestring
                           '        printf(''ã. '' || R.City || '', '' || R.Adress || '' - '' || R.NumHome || '', '' || NumApartment) as ''RoomStr'', ' +
                           '        O.Phone,       ' +
                           '        O.Price,       ' +
+                          '        R.Price as ''PriceRoom'', ' +
                           '        O.DateCorr,    ' +
                           '        O.TypeDoc,     ' +
                           '        I.Screen,      ' +

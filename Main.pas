@@ -54,12 +54,6 @@ type
     FIdOrder: string;
     FEndDate: variant;
     FBegDate: variant;
-    FIdRoomOrder: string;
-    FIdTypeDocOrder: string;
-    FEndDateOrder: string;
-    FBegDateOrder: string;
-    FDescription: string;
-    FPriceOrder: string;
     { Private declarations }
 
     function getDate(dateValue: string): TDate;
@@ -68,29 +62,19 @@ type
     procedure PanelMenuHide();
     procedure PanelSettingView();
     procedure PanelSettingHide();
+
     procedure SetIdOrder(const Value: string);
     procedure SetBegDate(const Value: variant);
     procedure SetEndDate(const Value: variant);
-    procedure SetBegDateOrder(const Value: string);
-    procedure SetDescription(const Value: string);
-    procedure SetEndDateOrder(const Value: string);
-    procedure SetIdRoomOrder(const Value: string);
-    procedure SetIdTypeDocOrder(const Value: string);
-    procedure SetPriceOrder(const Value: string);
 
   public
     { Public declarations }
+
+          // Свойства документа
     property BegDate: variant read FBegDate write SetBegDate;
     property EndDate: variant read FEndDate write SetEndDate;
 
-    // Свойства документа
     property IdOrder: string read FIdOrder write SetIdOrder;
-    property BegDateOrder: string read FBegDateOrder write SetBegDateOrder;
-    property EndDateOrder: string read FEndDateOrder write SetEndDateOrder;
-    property Description: string read FDescription write SetDescription;
-    property IdTypeDocOrder: string read FIdTypeDocOrder write SetIdTypeDocOrder;
-    property PriceOrder: string read FPriceOrder write SetPriceOrder;
-    property IdRoomOrder: string read FIdRoomOrder write SetIdRoomOrder;
   end;
 
 var
@@ -209,7 +193,7 @@ begin
               DateBOrder.Date := getDate(ModuleData.OrderDBQuery.FieldByName('DateBeg').AsString);
               DateEOrder.Date := getDate(ModuleData.OrderDBQuery.FieldByName('DateEnd').AsString);
               IdTypeDoc       := ModuleData.OrderDBQuery.FieldByName('TypeDocID').AsString;
-              StateEdit.Text  := ModuleData.OrderDBQuery.FieldByName('Decription').AsString;
+              StateEdit.Text  := ModuleData.OrderDBQuery.FieldByName('Description').AsString;
 
 
               {$IFDEF ANDROID}
@@ -225,7 +209,7 @@ begin
                                                                 IDRoom.ToInteger,
                                                                 PhoneEdit.Text,
                                                                 PriceEdit.Text,
-                                                                1,
+                                                                IdTypeDoc.ToInteger,
                                                                 IdOrder.ToInteger);
                                            finally
                                               RefreshBtnClick(Self);
@@ -245,7 +229,7 @@ begin
                                           IDRoom.ToInteger,
                                           PhoneEdit.Text,
                                           PriceEdit.Text,
-                                          1,
+                                          IdTypeDoc.ToInteger,
                                           IdOrder.ToInteger);
                       finally
                          RefreshBtnClick(Self);
@@ -368,7 +352,7 @@ end;
 procedure TMainForm.OrdersViewItemClick(const Sender: TObject;
   const AItem: TListViewItem);
 begin
-    IdOrder := AItem.Data['ID'].asString;
+    IdOrder         := AItem.Data['ID'].asString;
 end;
 
 procedure TMainForm.PanelMenuHide;
@@ -520,44 +504,14 @@ begin
   FBegDate := Value;
 end;
 
-procedure TMainForm.SetBegDateOrder(const Value: string);
-begin
-  FBegDateOrder := Value;
-end;
-
-procedure TMainForm.SetDescription(const Value: string);
-begin
-  FDescription := Value;
-end;
-
 procedure TMainForm.SetEndDate(const Value: variant);
 begin
   FEndDate := Value;
 end;
 
-procedure TMainForm.SetEndDateOrder(const Value: string);
-begin
-  FEndDateOrder := Value;
-end;
-
 procedure TMainForm.SetIdOrder(const Value: string);
 begin
   FIdOrder := Value;
-end;
-
-procedure TMainForm.SetIdRoomOrder(const Value: string);
-begin
-  FIdRoomOrder := Value;
-end;
-
-procedure TMainForm.SetIdTypeDocOrder(const Value: string);
-begin
-  FIdTypeDocOrder := Value;
-end;
-
-procedure TMainForm.SetPriceOrder(const Value: string);
-begin
-  FPriceOrder := Value;
 end;
 
 procedure TMainForm.SettingBtnClick(Sender: TObject);
