@@ -11,12 +11,17 @@ uses
   RoomBehaviors in 'RoomBehaviors.pas',
   Order in 'Order.pas' {OrderForm},
   OrderBehavior in 'OrderBehavior.pas',
-  Range in 'Range.pas' {RangeForm};
+  Range in 'Range.pas' {RangeForm},
+  StatesBehavior in 'StatesBehavior.pas',
+  State in 'State.pas' {StatesForm},
+  StateDetail in 'StateDetail.pas' {StateDetailForm};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TStatesForm, StatesForm);
+  Application.CreateForm(TStateDetailForm, StateDetailForm);
   Application.Run;
 end.

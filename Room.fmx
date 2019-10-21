@@ -9,7 +9,7 @@ object RoomForm: TRoomForm
   FormFactor.Devices = [Desktop]
   OnClose = FormClose
   DesignerMasterStyle = 3
-  object ToolBar1: TToolBar
+  object TB: TToolBar
     Align = Bottom
     Margins.Left = 5.000000000000000000
     Margins.Top = 5.000000000000000000

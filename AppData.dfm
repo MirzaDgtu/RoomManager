@@ -130,20 +130,69 @@ object ModuleData: TModuleData
   object StateQuery: TFDQuery
     Connection = Connection
     Left = 176
-    Top = 72
+    Top = 120
     object StateQueryID: TIntegerField
       FieldName = 'ID'
-    end
-    object StateQueryScreen: TBlobField
-      FieldName = 'Screen'
-    end
-    object StateQueryName: TStringField
-      FieldName = 'Name'
-      Size = 10
     end
     object StateQueryDescription: TStringField
       FieldName = 'Description'
       Size = 50
+    end
+    object StateQueryScreen: TBlobField
+      FieldName = 'Screen'
+    end
+  end
+  object StateDBQuery: TFDQuery
+    Connection = Connection
+    Left = 176
+    Top = 72
+  end
+  object ReportQuery: TFDQuery
+    Connection = Connection
+    Left = 256
+    Top = 72
+    object ReportQueryRoom: TIntegerField
+      FieldName = 'Room'
+    end
+    object ReportQueryCity: TStringField
+      FieldName = 'City'
+      Size = 30
+    end
+    object ReportQueryAdress: TStringField
+      FieldName = 'Adress'
+      Size = 150
+    end
+    object ReportQueryNumHome: TIntegerField
+      FieldName = 'NumHome'
+    end
+    object ReportQueryNumApartment: TIntegerField
+      FieldName = 'NumApartment'
+    end
+    object ReportQueryCountRoom: TIntegerField
+      FieldName = 'CountRoom'
+    end
+    object ReportQueryScreen: TBlobField
+      FieldName = 'Screen'
+    end
+    object ReportQueryRoomStr: TWideStringField
+      FieldName = 'RoomStr'
+      Size = 150
+    end
+    object ReportQueryPriceMerge: TWideStringField
+      FieldName = 'PriceMerge'
+      Size = 50
+    end
+    object ReportQueryPriceIncome: TWideStringField
+      FieldName = 'PriceIncome'
+      Size = 0
+    end
+    object ReportQueryPriceExpend: TWideStringField
+      FieldName = 'PriceExpend'
+      Size = 0
+    end
+    object ReportQueryTotalPrice: TWideStringField
+      FieldName = 'TotalPrice'
+      Size = 0
     end
   end
 end

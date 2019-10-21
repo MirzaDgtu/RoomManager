@@ -1,0 +1,201 @@
+object StatesForm: TStatesForm
+  Left = 0
+  Top = 0
+  Caption = 'StatesForm'
+  ClientHeight = 700
+  ClientWidth = 407
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  DesignerMasterStyle = 3
+  object Layout: TLayout
+    Align = Client
+    Size.Width = 407.000000000000000000
+    Size.Height = 700.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object StateTB: TToolBar
+      Align = Bottom
+      Position.Y = 652.000000000000000000
+      Size.Width = 407.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      TintColor = claSilver
+      object MenuBtn: TButton
+        Align = Right
+        Position.X = 359.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'drawertoolbutton'
+        TabOrder = 0
+        Text = 'MenuBtn'
+        OnClick = MenuBtnClick
+      end
+    end
+    object StatesLV: TListView
+      ItemAppearanceClassName = 'TDynamicAppearance'
+      ItemEditAppearanceClassName = 'TDynamicAppearance'
+      HeaderAppearanceClassName = 'TListHeaderObjects'
+      FooterAppearanceClassName = 'TListHeaderObjects'
+      Align = Client
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 407.000000000000000000
+      Size.Height = 642.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
+        item
+          AppearanceObjectName = 'ID'
+          AppearanceClassName = 'TTextObjectAppearance'
+          Appearance.Width = 50.000000000000000000
+          Appearance.Height = 36.000000000000000000
+          Appearance.Visible = False
+          Appearance.PlaceOffset.X = 224.000000000000000000
+          Appearance.PlaceOffset.Y = 4.000000000000000000
+        end
+        item
+          AppearanceObjectName = 'Description'
+          AppearanceClassName = 'TTextObjectAppearance'
+          Appearance.Font.StyleExt = {00070000000000000004000000}
+          Appearance.TextColor = claMediumblue
+          Appearance.Width = 346.000000000000000000
+          Appearance.Height = 44.000000000000000000
+          Appearance.PlaceOffset.X = 40.000000000000000000
+        end
+        item
+          AppearanceObjectName = 'Screen'
+          AppearanceClassName = 'TImageObjectAppearance'
+          Appearance.Width = 34.000000000000000000
+          Appearance.Height = 36.000000000000000000
+          Appearance.PlaceOffset.X = 4.000000000000000000
+          Appearance.PlaceOffset.Y = 4.000000000000000000
+        end>
+      ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
+        item
+          AppearanceObjectName = 'Text1'
+          AppearanceClassName = 'TTextObjectAppearance'
+        end>
+      CanSwipeDelete = False
+      OnItemClick = StatesLVItemClick
+      SearchVisible = True
+      object State_Layout: TLayout
+        Align = Right
+        Padding.Left = 10.000000000000000000
+        Padding.Right = 10.000000000000000000
+        Position.X = 303.000000000000000000
+        Position.Y = 48.000000000000000000
+        Size.Width = 104.000000000000000000
+        Size.Height = 594.000000000000000000
+        Size.PlatformDefault = False
+        Visible = False
+        TabOrder = 0
+        object MenuRR: TRoundRect
+          Align = VertCenter
+          Fill.Color = claBlack
+          Padding.Top = 50.000000000000000000
+          Opacity = 0.699999988079071100
+          Position.X = 10.000000000000000000
+          Position.Y = 148.000000000000000000
+          Size.Width = 84.000000000000000000
+          Size.Height = 297.000000000000000000
+          Size.PlatformDefault = False
+          object AddBtn: TButton
+            Align = Top
+            IconTintColor = claPowderblue
+            Position.X = 18.000000000000000000
+            Position.Y = 50.000000000000000000
+            Size.Width = 48.000000000000000000
+            Size.Height = 48.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'additembutton'
+            TabOrder = 0
+            Text = 'AddBtn'
+            OnClick = AddBtnClick
+          end
+          object CorrBtn: TButton
+            Align = Top
+            IconTintColor = claPowderblue
+            Position.X = 18.000000000000000000
+            Position.Y = 98.000000000000000000
+            Size.Width = 48.000000000000000000
+            Size.Height = 48.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'composetoolbutton'
+            TabOrder = 1
+            Text = 'AddBtn'
+            OnClick = CorrBtnClick
+          end
+          object DeleteBtn: TButton
+            Align = Top
+            IconTintColor = claPowderblue
+            Position.X = 18.000000000000000000
+            Position.Y = 146.000000000000000000
+            Size.Width = 48.000000000000000000
+            Size.Height = 48.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'trashtoolbutton'
+            TabOrder = 2
+            Text = 'AddBtn'
+            OnClick = DeleteBtnClick
+          end
+          object RefreshBtn: TButton
+            Align = Top
+            IconTintColor = claPowderblue
+            Position.X = 18.000000000000000000
+            Position.Y = 194.000000000000000000
+            Size.Width = 48.000000000000000000
+            Size.Height = 48.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'refreshtoolbutton'
+            TabOrder = 3
+            Text = 'AddBtn'
+            OnClick = RefreshBtnClick
+          end
+        end
+        object StateAnimation: TFloatAnimation
+          AnimationType = InOut
+          Duration = 0.500000000000000000
+          PropertyName = 'Position.Y'
+          StartValue = 0.000000000000000000
+          StopValue = 0.000000000000000000
+        end
+      end
+    end
+  end
+  object StateBS: TBindSourceDB
+    DataSet = ModuleData.StateQuery
+    ScopeMappings = <>
+    Left = 104
+    Top = 320
+  end
+  object StateBL: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 105
+    Top = 261
+    object LinkListControlToField1: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = StateBS
+      Control = StatesLV
+      FillExpressions = <
+        item
+          SourceMemberName = 'ID'
+          ControlMemberName = 'ID'
+        end
+        item
+          SourceMemberName = 'Description'
+          ControlMemberName = 'Description'
+        end
+        item
+          SourceMemberName = 'Screen'
+          ControlMemberName = 'Screen'
+        end>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+  end
+end

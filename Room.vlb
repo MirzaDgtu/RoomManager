@@ -23,9 +23,6 @@ Coordinates=491,380,149,51
 [MenuAnimation]
 Coordinates=61,295,91,33
 
-[ToolBar1]
-Coordinates=598,464,58,33
-
 [DeleteBtn]
 Coordinates=188,464,62,51
 
@@ -56,4 +53,7 @@ Coordinates=150,10,120,249
 
 [RoomBL]
 Coordinates=136,307,57,33
+
+[TB]
+Coordinates=598,464,58,33
 

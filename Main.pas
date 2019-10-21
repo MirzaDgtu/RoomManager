@@ -37,6 +37,14 @@ type
     AnimalSetting: TFloatAnimation;
     RangeRectBtn: TRectangle;
     SettingRectBtn: TRectangle;
+    StateRectBtn: TRectangle;
+    ReportLV: TListView;
+    Report_Layout: TLayout;
+    ReportRR: TRoundRect;
+    RefreshReportBtn: TButton;
+    AnimalReport: TFloatAnimation;
+    ReportBS: TBindSourceDB;
+    LinkListControlToField2: TLinkListControlToField;
     procedure MenuBtnClick(Sender: TObject);
     procedure RoomBtnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -50,6 +58,9 @@ type
     procedure SettingBtnClick(Sender: TObject);
     procedure CorrBtnClick(Sender: TObject);
     procedure RangeRectBtnClick(Sender: TObject);
+    procedure StateRectBtnClick(Sender: TObject);
+    procedure ReportLVClick(Sender: TObject);
+    procedure RefreshReportBtnClick(Sender: TObject);
   private
     FIdOrder: string;
     FEndDate: variant;
@@ -62,10 +73,14 @@ type
     procedure PanelMenuHide();
     procedure PanelSettingView();
     procedure PanelSettingHide();
+    procedure PanelReportView();
+    procedure PanelReportHide();
 
     procedure SetIdOrder(const Value: string);
     procedure SetBegDate(const Value: variant);
     procedure SetEndDate(const Value: variant);
+
+    procedure RefreshReport(DateB, DateE: variant);
 
   public
     { Public declarations }
@@ -84,7 +99,7 @@ implementation
 
 {$R *.fmx}
 
-uses Room, AppData, RoomBehaviors, sConsts, Order, OrderBehavior, Range;
+uses Room, AppData, RoomBehaviors, sConsts, Order, OrderBehavior, Range, State;
 
 procedure TMainForm.AddBtnClick(Sender: TObject);
 var
@@ -340,7 +355,11 @@ end;
 procedure TMainForm.MenuBtnClick(Sender: TObject);
 begin
     PanelSettingHide();
-    PanelMenuView();
+
+    case Tabs.TabIndex of
+      0: PanelMenuView();
+      1: PanelReportView();
+    end;
 end;
 
 procedure TMainForm.OrdersViewClick(Sender: TObject);
@@ -352,7 +371,7 @@ end;
 procedure TMainForm.OrdersViewItemClick(const Sender: TObject;
   const AItem: TListViewItem);
 begin
-    IdOrder         := AItem.Data['ID'].asString;
+    IdOrder := AItem.Data['ID'].asString;
 end;
 
 procedure TMainForm.PanelMenuHide;
@@ -370,6 +389,23 @@ begin
     AnimalMenu.Inverse := False;
     AnimalMenu.StartValue := MainForm.Height + 20;
     AnimalMenu.Start;
+end;
+
+procedure TMainForm.PanelReportHide;
+begin
+   Report_Layout.Visible := False;
+   AnimalReport.Inverse := true;
+   AnimalReport.Start;
+end;
+
+procedure TMainForm.PanelReportView;
+begin
+    Report_Layout.Position.Y := MainForm.Height + 20;
+    Report_Layout.Visible := True;
+
+    AnimalReport.Inverse := False;
+    AnimalReport.StartValue := Self.Height + 20;
+    AnimalReport.Start;
 end;
 
 procedure TMainForm.PanelSettingHide;
@@ -476,6 +512,37 @@ begin
     end;
 end;
 
+procedure TMainForm.RefreshReport(DateB, DateE: variant);
+begin
+    ModuleData.ReportQuery.Active := False;
+    ModuleData.ReportQuery.SQL.Text := Format(SSQLRepotrSales, [DateB,
+                                                                DateE]);
+    ModuleData.ReportQuery.Active := True;
+
+    try
+      try
+        ReportLV.Items.Clear;
+        ReportLV.BeginUpdate;
+          ReportBS.DataSet.Refresh;
+        ReportLV.EndUpdate;
+      finally
+      end;
+    finally
+    end;
+end;
+
+procedure TMainForm.RefreshReportBtnClick(Sender: TObject);
+begin
+    PanelReportHide();
+    RefreshReport(BegDate, EndDate);
+end;
+
+procedure TMainForm.ReportLVClick(Sender: TObject);
+begin
+    PanelReportHide();
+    PanelSettingHide();
+end;
+
 procedure TMainForm.RoomBtnClick(Sender: TObject);
 var
     Room: TRoomForm;
@@ -483,6 +550,9 @@ begin
    PanelMenuHide();
    Room := TRoomForm.Create(MainForm);
     try
+        ModuleData.RoomQuery.Active := False;
+        ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
+        ModuleData.RoomQuery.Active := True;
 
       {$IFDEF ANDROID}
           Room.Show();
@@ -517,7 +587,35 @@ end;
 procedure TMainForm.SettingBtnClick(Sender: TObject);
 begin
     PanelMenuHide();
+    PanelReportHide();
     PanelSettingView();
+end;
+
+procedure TMainForm.StateRectBtnClick(Sender: TObject);
+var
+    StatesF :TStatesForm;
+begin
+     StatesF  := TStatesForm.Create(MainForm);
+     PanelSettingHide();
+
+      ModuleData.StateQuery.Active := False;
+      ModuleData.StateQuery.SQL.Text := SSQLGetStates;
+      ModuleData.StateQuery.Active := True;
+
+     Try
+      
+        {$IFDEF ANDROID}
+            StatesF.Show();
+        {$ENDIF}
+
+        {$IFDEF MSWINDOWS}
+            StatesF.ShowModal();
+        {$ENDIF}
+     Finally
+        {$IFDEF MSWINDOWS}
+            FreeAndNil(StatesF);
+        {$ENDIF}
+     End;
 end;
 
 end.

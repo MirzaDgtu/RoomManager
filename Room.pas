@@ -13,7 +13,7 @@ uses
 
 type
   TRoomForm = class(TForm)
-    ToolBar1: TToolBar;
+    TB: TToolBar;
     RoomView: TListView;
     MenuBtn: TButton;
     Menu_Layout: TLayout;

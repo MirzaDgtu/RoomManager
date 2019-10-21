@@ -3,7 +3,7 @@ Visible=False
 Coordinates=174,78,134,33
 
 [ModuleData.OrderQuery]
-Coordinates=0,0,133,267
+Coordinates=0,0,133,303
 
 [CancelBtn]
 Coordinates=368,309,65,51
@@ -90,7 +90,7 @@ Coordinates=791,56,61,33
 Coordinates=791,111,80,33
 
 [ModuleData.StateQuery]
-Coordinates=375,533,130,33
+Coordinates=480,590,130,33
 Visible=False
 
 [StateEdit]
@@ -100,15 +100,21 @@ Coordinates=190,533,58,51
 Coordinates=791,166,73,33
 
 [StateLV]
-Coordinates=259,533,89,213
+Coordinates=259,533,89,195
 Visible=True
 
 []
-Coordinates=791,221,91,36
+Coordinates=416,533,91,36
+
+[ModuleData.StateDBQuery]
+Coordinates=152,1,145,51
+
+[RoomForm.RoomBS]
+Coordinates=174,78,120,231
 
 [StateBL]
-Coordinates=174,78,53,33
+Coordinates=174,78,82,33
 
 [StateBS]
-Coordinates=375,533,116,141
+Coordinates=480,590,116,123
 

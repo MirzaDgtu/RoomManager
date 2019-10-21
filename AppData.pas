@@ -42,13 +42,26 @@ type
     OrderQueryMergeDate: TWideStringField;
     StateQuery: TFDQuery;
     StateQueryID: TIntegerField;
-    StateQueryScreen: TBlobField;
-    StateQueryName: TStringField;
     StateQueryDescription: TStringField;
     OrderQueryDateBeg: TWideStringField;
     OrderQueryDateEnd: TWideStringField;
     OrderQueryDescription: TStringField;
     OrderQueryTypeDocID: TIntegerField;
+    StateDBQuery: TFDQuery;
+    StateQueryScreen: TBlobField;
+    ReportQuery: TFDQuery;
+    ReportQueryRoom: TIntegerField;
+    ReportQueryCity: TStringField;
+    ReportQueryAdress: TStringField;
+    ReportQueryNumHome: TIntegerField;
+    ReportQueryNumApartment: TIntegerField;
+    ReportQueryCountRoom: TIntegerField;
+    ReportQueryScreen: TBlobField;
+    ReportQueryRoomStr: TWideStringField;
+    ReportQueryPriceMerge: TWideStringField;
+    ReportQueryPriceIncome: TWideStringField;
+    ReportQueryPriceExpend: TWideStringField;
+    ReportQueryTotalPrice: TWideStringField;
     procedure ConnectionBeforeConnect(Sender: TObject);
   private
     { Private declarations }

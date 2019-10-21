@@ -109,12 +109,58 @@ resourcestring
                           'WHERE DATE(Date_Create) Between ''%s'' and ''%s''';                                     // Получение реестра заказов
 
 
+
+
   SSQLGetStates         = 'SELECT T.ID, ' +
-                          '       T.Name, ' +
                           '       T.Description, ' +
                           '       I.Screen ' +
                           'FROM TypeDoc T ' +
                           '     LEFT JOIN ImageIcon I ON I.ID = 3';                                              // Получение списка статей для документа
+
+  SSQLAddState          = 'INSERT INTO TypeDoc(Description) ' +                                                  // Добавление новой статьи документа
+                          'VALUES	 (''%s'')';
+
+  SSQLCorrState         = 'UPDATE TypeDoc ' +                                                                    // Корректировка статьи документа
+                          'SET Description = ''%s'' ' +
+                          'WHERE ID = %d';
+
+  SSQLDeleteState       = 'DELETE FROM TypeDoc ' +                                                               // Удаление статьи документа
+                          'WHERE ID = %d';
+
+          // Отчет
+  SSQLRepotrSales      = 'SELECT O.Room, ' +                                                                    // Получение отчета по сдаче квартир
+                         '       R.City, ' +
+                         '       R.Adress, ' +
+                         '       R.NumHome, ' +
+                         '       R.NumApartment, ' +
+                         '       R.CountRoom, ' +
+                         '      (R.City || '', '' ||  R.Adress || '' '' || R.NumHome || '', '' || R.NumApartment) as ''RoomStr'', ' +
+                         '	    CAST((SELECT Sum(Price) ' +
+                         '       FROM Orders        ' +
+                         '       WHERE TypeDoc = 1 AND Room = O.Room) as Text)	as ''PriceIncome'', ' +
+                         '	    CAST((SELECT Sum(Price) ' +
+                         '       FROM Orders       ' +
+                         '       WHERE TypeDoc <> 1 AND Room = O.Room) as Text)	as ''PriceExpend'', ' +
+                         '		  (''Выручка: '' || (SELECT Sum(Price) ' +
+                         '                    FROM Orders ' +
+                         '                    WHERE TypeDoc = 1 AND Room = O.Room) || '', Расход: '' || (SELECT Sum(Price) ' +
+                         '                                                                             FROM Orders ' +
+                         '                                                                             WHERE TypeDoc <> 1 AND Room = O.Room)) as ''PriceMerge'', ' +
+                         '        CAST(((SELECT Sum(Price) ' +
+                         '          FROM Orders ' +
+                         '          WHERE TypeDoc = 1 AND Room = O.Room) - ' +
+                         '         (SELECT Sum(Price) ' +
+                         '          FROM Orders ' +
+                         '          WHERE TypeDoc <> 1 AND Room = O.Room)) as Text)	as ''TotalPrice'',	' +
+                         '          I.Screen ' +
+                         'From Orders O ' +
+                         '   LEFT JOIN Room R ON R.ID = O.Room ' +
+                         ' 	 LEFT JOIN ImageIcon I ON I.ID = 4 ' +
+                         'WHERE O.Date_Create BETWEEN ''%s'' AND ''%s'' ' +
+                         'Group By O.Room';
+
+
+
 
 implementation
 

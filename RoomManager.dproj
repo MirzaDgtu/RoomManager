@@ -5,7 +5,7 @@
         <FrameworkType>FMX</FrameworkType>
         <MainSource>RoomManager.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>19</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -212,6 +212,15 @@
         <DCCReference Include="OrderBehavior.pas"/>
         <DCCReference Include="Range.pas">
             <Form>RangeForm</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="StatesBehavior.pas"/>
+        <DCCReference Include="State.pas">
+            <Form>StatesForm</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="StateDetail.pas">
+            <Form>StateDetailForm</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -480,6 +489,12 @@
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\Redist\osx64\libcgsqlite3.dylib" Class="DependencyModule">
                     <Platform Name="OSX64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Release\RoomManager.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>RoomManager.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

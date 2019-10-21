@@ -93,7 +93,7 @@ uses sConsts, AppData, Room;
 
 procedure TOrderForm.CancelBtnClick(Sender: TObject);
 begin
-      case PstatusCorr of
+  {    case PstatusCorr of
           True: TDialogService.MessageDialog('При выходе вы потеряете все изменения!' + #13 + 'Вы действительно хотите выйти?', System.UITypes.TMsgDlgType.mtInformation,
                                 [System.UITypes.TMsgDlgBtn.mbYes, System.UITypes.TMsgDlgBtn.mbNo],
                                  System.UITypes.TMsgDlgBtn.mbYes, 0,
@@ -101,12 +101,14 @@ begin
                                  procedure(const AResult: TModalResult)
                                  begin
                                    case AResult of
-                                    mrYES: Close();
-                                    mrNo: Exit;
+                                      mrYES: Close();
+                                      mrNo: Exit;
                                    end;
                                  end);
           False: Close();
-      end;
+      end; }
+
+      Exit;
 end;
 
 procedure TOrderForm.CorrectRangeDate;

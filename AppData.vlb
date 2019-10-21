@@ -26,7 +26,7 @@ Coordinates=172,233,69,33
 Coordinates=19,70,68,33
 
 []
-Coordinates=343,304,113,33
+Coordinates=515,261,78,33
 
 [RoomQueryNumApartment]
 Coordinates=446,1,147,33
@@ -50,7 +50,7 @@ Coordinates=446,105,132,33
 Coordinates=298,1,82,33
 
 [OrderQuery]
-Coordinates=10,10,72,267
+Coordinates=10,10,72,303
 
 [OrderQueryCorrDate]
 Coordinates=418,157,116,33
@@ -86,7 +86,25 @@ Coordinates=70,375,124,33
 Coordinates=515,408,79,33
 
 [StateQuery]
-Coordinates=340,130,69,123
+Coordinates=460,70,69,105
+
+[StateQueryDescription]
+Coordinates=418,209,125,33
+
+[StateDBQuery]
+Coordinates=460,10,84,51
+
+[OrderQueryDescription]
+Coordinates=632,1,128,33
+
+[OrderQueryDateEnd]
+Coordinates=631,53,113,33
+
+[OrderQueryTypeDocID]
+Coordinates=318,413,125,33
+
+[OrderQueryDateBeg]
+Coordinates=199,413,113,33
 
 [StateQueryScreen]
 Coordinates=186,140,103,33

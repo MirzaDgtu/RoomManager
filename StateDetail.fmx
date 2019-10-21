@@ -1,0 +1,147 @@
+object StateDetailForm: TStateDetailForm
+  Left = 0
+  Top = 0
+  Caption = 'StateDetailForm'
+  ClientHeight = 149
+  ClientWidth = 399
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  DesignerMasterStyle = 3
+  object LayoutMain: TLayout
+    Align = VertCenter
+    Size.Width = 399.000000000000000000
+    Size.Height = 149.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object ToolBar1: TToolBar
+      Align = Bottom
+      Position.Y = 101.000000000000000000
+      Size.Width = 399.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      TintColor = claSilver
+      object TBGridPL: TGridPanelLayout
+        Align = Client
+        Padding.Left = 10.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 10.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Size.Width = 399.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ColumnCollection = <
+          item
+            Value = 50.000000000000000000
+          end
+          item
+            Value = 50.000000000000000000
+          end>
+        ControlCollection = <
+          item
+            Column = 0
+            Control = CancelBtn
+            Row = 0
+          end
+          item
+            Column = 1
+            Control = OkBtn
+            Row = 0
+          end>
+        RowCollection = <
+          item
+            Value = 100.000000000000000000
+          end
+          item
+            SizeStyle = Auto
+          end>
+        object CancelBtn: TButton
+          Align = VertCenter
+          StyledSettings = [Family, Size, FontColor]
+          ModalResult = 2
+          Position.X = 10.000000000000000000
+          Position.Y = 2.000000000000000000
+          Size.Width = 179.500000000000000000
+          Size.Height = 44.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = #1054#1090#1084#1077#1085#1072
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TintColor = claDarkviolet
+        end
+        object OkBtn: TButton
+          Align = VertCenter
+          StyledSettings = [Family, Size, FontColor]
+          ModalResult = 1
+          Position.X = 209.500000000000000000
+          Position.Y = 2.000000000000000000
+          Size.Width = 179.500000000000000000
+          Size.Height = 44.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Ok'
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TintColor = claSpringgreen
+        end
+      end
+    end
+    object StatesLB: TListBox
+      Align = VertCenter
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 399.000000000000000000
+      Size.Height = 90.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      DisableFocusEffect = True
+      ItemHeight = 44.000000000000000000
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 399.000000000000000000
+      Viewport.Height = 90.000000000000000000
+      object HeaderLB: TListBoxGroupHeader
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.HorzAlign = Center
+        StyledSettings = [Family, Size, Style, FontColor]
+        Size.Width = 399.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = #1057#1090#1072#1090#1100#1103
+      end
+      object StateLB: TListBoxItem
+        Padding.Left = 40.000000000000000000
+        Padding.Right = 40.000000000000000000
+        Position.Y = 44.000000000000000000
+        TabOrder = 1
+        object StateEdit: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = VertCenter
+          TabOrder = 0
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.HorzAlign = Center
+          Position.X = 40.000000000000000000
+          Position.Y = 6.000000000000000000
+          Size.Width = 319.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, FontColor]
+          object ClearEditButton1: TClearEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Size.Width = 32.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+          end
+        end
+      end
+    end
+  end
+end
