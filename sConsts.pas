@@ -27,7 +27,7 @@ resourcestring
   SSQLDeleteRoom  = 'DELETE FROM ROOM ' +
                     'WHERE ID = %d';
 
-  SSQLGetRoom     = 'SELECT    O.ID, ' +
+  SSQLGetRoom     = 'SELECT    O.ID, ' +                          // Получение списка всех квартир
                     '          O.City, ' +
                     '          O.Adress, ' +
                     '          PrintF(''%s - %d, кв. %d, %d - ком.'', O.Adress, O.NumHome, O.NumApartment, O.CountRoom) as ''AdressStr'', ' +
@@ -38,6 +38,21 @@ resourcestring
                     '          I.Screen ' +
                     'FROM	 Room O ' +
                     '      LEFT JOIN ImageIcon I ON I.ID = 1 ' +
+                    'ORDER BY O.City';
+
+
+  SSQLGetRoomFree  = 'SELECT   O.ID, ' +                          // Получение списка всех квартир
+                    '          O.City, ' +
+                    '          O.Adress, ' +
+                    '          PrintF(''%s - %d, кв. %d, %d - ком.'', O.Adress, O.NumHome, O.NumApartment, O.CountRoom) as ''AdressStr'', ' +
+                    '          O.NumHome, '  +
+                    '          O.NumApartment, ' +
+                    '          O.CountRoom, ' +
+                    '          O.Price, ' +
+                    '          I.Screen ' +
+                    'FROM	 Room O ' +
+                    '      LEFT JOIN ImageIcon I ON I.ID = 1 ' +
+                    'WHERE Date(O.DateBeg) <> ''%s'' AND Date(O.DateEnd) <> ''%s''' +
                     'ORDER BY O.City';
 
 
@@ -89,8 +104,6 @@ resourcestring
                           '        O.Date_Create, ' +
                           'date(O.DateBeg) as ''DateBeg'', ' +
                           'date(O.DateEnd) as ''DateEnd'', ' +
-                         // '        O.DateBeg,     ' +
-                        //  '        O.DateEnd,     ' +
                           '        (''С '' || O.DateBeg || '' по '' || O.DateEnd) as ''MergeDate'', '  +
                           '        O.Room,        ' +
                           '        printf(''г. '' || R.City || '', '' || R.Adress || '' - '' || R.NumHome || '', '' || NumApartment) as ''RoomStr'', ' +
@@ -141,11 +154,11 @@ resourcestring
                          '	    CAST((SELECT Sum(Price) ' +
                          '       FROM Orders       ' +
                          '       WHERE TypeDoc <> 1 AND Room = O.Room) as Text)	as ''PriceExpend'', ' +
-                         '		  (''Выручка: '' || (SELECT Sum(Price) ' +
+                         '		  Cast((''Выручка: '' || (SELECT Sum(Price) ' +
                          '                    FROM Orders ' +
                          '                    WHERE TypeDoc = 1 AND Room = O.Room) || '', Расход: '' || (SELECT Sum(Price) ' +
                          '                                                                             FROM Orders ' +
-                         '                                                                             WHERE TypeDoc <> 1 AND Room = O.Room)) as ''PriceMerge'', ' +
+                         '                                                                             WHERE TypeDoc <> 1 AND Room = O.Room)) as TEXT) as ''PriceMerge'', ' +
                          '        CAST(((SELECT Sum(Price) ' +
                          '          FROM Orders ' +
                          '          WHERE TypeDoc = 1 AND Room = O.Room) - ' +
@@ -156,7 +169,7 @@ resourcestring
                          'From Orders O ' +
                          '   LEFT JOIN Room R ON R.ID = O.Room ' +
                          ' 	 LEFT JOIN ImageIcon I ON I.ID = 4 ' +
-                         'WHERE O.Date_Create BETWEEN ''%s'' AND ''%s'' ' +
+                         'WHERE Date(O.Date_Create) BETWEEN ''%s'' AND ''%s'' ' +
                          'Group By O.Room';
 
 

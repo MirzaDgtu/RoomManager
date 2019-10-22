@@ -318,6 +318,7 @@ object OrderForm: TOrderForm
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = VertCenter
           TabOrder = 0
+          KeyboardType = NumberPad
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
           Position.X = 90.000000000000000000
@@ -359,7 +360,7 @@ object OrderForm: TOrderForm
       object StateRect: TRectangle
         Align = Client
         Fill.Color = claBlack
-        Opacity = 0.699999988079071100
+        Opacity = 0.699999988079071000
         Size.Width = 436.000000000000000000
         Size.Height = 336.000000000000000000
         Size.PlatformDefault = False

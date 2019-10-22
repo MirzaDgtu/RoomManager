@@ -108,7 +108,7 @@ begin
           False: Close();
       end; }
 
-      Exit;
+      Close();
 end;
 
 procedure TOrderForm.CorrectRangeDate;
