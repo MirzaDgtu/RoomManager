@@ -14,14 +14,13 @@ uses
   Range in 'Range.pas' {RangeForm},
   StatesBehavior in 'StatesBehavior.pas',
   State in 'State.pas' {StatesForm},
-  StateDetail in 'StateDetail.pas' {StateDetailForm};
+  StateDetail in 'StateDetail.pas' {StateDetailForm},
+  ReportDetails in 'ReportDetails.pas' {ReportDetailForm};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
-  Application.CreateForm(TStatesForm, StatesForm);
-  Application.CreateForm(TStateDetailForm, StateDetailForm);
   Application.Run;
 end.

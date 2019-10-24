@@ -45,6 +45,9 @@ type
     AnimalReport: TFloatAnimation;
     ReportBS: TBindSourceDB;
     LinkListControlToField2: TLinkListControlToField;
+    ToolBar1: TToolBar;
+    TotalReportLbl: TLabel;
+    ReportDetailBtn: TButton;
     procedure MenuBtnClick(Sender: TObject);
     procedure RoomBtnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -61,10 +64,16 @@ type
     procedure StateRectBtnClick(Sender: TObject);
     procedure ReportLVClick(Sender: TObject);
     procedure RefreshReportBtnClick(Sender: TObject);
+    procedure OrdersTabClick(Sender: TObject);
+    procedure ReportTabClick(Sender: TObject);
+    procedure ReportLVItemClick(const Sender: TObject;
+      const AItem: TListViewItem);
+    procedure ReportDetailBtnClick(Sender: TObject);
   private
     FIdOrder: string;
     FEndDate: variant;
     FBegDate: variant;
+    FIdRoomReport: string;
     { Private declarations }
 
     function getDate(dateValue: string): TDate;
@@ -81,6 +90,7 @@ type
     procedure SetEndDate(const Value: variant);
 
     procedure RefreshReport(DateB, DateE: variant);
+    procedure SetIdRoomReport(const Value: string);
 
   public
     { Public declarations }
@@ -90,6 +100,8 @@ type
     property EndDate: variant read FEndDate write SetEndDate;
 
     property IdOrder: string read FIdOrder write SetIdOrder;
+
+    property IdRoomReport: string read FIdRoomReport write SetIdRoomReport;
   end;
 
 var
@@ -99,7 +111,8 @@ implementation
 
 {$R *.fmx}
 
-uses Room, AppData, RoomBehaviors, sConsts, Order, OrderBehavior, Range, State;
+uses Room, AppData, RoomBehaviors, sConsts, Order, OrderBehavior, Range, State,
+  ReportDetails;
 
 procedure TMainForm.AddBtnClick(Sender: TObject);
 var
@@ -328,10 +341,6 @@ begin
       Begin
          ConnectionToLocalDB;
 
-         RoomQuery.Active := False;
-         RoomQuery.SQL.Text := SSQLGetRoom;
-         RoomQuery.Active := True;
-
          OrderQuery.Active := False;
          OrderQuery.SQL.Text := Format(SSQLGetOrders, [BegDate,
                                                        EndDate]);
@@ -360,6 +369,13 @@ begin
       0: PanelMenuView();
       1: PanelReportView();
     end;
+end;
+
+procedure TMainForm.OrdersTabClick(Sender: TObject);
+begin
+    PanelMenuHide();
+    PanelSettingHide();
+    PanelReportHide();
 end;
 
 procedure TMainForm.OrdersViewClick(Sender: TObject);
@@ -504,7 +520,7 @@ begin
          ModuleData.OrderQuery.Active := False;
          ModuleData.OrderQuery.SQL.Text := Format(SSQLGetOrders, [BegDate,
                                                                   EndDate]);
-         ModuleData.OrderQuery.Active := True;
+        ModuleData.OrderQuery.Active := True;
 
          OrdersBS.DataSet.Refresh;
     finally
@@ -519,12 +535,18 @@ begin
                                                                 DateE]);
     ModuleData.ReportQuery.Active := True;
 
+    ModuleData.ReportTotalQuery.Active := False;
+    ModuleData.ReportTotalQuery.SQL.Text := SSQLGetReportTotal;
+    ModuleData.ReportTotalQuery.Active := True;
+
     try
       try
         ReportLV.Items.Clear;
         ReportLV.BeginUpdate;
           ReportBS.DataSet.Refresh;
         ReportLV.EndUpdate;
+
+        TotalReportLbl.Text := ModuleData.ReportTotalQuery.FieldByName('TotalReportPrice').AsString;
       finally
       end;
     finally
@@ -537,10 +559,57 @@ begin
     RefreshReport(BegDate, EndDate);
 end;
 
+procedure TMainForm.ReportDetailBtnClick(Sender: TObject);
+var
+    ReportDetailsF: TReportDetailForm;
+begin
+  ReportDetailsF := TReportDetailForm.Create(MainForm);
+  PanelReportHide();
+
+  if Length(IdRoomReport) > 0 then
+    Begin
+      ModuleData.ReportDetailQuery.Active := False;
+      ModuleData.ReportDetailQuery.SQL.Text := Format(SSQLGetReportDetails, [IdRoomReport.ToInteger]);
+     ModuleData.ReportDetailQuery.Active := True;
+
+      try
+         {$IFDEF ANDROID}
+            ReportDetailsF.Show();
+         {$ENDIF}
+
+         {$IFDEF MSWINDOWS}
+            ReportDetailsF.ReportDetailLV.Items.Clear;
+              ReportDetailsF.ReportDetailLV.BeginUpdate;
+                ReportDetailsF.ReportDetailBS.DataSet.Refresh;
+              ReportDetailsF.ReportDetailLV.EndUpdate;
+
+            ReportDetailsF.ShowModal();
+         {$ENDIF}
+      finally
+         {$IFDEF MSWINDOWS}
+            FreeAndNil(ReportDetailsF);
+         {$ENDIF}
+      end;
+    End;
+end;
+
 procedure TMainForm.ReportLVClick(Sender: TObject);
 begin
     PanelReportHide();
     PanelSettingHide();
+end;
+
+procedure TMainForm.ReportLVItemClick(const Sender: TObject;
+  const AItem: TListViewItem);
+begin
+    IdRoomReport := AItem.Data['Room'].AsString;
+end;
+
+procedure TMainForm.ReportTabClick(Sender: TObject);
+begin
+    PanelMenuHide();
+    PanelSettingHide();
+    PanelReportHide();
 end;
 
 procedure TMainForm.RoomBtnClick(Sender: TObject);
@@ -582,6 +651,11 @@ end;
 procedure TMainForm.SetIdOrder(const Value: string);
 begin
   FIdOrder := Value;
+end;
+
+procedure TMainForm.SetIdRoomReport(const Value: string);
+begin
+  FIdRoomReport := Value;
 end;
 
 procedure TMainForm.SettingBtnClick(Sender: TObject);

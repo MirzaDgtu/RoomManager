@@ -41,19 +41,22 @@ resourcestring
                     'ORDER BY O.City';
 
 
-  SSQLGetRoomFree  = 'SELECT   O.ID, ' +                          // Получение списка всех квартир
-                    '          O.City, ' +
-                    '          O.Adress, ' +
-                    '          PrintF(''%s - %d, кв. %d, %d - ком.'', O.Adress, O.NumHome, O.NumApartment, O.CountRoom) as ''AdressStr'', ' +
-                    '          O.NumHome, '  +
-                    '          O.NumApartment, ' +
-                    '          O.CountRoom, ' +
-                    '          O.Price, ' +
+  SSQLGetRoomFree  = 'SELECT   R.ID, ' +                          // Получение списка всех квартир
+                    '          R.City, ' +
+                    '          R.Adress, ' +
+                    '         (R.Adress || '' - '' || R.NumHome || '', кв. '' || R.NumApartment || '', '' || R.CountRoom || '' - ком.'') as ''AdressStr'', ' +
+                    '          R.NumHome, '  +
+                    '          R.NumApartment, ' +
+                    '          R.CountRoom, ' +
+                    '          R.Price, ' +
                     '          I.Screen ' +
-                    'FROM	 Room O ' +
+                    'FROM	 Room R ' +
                     '      LEFT JOIN ImageIcon I ON I.ID = 1 ' +
-                    'WHERE Date(O.DateBeg) <> ''%s'' AND Date(O.DateEnd) <> ''%s''' +
-                    'ORDER BY O.City';
+                    '      LEFT JOIN Orders O ON O.Room = R.ID ' +
+                  //  'WHERE Date(O.DateBeg) NOT BETWEEN ''%s'' AND ''%s'' ' +
+                 //   '      AND Date(O.DateEnd) NOT BETWEEN ''%s'' AND ''%s'' ' +
+                    'GROUP By R.ID ' +
+                    'ORDER BY R.City';
 
 
 
@@ -106,18 +109,23 @@ resourcestring
                           'date(O.DateEnd) as ''DateEnd'', ' +
                           '        (''С '' || O.DateBeg || '' по '' || O.DateEnd) as ''MergeDate'', '  +
                           '        O.Room,        ' +
-                          '        printf(''г. '' || R.City || '', '' || R.Adress || '' - '' || R.NumHome || '', '' || NumApartment) as ''RoomStr'', ' +
+                          '        (''г. '' || R.City || '', '' || R.Adress || '' - '' || R.NumHome || '', '' || NumApartment) as ''RoomStr'', ' +
                           '        O.Phone,       ' +
                           '        O.Price,       ' +
                           '        R.Price as ''PriceRoom'', ' +
                           '        O.DateCorr,    ' +
                           '        O.TypeDoc,     ' +
-                          '        I.Screen,      ' +
+                          '        CASE O.TypeDoc WHEN  1 THEN (SELECT Screen   ' +
+                          '                                      FROM ImageIcon ' +
+                          '                                      WHERE ID = 5)  ' +
+                          '                        ELSE			  (SELECT Screen    ' +
+                          '                                      FROM ImageIcon ' +
+                          '                                      WHERE ID = 6)  ' +
+                          '         END  as ''Screen'',                         ' +
                           '        T.Description,  ' +
                           '        T.ID as ''TypeDocID'' ' +
                           'FROM Orders O          ' +
-                          '     LEFT JOIN Room R On R.ID = O.Room' +
-                          '     LEFT JOIN ImageIcon I ON I.ID = 2 ' +
+                          '     LEFT JOIN Room R On R.ID = O.Room ' +
                           '     LEFT JOIN TypeDoc T ON T.ID = O.TypeDoc ' +
                           'WHERE DATE(Date_Create) Between ''%s'' and ''%s''';                                     // Получение реестра заказов
 
@@ -141,38 +149,86 @@ resourcestring
                           'WHERE ID = %d';
 
           // Отчет
-  SSQLRepotrSales      = 'SELECT O.Room, ' +                                                                    // Получение отчета по сдаче квартир
-                         '       R.City, ' +
-                         '       R.Adress, ' +
-                         '       R.NumHome, ' +
-                         '       R.NumApartment, ' +
-                         '       R.CountRoom, ' +
-                         '      (R.City || '', '' ||  R.Adress || '' '' || R.NumHome || '', '' || R.NumApartment) as ''RoomStr'', ' +
-                         '	    CAST((SELECT Sum(Price) ' +
-                         '       FROM Orders        ' +
-                         '       WHERE TypeDoc = 1 AND Room = O.Room) as Text)	as ''PriceIncome'', ' +
-                         '	    CAST((SELECT Sum(Price) ' +
-                         '       FROM Orders       ' +
-                         '       WHERE TypeDoc <> 1 AND Room = O.Room) as Text)	as ''PriceExpend'', ' +
-                         '		  Cast((''Выручка: '' || (SELECT Sum(Price) ' +
-                         '                    FROM Orders ' +
-                         '                    WHERE TypeDoc = 1 AND Room = O.Room) || '', Расход: '' || (SELECT Sum(Price) ' +
-                         '                                                                             FROM Orders ' +
-                         '                                                                             WHERE TypeDoc <> 1 AND Room = O.Room)) as TEXT) as ''PriceMerge'', ' +
-                         '        CAST(((SELECT Sum(Price) ' +
-                         '          FROM Orders ' +
-                         '          WHERE TypeDoc = 1 AND Room = O.Room) - ' +
-                         '         (SELECT Sum(Price) ' +
-                         '          FROM Orders ' +
-                         '          WHERE TypeDoc <> 1 AND Room = O.Room)) as Text)	as ''TotalPrice'',	' +
-                         '          I.Screen ' +
-                         'From Orders O ' +
-                         '   LEFT JOIN Room R ON R.ID = O.Room ' +
-                         ' 	 LEFT JOIN ImageIcon I ON I.ID = 4 ' +
-                         'WHERE Date(O.Date_Create) BETWEEN ''%s'' AND ''%s'' ' +
+  SSQLRepotrSales      = 'SELECT O.Room, ' +
+                         'R.City,        ' +
+                         'R.Adress,      ' +
+                         'R.NumHome,     ' +
+                         'R.NumApartment, ' +
+                         'R.CountRoom,    ' +
+                         '(R.City || '', '' ||  R.Adress || '' '' || R.NumHome || '', '' || R.NumApartment) as ''RoomStr'', ' +
+                         'CAST(''Выручка: '' || (SELECT Sum(Price) ' +
+                         '       FROM Orders ' +
+                         '       WHERE TypeDoc = 1 AND Room = O.Room) || '', Расход: '' || (SELECT Sum(Price) ' +
+                         '                                    FROM Orders                                     ' +
+                         '                                    WHERE TypeDoc <> 1 AND Room = O.Room) as TEXT) as ''PriceMerge'', ' +
+                         'CAST((''Выручка: '' || (SELECT Sum(Price) ' +
+                         '                        From Orders                       ' +
+                         '                        WHERE TypeDoc = 1 AND             ' +
+                         '                              Room = O.Room)) as TEXT) as ''StrIncome'', ' +
+                         'CAST((''Расход: '' || (SELECT Sum(Price) ' +
+                         '                       FROM Orders                       ' +
+                         '                       WHERE TypeDoc <> 1 AND            ' +
+                         '                             Room = O.Room )) as TEXT) as ''StrExpence'', ' +
+                         'CAST(CAST((SELECT IFNULL(Sum(Price), 0.0)   ' +
+                         '	         FROM Orders                      ' +
+                         '	         WHERE TypeDoc = 1 AND            ' +
+                         '		             Room = O.Room) as FLOAT) - ' +
+                         'CAST((SELECT IFNULL(Sum(Price), 0.0)        ' +
+                         '	    FROM Orders                           ' +
+                         '	    WHERE TypeDoc <> 1 AND                ' +
+                         '		        Room = O.Room) as FLOAT) as TEXT) as ''TotalPrice'', ' +
+                         'I.Screen                                 ' +
+                         'From Orders O                            ' +
+                         '   LEFT JOIN Room R ON R.ID = O.Room     ' +
+                         '   LEFT JOIN ImageIcon I ON I.ID = 4     ' +
                          'Group By O.Room';
 
+  SSQLGetReportTotal   = 'SELECT CAST(''ИТОГО: Выручка: '' || (SELECT IfNull(Sum(Price), 0.0) ' +
+                         '                                   FROM Orders  ' +
+                         '                                 WHERE TypeDoc = 1 AND ' +
+                         '                                   Cast(strftime(''m'', Date(DateBeg)) as INTEGER) = Cast(strftime(''m'', Date(''now'')) as INTEGER)) || ' +
+                         '                       '', Расходы: '' || (SELECT IfNull(Sum(Price), 0.0) ' +
+                         '                                   FROM Orders ' +
+                         '                                 WHERE TypeDoc <> 1 AND ' +
+                         '                                   Cast(strftime(''m'', Date(DateBeg)) as INTEGER) = Cast(strftime(''m'', Date(''now'')) as INTEGER)) || ' +
+                         '                       '', Остаток: '' || ((SELECT IfNull(Sum(Price), 0.0) ' +
+                         '                                   FROM Orders ' +
+                         '                                 WHERE TypeDoc = 1 AND ' +
+                         '                                   Cast(strftime(''m'', Date(DateBeg)) as INTEGER) = Cast(strftime(''m'', Date(''now'')) as INTEGER)) - ' +
+                         '                                (SELECT IfNull(Sum(Price), 0.0) ' +
+                         '                                   FROM Orders ' +
+                         '                                 WHERE TypeDoc <> 1 AND ' +
+                         '                                   Cast(strftime(''m'', Date(DateBeg)) as INTEGER) = Cast(strftime(''m'', Date(''now'')) as INTEGER))) AS TEXT) AS ''TotalReportPrice''';
 
+
+
+  SSQLGetReportDetails  = ' SELECT O.ID, ' +
+                          '        O.Date_Create, ' +
+                          '        Date(O.DateBeg) as ''DateBeg'', ' +
+                          '        Date(O.DateEnd) as ''DateEnd'', ' +
+                          '        O.Room, ' +
+                          '        (''г. '' || R.City || '', '' || R.Adress || '' - '' || R.NumHome || '', '' || NumApartment) as ''RoomStr'', ' +
+                          '        O.Phone, ' +
+                          '        O.Price, ' +
+                          '        R.Price as ''PriceRoom'', ' +
+                          '        O.TypeDoc, ' +
+                          '        O.DateCorr, ' +
+                          '        T.Description, ' +
+                          '        T.ID as ''TypeDocID'', ' +
+                          '        Cast(CASE O.TypeDoc WHEN  1 THEN (SELECT Screen  ' +
+                          '                                     FROM ImageIcon  ' +
+                          '                                     WHERE ID = 5)  ' +
+                          '                            ELSE	   (SELECT Screen       ' +
+                          '                                     FROM ImageIcon      ' +
+                          '                                     WHERE ID = 6)       ' +
+                          '        END as BLOB)  as ''Screen''                           ' +
+                          '  FROM Orders O                                     ' +
+                          '       LEFT JOIN TypeDoc T ON T.ID = O.TypeDoc        ' +
+                          '       LEFT JOIN Room R On R.ID = O.Room              ' +
+                          '  WHERE O.Room = %d ' +// AND                             ' +
+                          //'       Date(O.DateBeg) BETWEEN ''%s'' AND ''%s'' AND ' +
+                          //'        Date(O.DateEnd) BETWEEN ''%s'' AND ''%s''     ' +
+                          '  Order By O.TypeDoc';
 
 
 implementation

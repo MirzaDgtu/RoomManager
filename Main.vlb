@@ -72,7 +72,7 @@ Coordinates=197,10,119,339
 ModelLayerNames=1;0
 
 [RoomForm.RoomBS]
-Coordinates=365,10,120,213
+Coordinates=365,10,120,231
 
 [MenuRect]
 Coordinates=10,504,63,33
@@ -104,10 +104,10 @@ Coordinates=0,0,130,33
 Visible=False
 
 [OrderForm.StateBS]
-Coordinates=410,70,116,141
+Coordinates=0,0,116,123
 
 [ReportLV]
-Coordinates=401,497,98,357
+Coordinates=401,497,98,339
 Visible=True
 
 [ModuleData.StateDBQuery]
@@ -134,4 +134,7 @@ Coordinates=596,430,81,33
 
 [ReportBS]
 Coordinates=570,500,123,285
+
+[ModuleData.ReportDetailQuery]
+Visible=False
 

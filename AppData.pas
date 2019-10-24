@@ -59,9 +59,26 @@ type
     ReportQueryScreen: TBlobField;
     ReportQueryRoomStr: TWideStringField;
     ReportQueryPriceMerge: TWideStringField;
-    ReportQueryPriceIncome: TWideStringField;
-    ReportQueryPriceExpend: TWideStringField;
+    ReportQueryStrIncome: TWideStringField;
+    ReportQueryStrExpence: TWideStringField;
     ReportQueryTotalPrice: TWideStringField;
+    ReportTotalQuery: TFDQuery;
+    ReportTotalQueryTotalReportPrice: TWideStringField;
+    ReportDetailQuery: TFDQuery;
+    ReportDetailQueryID: TIntegerField;
+    ReportDetailQueryDate_Create: TWideMemoField;
+    ReportDetailQueryRoom: TIntegerField;
+    ReportDetailQueryPhone: TStringField;
+    ReportDetailQueryPrice: TFloatField;
+    ReportDetailQueryPriceRoom: TFloatField;
+    ReportDetailQueryTypeDoc: TIntegerField;
+    ReportDetailQueryDateCorr: TWideMemoField;
+    ReportDetailQueryDescription: TStringField;
+    ReportDetailQueryTypeDocID: TIntegerField;
+    ReportDetailQueryDateBeg: TWideStringField;
+    ReportDetailQueryDateEnd: TWideStringField;
+    ReportDetailQueryRoomStr: TWideStringField;
+    ReportDetailQueryScreen: TBlobField;
     procedure ConnectionBeforeConnect(Sender: TObject);
   private
     { Private declarations }

@@ -191,6 +191,10 @@ var
 begin
    RoomF := TRoomForm.Create(Application);
 
+   ModuleData.RoomQuery.Active := False;
+   ModuleData.RoomQuery.SQL.Text := SSQLGetRoomFree;
+   ModuleData.RoomQuery.Active := True;
+
     try
       RoomF.IsOwner := 'OrderForm';
       {$IFDEF ANDROID}

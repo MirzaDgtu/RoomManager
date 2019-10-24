@@ -182,17 +182,82 @@ object ModuleData: TModuleData
       FieldName = 'PriceMerge'
       Size = 50
     end
-    object ReportQueryPriceIncome: TWideStringField
-      FieldName = 'PriceIncome'
-      Size = 0
+    object ReportQueryStrIncome: TWideStringField
+      FieldName = 'StrIncome'
+      Size = 50
     end
-    object ReportQueryPriceExpend: TWideStringField
-      FieldName = 'PriceExpend'
-      Size = 0
+    object ReportQueryStrExpence: TWideStringField
+      FieldName = 'StrExpence'
+      Size = 50
     end
     object ReportQueryTotalPrice: TWideStringField
       FieldName = 'TotalPrice'
-      Size = 0
+      Size = 50
+    end
+  end
+  object ReportTotalQuery: TFDQuery
+    Connection = Connection
+    Left = 256
+    Top = 120
+    object ReportTotalQueryTotalReportPrice: TWideStringField
+      FieldName = 'TotalReportPrice'
+      Size = 100
+    end
+  end
+  object ReportDetailQuery: TFDQuery
+    Connection = Connection
+    Left = 256
+    Top = 168
+    object ReportDetailQueryID: TIntegerField
+      FieldName = 'ID'
+    end
+    object ReportDetailQueryDate_Create: TWideMemoField
+      FieldName = 'Date_Create'
+      BlobType = ftWideMemo
+      Size = 50
+    end
+    object ReportDetailQueryRoom: TIntegerField
+      FieldName = 'Room'
+    end
+    object ReportDetailQueryPhone: TStringField
+      FieldName = 'Phone'
+      Size = 50
+    end
+    object ReportDetailQueryPrice: TFloatField
+      FieldName = 'Price'
+    end
+    object ReportDetailQueryPriceRoom: TFloatField
+      FieldName = 'PriceRoom'
+    end
+    object ReportDetailQueryTypeDoc: TIntegerField
+      FieldName = 'TypeDoc'
+    end
+    object ReportDetailQueryDateCorr: TWideMemoField
+      FieldName = 'DateCorr'
+      BlobType = ftWideMemo
+      Size = 100
+    end
+    object ReportDetailQueryDescription: TStringField
+      FieldName = 'Description'
+      Size = 150
+    end
+    object ReportDetailQueryTypeDocID: TIntegerField
+      FieldName = 'TypeDocID'
+    end
+    object ReportDetailQueryDateBeg: TWideStringField
+      FieldName = 'DateBeg'
+      Size = 50
+    end
+    object ReportDetailQueryDateEnd: TWideStringField
+      FieldName = 'DateEnd'
+      Size = 50
+    end
+    object ReportDetailQueryRoomStr: TWideStringField
+      FieldName = 'RoomStr'
+      Size = 150
+    end
+    object ReportDetailQueryScreen: TBlobField
+      FieldName = 'Screen'
     end
   end
 end
