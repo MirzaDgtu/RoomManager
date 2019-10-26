@@ -28,25 +28,11 @@ type
     RoomQueryCity: TStringField;
     OrderDBQuery: TFDQuery;
     OrderQuery: TFDQuery;
-    OrderQueryID: TIntegerField;
-    OrderQueryDate_Create: TWideMemoField;
-    OrderQueryRoom: TIntegerField;
-    OrderQueryPhone: TStringField;
-    OrderQueryPrice: TFloatField;
-    OrderQueryTypeDoc: TIntegerField;
-    OrderQueryCorrDate: TWideMemoField;
-    OrderQueryRoomStr: TWideStringField;
     RoomQueryScreen: TBlobField;
-    OrderQueryScreen: TBlobField;
     RoomQueryAdressStr: TWideStringField;
-    OrderQueryMergeDate: TWideStringField;
     StateQuery: TFDQuery;
     StateQueryID: TIntegerField;
     StateQueryDescription: TStringField;
-    OrderQueryDateBeg: TWideStringField;
-    OrderQueryDateEnd: TWideStringField;
-    OrderQueryDescription: TStringField;
-    OrderQueryTypeDocID: TIntegerField;
     StateDBQuery: TFDQuery;
     StateQueryScreen: TBlobField;
     ReportQuery: TFDQuery;
@@ -66,7 +52,6 @@ type
     ReportTotalQueryTotalReportPrice: TWideStringField;
     ReportDetailQuery: TFDQuery;
     ReportDetailQueryID: TIntegerField;
-    ReportDetailQueryDate_Create: TWideMemoField;
     ReportDetailQueryRoom: TIntegerField;
     ReportDetailQueryPhone: TStringField;
     ReportDetailQueryPrice: TFloatField;
@@ -79,6 +64,7 @@ type
     ReportDetailQueryDateEnd: TWideStringField;
     ReportDetailQueryRoomStr: TWideStringField;
     ReportDetailQueryScreen: TBlobField;
+    S: TWideStringField;
     procedure ConnectionBeforeConnect(Sender: TObject);
   private
     { Private declarations }

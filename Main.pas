@@ -335,7 +335,8 @@ procedure TMainForm.FormCreate(Sender: TObject);
 begin
      ModuleData := TModuleData.Create(Application);
      BegDate := FormatDateTime('yyyy-mm-dd', Now());
-     EndDate := FormatDateTime('yyyy-mm-dd', Now());
+     EndDate := FormatDateTime('yyyy-mm-dd', Now()+1);
+     Tabs.ActiveTab := OrdersTab;
 
      with ModuleData do
       Begin
@@ -536,7 +537,14 @@ begin
     ModuleData.ReportQuery.Active := True;
 
     ModuleData.ReportTotalQuery.Active := False;
-    ModuleData.ReportTotalQuery.SQL.Text := SSQLGetReportTotal;
+    ModuleData.ReportTotalQuery.SQL.Text := Format(SSQLGetReportTotal, [DateB,
+                                                                        DateE,
+                                                                        DateB,
+                                                                        DateE,
+                                                                        DateB,
+                                                                        DateE,
+                                                                        DateB,
+                                                                        DateE]);
     ModuleData.ReportTotalQuery.Active := True;
 
     try
@@ -569,8 +577,10 @@ begin
   if Length(IdRoomReport) > 0 then
     Begin
       ModuleData.ReportDetailQuery.Active := False;
-      ModuleData.ReportDetailQuery.SQL.Text := Format(SSQLGetReportDetails, [IdRoomReport.ToInteger]);
-     ModuleData.ReportDetailQuery.Active := True;
+      ModuleData.ReportDetailQuery.SQL.Text := Format(SSQLGetReportDetails, [IdRoomReport.ToInteger,
+                                                                             BegDate,
+                                                                             EndDate]);
+      ModuleData.ReportDetailQuery.Active := True;
 
       try
          {$IFDEF ANDROID}

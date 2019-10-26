@@ -75,57 +75,6 @@ object ModuleData: TModuleData
     Connection = Connection
     Left = 101
     Top = 120
-    object OrderQueryID: TIntegerField
-      FieldName = 'ID'
-    end
-    object OrderQueryDate_Create: TWideMemoField
-      FieldName = 'Date_Create'
-      BlobType = ftWideMemo
-      Size = 30
-    end
-    object OrderQueryRoom: TIntegerField
-      FieldName = 'Room'
-    end
-    object OrderQueryPhone: TStringField
-      FieldName = 'Phone'
-      Size = 30
-    end
-    object OrderQueryPrice: TFloatField
-      FieldName = 'Price'
-    end
-    object OrderQueryCorrDate: TWideMemoField
-      FieldName = 'DateCorr'
-      BlobType = ftWideMemo
-    end
-    object OrderQueryTypeDoc: TIntegerField
-      FieldName = 'TypeDoc'
-    end
-    object OrderQueryRoomStr: TWideStringField
-      FieldName = 'RoomStr'
-      Size = 150
-    end
-    object OrderQueryScreen: TBlobField
-      FieldName = 'Screen'
-    end
-    object OrderQueryMergeDate: TWideStringField
-      FieldName = 'MergeDate'
-      Size = 50
-    end
-    object OrderQueryDateBeg: TWideStringField
-      FieldName = 'DateBeg'
-      Size = 50
-    end
-    object OrderQueryDateEnd: TWideStringField
-      FieldName = 'DateEnd'
-      Size = 50
-    end
-    object OrderQueryDescription: TStringField
-      FieldName = 'Description'
-      Size = 50
-    end
-    object OrderQueryTypeDocID: TIntegerField
-      FieldName = 'TypeDocID'
-    end
   end
   object StateQuery: TFDQuery
     Connection = Connection
@@ -211,11 +160,6 @@ object ModuleData: TModuleData
     object ReportDetailQueryID: TIntegerField
       FieldName = 'ID'
     end
-    object ReportDetailQueryDate_Create: TWideMemoField
-      FieldName = 'Date_Create'
-      BlobType = ftWideMemo
-      Size = 50
-    end
     object ReportDetailQueryRoom: TIntegerField
       FieldName = 'Room'
     end
@@ -258,6 +202,10 @@ object ModuleData: TModuleData
     end
     object ReportDetailQueryScreen: TBlobField
       FieldName = 'Screen'
+    end
+    object S: TWideStringField
+      FieldName = 'Date_Create'
+      Size = 100
     end
   end
 end

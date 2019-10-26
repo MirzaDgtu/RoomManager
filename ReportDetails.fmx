@@ -30,11 +30,11 @@ object ReportDetailForm: TReportDetailForm
         item
           AppearanceObjectName = 'Description'
           AppearanceClassName = 'TTextObjectAppearance'
-          Appearance.Font.Size = 14.000000000000000000
+          Appearance.Font.Size = 11.000000000000000000
           Appearance.Font.StyleExt = {00070000000000000004000000}
           Appearance.TextColor = claRed
           Appearance.Width = 226.000000000000000000
-          Appearance.Height = 44.000000000000000000
+          Appearance.Height = 22.000000000000000000
           Appearance.PlaceOffset.X = 36.000000000000000000
         end
         item
@@ -52,6 +52,17 @@ object ReportDetailForm: TReportDetailForm
           Appearance.Width = 121.000000000000000000
           Appearance.Height = 44.000000000000000000
           Appearance.PlaceOffset.X = 261.000000000000000000
+        end
+        item
+          AppearanceObjectName = 'Date_Create'
+          AppearanceClassName = 'TTextObjectAppearance'
+          Appearance.Font.Size = 11.000000000000000000
+          Appearance.Font.StyleExt = {00070000000000000004000000}
+          Appearance.TextColor = claTeal
+          Appearance.Width = 226.000000000000000000
+          Appearance.Height = 22.000000000000000000
+          Appearance.PlaceOffset.X = 36.000000000000000000
+          Appearance.PlaceOffset.Y = 20.000000000000000000
         end>
       ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
         item
@@ -79,7 +90,7 @@ object ReportDetailForm: TReportDetailForm
           Fill.Color = claBlack
           Padding.Top = 50.000000000000000000
           Padding.Bottom = 50.000000000000000000
-          Opacity = 0.699999988079071100
+          Opacity = 0.699999988079071000
           Position.X = 10.000000000000000000
           Position.Y = 142.000000000000000000
           Size.Width = 95.000000000000000000
@@ -167,6 +178,10 @@ object ReportDetailForm: TReportDetailForm
         item
           SourceMemberName = 'Price'
           ControlMemberName = 'Price'
+        end
+        item
+          SourceMemberName = 'Date_Create'
+          ControlMemberName = 'Date_Create'
         end>
       FillHeaderExpressions = <>
       FillBreakGroups = <>

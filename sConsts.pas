@@ -53,8 +53,6 @@ resourcestring
                     'FROM	 Room R ' +
                     '      LEFT JOIN ImageIcon I ON I.ID = 1 ' +
                     '      LEFT JOIN Orders O ON O.Room = R.ID ' +
-                  //  'WHERE Date(O.DateBeg) NOT BETWEEN ''%s'' AND ''%s'' ' +
-                 //   '      AND Date(O.DateEnd) NOT BETWEEN ''%s'' AND ''%s'' ' +
                     'GROUP By R.ID ' +
                     'ORDER BY R.City';
 
@@ -115,13 +113,13 @@ resourcestring
                           '        R.Price as ''PriceRoom'', ' +
                           '        O.DateCorr,    ' +
                           '        O.TypeDoc,     ' +
-                          '        CASE O.TypeDoc WHEN  1 THEN (SELECT Screen   ' +
+                          '        CAST((CASE O.TypeDoc WHEN  1 THEN (SELECT Screen   ' +
                           '                                      FROM ImageIcon ' +
                           '                                      WHERE ID = 5)  ' +
-                          '                        ELSE			  (SELECT Screen    ' +
+                          '                       ELSE		  	 (SELECT Screen    ' +
                           '                                      FROM ImageIcon ' +
                           '                                      WHERE ID = 6)  ' +
-                          '         END  as ''Screen'',                         ' +
+                          '              END) as Blob)  as Screen,  ' +
                           '        T.Description,  ' +
                           '        T.ID as ''TypeDocID'' ' +
                           'FROM Orders O          ' +
@@ -157,10 +155,12 @@ resourcestring
                          'R.CountRoom,    ' +
                          '(R.City || '', '' ||  R.Adress || '' '' || R.NumHome || '', '' || R.NumApartment) as ''RoomStr'', ' +
                          'CAST(''Выручка: '' || (SELECT Sum(Price) ' +
-                         '       FROM Orders ' +
-                         '       WHERE TypeDoc = 1 AND Room = O.Room) || '', Расход: '' || (SELECT Sum(Price) ' +
-                         '                                    FROM Orders                                     ' +
-                         '                                    WHERE TypeDoc <> 1 AND Room = O.Room) as TEXT) as ''PriceMerge'', ' +
+                         '                       FROM Orders ' +
+                         '                       WHERE TypeDoc = 1 AND ' +
+                         '                       Room = O.Room) || '', Расход: '' || (SELECT Sum(Price) ' +
+                         '                                                            FROM Orders       ' +
+                         '                                                            WHERE TypeDoc <> 1 AND ' +
+                         '                                                                  Room = O.Room) as TEXT) as ''PriceMerge'', ' +
                          'CAST((''Выручка: '' || (SELECT Sum(Price) ' +
                          '                        From Orders                       ' +
                          '                        WHERE TypeDoc = 1 AND             ' +
@@ -168,7 +168,7 @@ resourcestring
                          'CAST((''Расход: '' || (SELECT Sum(Price) ' +
                          '                       FROM Orders                       ' +
                          '                       WHERE TypeDoc <> 1 AND            ' +
-                         '                             Room = O.Room )) as TEXT) as ''StrExpence'', ' +
+                         '                             Room = O.Room)) as TEXT) as ''StrExpence'', ' +
                          'CAST(CAST((SELECT IFNULL(Sum(Price), 0.0)   ' +
                          '	         FROM Orders                      ' +
                          '	         WHERE TypeDoc = 1 AND            ' +
@@ -181,29 +181,34 @@ resourcestring
                          'From Orders O                            ' +
                          '   LEFT JOIN Room R ON R.ID = O.Room     ' +
                          '   LEFT JOIN ImageIcon I ON I.ID = 4     ' +
+                         'WHERE O.Date_Create Between ''%s'' AND ''%s''  ' +
                          'Group By O.Room';
 
   SSQLGetReportTotal   = 'SELECT CAST(''ИТОГО: Выручка: '' || (SELECT IfNull(Sum(Price), 0.0) ' +
-                         '                                   FROM Orders  ' +
-                         '                                 WHERE TypeDoc = 1 AND ' +
-                         '                                   Cast(strftime(''m'', Date(DateBeg)) as INTEGER) = Cast(strftime(''m'', Date(''now'')) as INTEGER)) || ' +
+                         '                                     FROM Orders  ' +
+                         '                                     WHERE TypeDoc = 1 AND ' +
+                        // '                                   Cast(strftime(''m'', Date(DateBeg)) as INTEGER) = Cast(strftime(''m'', Date(''now'')) as INTEGER)) || ' +
+                         '                                     Date(Date_Create) BETWEEN ''%s'' AND ''%s'') || ' +
                          '                       '', Расходы: '' || (SELECT IfNull(Sum(Price), 0.0) ' +
                          '                                   FROM Orders ' +
                          '                                 WHERE TypeDoc <> 1 AND ' +
-                         '                                   Cast(strftime(''m'', Date(DateBeg)) as INTEGER) = Cast(strftime(''m'', Date(''now'')) as INTEGER)) || ' +
+//                         '                                   Cast(strftime(''m'', Date(DateBeg)) as INTEGER) = Cast(strftime(''m'', Date(''now'')) as INTEGER)) || ' +
+                         '                                        Date(Date_Create) BETWEEN ''%s'' AND ''%s'') || ' +
                          '                       '', Остаток: '' || ((SELECT IfNull(Sum(Price), 0.0) ' +
-                         '                                   FROM Orders ' +
-                         '                                 WHERE TypeDoc = 1 AND ' +
-                         '                                   Cast(strftime(''m'', Date(DateBeg)) as INTEGER) = Cast(strftime(''m'', Date(''now'')) as INTEGER)) - ' +
-                         '                                (SELECT IfNull(Sum(Price), 0.0) ' +
-                         '                                   FROM Orders ' +
-                         '                                 WHERE TypeDoc <> 1 AND ' +
-                         '                                   Cast(strftime(''m'', Date(DateBeg)) as INTEGER) = Cast(strftime(''m'', Date(''now'')) as INTEGER))) AS TEXT) AS ''TotalReportPrice''';
+                         '                                            FROM Orders ' +
+                         '                                            WHERE TypeDoc = 1 AND ' +
+//                         '                                   Cast(strftime(''m'', Date(DateBeg)) as INTEGER) = Cast(strftime(''m'', Date(''now'')) as INTEGER)) - ' +
+                         '                                                  Date(Date_Create) BETWEEN ''%s'' AND ''%s'') - ' +
+                         '                                            (SELECT IfNull(Sum(Price), 0.0) ' +
+                         '                                             FROM Orders ' +
+                         '                                             WHERE TypeDoc <> 1 AND ' +
+//                         '                                   Cast(strftime(''m'', Date(DateBeg)) as INTEGER) = Cast(strftime(''m'', Date(''now'')) as INTEGER))) AS TEXT) AS ''TotalReportPrice''';
+                         '                                                   Date(Date_Create) BETWEEN ''%s'' AND ''%s'')) AS TEXT) AS  ''TotalReportPrice''';
 
 
 
   SSQLGetReportDetails  = ' SELECT O.ID, ' +
-                          '        O.Date_Create, ' +
+                          '        Date(O.Date_Create) as Date_Create, ' +
                           '        Date(O.DateBeg) as ''DateBeg'', ' +
                           '        Date(O.DateEnd) as ''DateEnd'', ' +
                           '        O.Room, ' +
@@ -215,19 +220,18 @@ resourcestring
                           '        O.DateCorr, ' +
                           '        T.Description, ' +
                           '        T.ID as ''TypeDocID'', ' +
-                          '        Cast(CASE O.TypeDoc WHEN  1 THEN (SELECT Screen  ' +
-                          '                                     FROM ImageIcon  ' +
-                          '                                     WHERE ID = 5)  ' +
-                          '                            ELSE	   (SELECT Screen       ' +
+                          '        CAST((CASE O.TypeDoc WHEN  1 THEN (SELECT Screen  ' +
+                          '                                     FROM ImageIcon      ' +
+                          '                                     WHERE ID = 5)       ' +
+                          '                        ELSE	        (SELECT Screen       ' +
                           '                                     FROM ImageIcon      ' +
                           '                                     WHERE ID = 6)       ' +
-                          '        END as BLOB)  as ''Screen''                           ' +
-                          '  FROM Orders O                                     ' +
+                          '               END) as BLOB) as Screen' +
+                          '  FROM Orders O                                       ' +
                           '       LEFT JOIN TypeDoc T ON T.ID = O.TypeDoc        ' +
                           '       LEFT JOIN Room R On R.ID = O.Room              ' +
-                          '  WHERE O.Room = %d ' +// AND                             ' +
-                          //'       Date(O.DateBeg) BETWEEN ''%s'' AND ''%s'' AND ' +
-                          //'        Date(O.DateEnd) BETWEEN ''%s'' AND ''%s''     ' +
+                          '  WHERE O.Room = %d AND                               ' +
+                          '       Date(O.Date_Create) BETWEEN ''%s'' AND ''%s''      ' +
                           '  Order By O.TypeDoc';
 
 

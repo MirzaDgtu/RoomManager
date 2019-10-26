@@ -192,7 +192,10 @@ begin
    RoomF := TRoomForm.Create(Application);
 
    ModuleData.RoomQuery.Active := False;
-   ModuleData.RoomQuery.SQL.Text := SSQLGetRoomFree;
+   ModuleData.RoomQuery.SQL.Text := Format(SSQLGetRoomFree, [FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
+                                                             FormatDateTime('yyyy-mm-dd', DateEOrder.Date),
+                                                             FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
+                                                             FormatDateTime('yyyy-mm-dd', DateEOrder.Date)]);
    ModuleData.RoomQuery.Active := True;
 
     try

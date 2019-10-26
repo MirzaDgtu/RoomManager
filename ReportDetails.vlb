@@ -8,7 +8,7 @@ Coordinates=497,323,69,51
 Coordinates=10,402,59,51
 
 [ReportDetailLV]
-Coordinates=621,10,89,195
+Coordinates=621,10,89,213
 Visible=True
 
 [FormLayout]
@@ -61,7 +61,7 @@ Coordinates=644,323,148,51
 Coordinates=20,10,130,105
 
 [ReportDetailBL]
-Coordinates=97,134,82,33
+Coordinates=97,134,89,33
 
 [ReportDetailBS]
 Coordinates=730,30,150,321
