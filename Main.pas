@@ -215,13 +215,13 @@ begin
             Begin
               RoomLbl.Text    := ModuleData.OrderDBQuery.FieldByName('RoomStr').AsString;
               PhoneEdit.Text  := ModuleData.OrderDBQuery.FieldByName('Phone').AsString;
-              PriceEdit.Text  := ModuleData.OrderDBQuery.FieldByName('Price').AsString;
               IDRoom          := ModuleData.OrderDBQuery.FieldByName('Room').AsString;
               PriceRoom       := ModuleData.OrderDBQuery.FieldByName('PriceRoom').AsString;
               DateBOrder.Date := getDate(ModuleData.OrderDBQuery.FieldByName('DateBeg').AsString);
               DateEOrder.Date := getDate(ModuleData.OrderDBQuery.FieldByName('DateEnd').AsString);
               IdTypeDoc       := ModuleData.OrderDBQuery.FieldByName('TypeDocID').AsString;
               StateEdit.Text  := ModuleData.OrderDBQuery.FieldByName('Description').AsString;
+              PriceEdit.Text  := ModuleData.OrderDBQuery.FieldByName('Price').AsString;
 
 
               {$IFDEF ANDROID}
@@ -533,6 +533,18 @@ procedure TMainForm.RefreshReport(DateB, DateE: variant);
 begin
     ModuleData.ReportQuery.Active := False;
     ModuleData.ReportQuery.SQL.Text := Format(SSQLRepotrSales, [DateB,
+                                                                DateE,
+                                                                DateB,
+                                                                DateE,
+                                                                DateB,
+                                                                DateE,
+                                                                DateB,
+                                                                DateE,
+                                                                DateB,
+                                                                DateE,
+                                                                DateB,
+                                                                DateE,
+                                                                DateB,
                                                                 DateE]);
     ModuleData.ReportQuery.Active := True;
 

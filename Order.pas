@@ -48,7 +48,6 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DateBOrderChange(Sender: TObject);
     procedure RoomBtnClick(Sender: TObject);
-    procedure PriceEditClick(Sender: TObject);
     procedure CancelBtnClick(Sender: TObject);
     procedure PhoneEditChange(Sender: TObject);
     procedure PriceEditChange(Sender: TObject);
@@ -178,11 +177,6 @@ end;
 procedure TOrderForm.PriceEditChange(Sender: TObject);
 begin
    PstatusCorr := True;
-end;
-
-procedure TOrderForm.PriceEditClick(Sender: TObject);
-begin
-    PriceEdit.Text := FloatToStr(getPrice());
 end;
 
 procedure TOrderForm.RoomBtnClick(Sender: TObject);

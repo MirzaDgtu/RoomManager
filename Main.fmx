@@ -193,13 +193,11 @@ object MainForm: TMainForm
         object Shop_Layout: TLayout
           Align = Right
           Padding.Left = 10.000000000000000000
-          Margins.Left = 10.000000000000000000
-          Margins.Top = 10.000000000000000000
-          Margins.Right = 5.000000000000000000
-          Margins.Bottom = 10.000000000000000000
-          Position.X = 298.000000000000000000
+          Padding.Right = 10.000000000000000000
+          Position.X = 299.000000000000000000
+          Position.Y = 48.000000000000000000
           Size.Width = 104.000000000000000000
-          Size.Height = 729.000000000000000000
+          Size.Height = 634.000000000000000000
           Size.PlatformDefault = False
           Visible = False
           TabOrder = 0
@@ -212,7 +210,7 @@ object MainForm: TMainForm
             StopValue = 0.000000000000000000
           end
           object MenuRect: TRoundRect
-            Align = VertCenter
+            Align = Center
             Fill.Color = claBlack
             Padding.Left = 5.000000000000000000
             Padding.Top = 50.000000000000000000
@@ -220,8 +218,6 @@ object MainForm: TMainForm
             Opacity = 0.699999988079071000
             Margins.Left = 5.000000000000000000
             Margins.Right = 5.000000000000000000
-            Position.X = 15.000000000000000000
-            Position.Y = 179.000000000000000000
             Size.Width = 84.000000000000000000
             Size.Height = 370.000000000000000000
             Size.PlatformDefault = False
@@ -446,12 +442,10 @@ object MainForm: TMainForm
           Visible = False
           TabOrder = 0
           object ReportRR: TRoundRect
-            Align = VertCenter
+            Align = Center
             Fill.Color = claBlack
             Padding.Top = 50.000000000000000000
             Opacity = 0.699999988079071000
-            Position.X = 10.000000000000000000
-            Position.Y = 108.000000000000000000
             Size.Width = 84.000000000000000000
             Size.Height = 370.000000000000000000
             Size.PlatformDefault = False

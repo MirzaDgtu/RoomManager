@@ -52,7 +52,10 @@ resourcestring
                     '          I.Screen ' +
                     'FROM	 Room R ' +
                     '      LEFT JOIN ImageIcon I ON I.ID = 1 ' +
-                    '      LEFT JOIN Orders O ON O.Room = R.ID ' +
+                    'WHERE R.ID  NOT IN (SELECT Distinct(O.Room) ' +
+                    '                    From Orders O ' +
+                    '                    WHERE Date(O.DateBeg) BETWEEN ''%s'' AND ''%s'' AND ' +
+                    '                          Date(O.DateEnd) BETWEEN ''%s'' AND ''%s'') ' +
                     'GROUP By R.ID ' +
                     'ORDER BY R.City';
 
@@ -157,26 +160,32 @@ resourcestring
                          'CAST(''Выручка: '' || (SELECT Sum(Price) ' +
                          '                       FROM Orders ' +
                          '                       WHERE TypeDoc = 1 AND ' +
-                         '                       Room = O.Room) || '', Расход: '' || (SELECT Sum(Price) ' +
-                         '                                                            FROM Orders       ' +
-                         '                                                            WHERE TypeDoc <> 1 AND ' +
-                         '                                                                  Room = O.Room) as TEXT) as ''PriceMerge'', ' +
+                         '                             Room = O.Room '  +
+                         '                             AND Date_Create Between ''%s'' AND ''%s'') || '', Расход: '' || (SELECT Sum(Price) ' +
+                         '                                                                                              FROM Orders       ' +
+                         '                                                                                              WHERE TypeDoc <> 1 AND ' +
+                         '                                                                                                    Room = O.Room ' +
+                         '                                                                                                    AND Date_Create Between ''%s'' AND ''%s'') as TEXT) as ''PriceMerge'', ' +
                          'CAST((''Выручка: '' || (SELECT Sum(Price) ' +
                          '                        From Orders                       ' +
                          '                        WHERE TypeDoc = 1 AND             ' +
-                         '                              Room = O.Room)) as TEXT) as ''StrIncome'', ' +
+                         '                              Room = O.Room ' +
+                         '                              AND Date_Create Between ''%s'' AND ''%s'')) as TEXT) as ''StrIncome'', ' +
                          'CAST((''Расход: '' || (SELECT Sum(Price) ' +
                          '                       FROM Orders                       ' +
                          '                       WHERE TypeDoc <> 1 AND            ' +
-                         '                             Room = O.Room)) as TEXT) as ''StrExpence'', ' +
+                         '                             Room = O.Room ' +
+                         '                             AND Date_Create Between ''%s'' AND ''%s'')) as TEXT) as ''StrExpence'', ' +
                          'CAST(CAST((SELECT IFNULL(Sum(Price), 0.0)   ' +
                          '	         FROM Orders                      ' +
                          '	         WHERE TypeDoc = 1 AND            ' +
-                         '		             Room = O.Room) as FLOAT) - ' +
+                         '		             Room = O.Room ' +
+                         '                 AND Date_Create Between ''%s'' AND ''%s'') as FLOAT) - ' +
                          'CAST((SELECT IFNULL(Sum(Price), 0.0)        ' +
                          '	    FROM Orders                           ' +
                          '	    WHERE TypeDoc <> 1 AND                ' +
-                         '		        Room = O.Room) as FLOAT) as TEXT) as ''TotalPrice'', ' +
+                         '		        Room = O.Room ' +
+                         '            AND Date_Create Between ''%s'' AND ''%s'') as FLOAT) as TEXT) as ''TotalPrice'', ' +
                          'I.Screen                                 ' +
                          'From Orders O                            ' +
                          '   LEFT JOIN Room R ON R.ID = O.Room     ' +

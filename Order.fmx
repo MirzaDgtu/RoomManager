@@ -327,7 +327,6 @@ object OrderForm: TOrderForm
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           OnChange = PriceEditChange
-          OnClick = PriceEditClick
           object ClearEditButton2: TClearEditButton
             CanFocus = False
             Cursor = crArrow
