@@ -241,6 +241,7 @@ object OrderForm: TOrderForm
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Family, Size, FontColor]
+          OnKeyDown = StateEditKeyDown
           object ClearEditButton3: TClearEditButton
             CanFocus = False
             Cursor = crArrow
@@ -326,6 +327,7 @@ object OrderForm: TOrderForm
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           OnChange = PriceEditChange
+          OnKeyDown = PriceEditKeyDown
           object ClearEditButton2: TClearEditButton
             CanFocus = False
             Cursor = crArrow

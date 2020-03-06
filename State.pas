@@ -87,7 +87,12 @@ begin
                                     if Length(Trim(StateD.StateEdit.Text)) > 0 then
                                        Begin
                                          try
+                                           try
                                              StateA.add(StateD.StateEdit.Text);
+                                           except
+                                             on Err: Exception do
+                                                Showmessage('При сохрании статьи произошла ошибка!');
+                                           end;
                                          finally
                                             RefreshStatesLV();
                                          end;
@@ -103,7 +108,12 @@ begin
                       if Length(Trim(StateD.StateEdit.Text)) > 0 then
                          Begin
                            try
+                             try
                                StateA.add(StateD.StateEdit.Text);
+                             except
+                               on Err: Exception do
+                                  Showmessage('При сохрании статьи произошла ошибка!');
+                             end;
                            finally
                               RefreshStatesLV();
                            end;

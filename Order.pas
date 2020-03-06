@@ -56,6 +56,10 @@ type
     procedure StateBtnClick(Sender: TObject);
     procedure StateLVItemClick(const Sender: TObject;
       const AItem: TListViewItem);
+    procedure StateEditKeyDown(Sender: TObject; var Key: Word;
+      var KeyChar: Char; Shift: TShiftState);
+    procedure PriceEditKeyDown(Sender: TObject; var Key: Word;
+      var KeyChar: Char; Shift: TShiftState);
   private
     { Private declarations }
     FPstatusCorr: Boolean;
@@ -179,6 +183,13 @@ begin
    PstatusCorr := True;
 end;
 
+procedure TOrderForm.PriceEditKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+   if (KeyChar < '0')or( KeyChar >'9') then KeyChar:=#0;
+
+end;
+
 procedure TOrderForm.RoomBtnClick(Sender: TObject);
 var
     RoomF: TRoomForm;
@@ -263,6 +274,12 @@ begin
     ModuleData.StateQuery.SQL.Text := SSQLGetStates;
     ModuleData.StateQuery.Active := True;
     PanelStateView();
+end;
+
+procedure TOrderForm.StateEditKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+    KeyChar := #0;
 end;
 
 procedure TOrderForm.StateLVItemClick(const Sender: TObject;

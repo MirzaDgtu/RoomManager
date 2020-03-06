@@ -204,7 +204,6 @@ object StatesForm: TStatesForm
       Size.PlatformDefault = False
       StyleLookup = 'backtoolbutton'
       TabOrder = 2
-      Text = 'HomeBtn'
       OnClick = HomeBtnClick
     end
     object StateHeaderLbl: TLabel

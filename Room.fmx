@@ -58,6 +58,7 @@ object RoomForm: TRoomForm
     Margins.Top = 5.000000000000000000
     Margins.Right = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
+    PopupMenu = RoomMenu
     Size.Width = 400.000000000000000000
     Size.Height = 606.000000000000000000
     Size.PlatformDefault = False
@@ -157,6 +158,7 @@ object RoomForm: TRoomForm
     ItemAppearanceObjects.HeaderObjects.Text.Width = 301.000000000000000000
     ItemAppearanceObjects.HeaderObjects.Text.Height = 24.000000000000000000
     OnClick = RoomViewClick
+    OnDblClick = RoomViewDblClick
     CanSwipeDelete = False
     OnItemClick = RoomViewItemClick
     DeleteButtonText = #1059#1076#1072#1083#1080#1090#1100
@@ -294,6 +296,19 @@ object RoomForm: TRoomForm
       TabOrder = 1
       Text = 'RefreshPBtn'
       OnClick = RefreshBtnClick
+    end
+  end
+  object RoomMenu: TPopupMenu
+    Left = 213
+    Top = 261
+    object AddPop: TMenuItem
+      Text = '&'#1044#1086#1073#1072#1074#1080#1090#1100
+    end
+    object CorrPop: TMenuItem
+      Text = '&'#1048#1079#1084#1077#1085#1080#1090#1100
+    end
+    object DeletePop: TMenuItem
+      Text = '&'#1059#1076#1072#1083#1080#1090#1100
     end
   end
   object RoomBS: TBindSourceDB

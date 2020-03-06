@@ -9,7 +9,8 @@ uses
   FMX.StdCtrls, FMX.ListView, FMX.Controls.Presentation, FMX.Objects,
   FMX.Layouts, FMX.Ani, System.Rtti, System.Bindings.Outputs, Fmx.Bind.Editors,
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope,
-  Fmx.Bind.GenData, Data.Bind.ObjectScope, FMX.DialogService, System.Math;
+  Fmx.Bind.GenData, Data.Bind.ObjectScope, FMX.DialogService, System.Math,
+  FMX.Menus;
 
 type
   TRoomForm = class(TForm)
@@ -31,6 +32,10 @@ type
     RoomLbl: TLabel;
     RefreshPBtn: TButton;
     AddPBtn: TButton;
+    RoomMenu: TPopupMenu;
+    AddPop: TMenuItem;
+    CorrPop: TMenuItem;
+    DeletePop: TMenuItem;
     procedure MenuBtnClick(Sender: TObject);
     procedure AddBtnClick(Sender: TObject);
     procedure CorrBtnClick(Sender: TObject);
@@ -41,6 +46,7 @@ type
       const AItem: TListViewItem);
     procedure RoomViewClick(Sender: TObject);
     procedure HomeBtnClick(Sender: TObject);
+    procedure RoomViewDblClick(Sender: TObject);
   private
     FAdressRoom: string;
     FPriceRoom: String;
@@ -356,6 +362,11 @@ begin
    Menu_Layout.Visible := False;
    MenuAnimation.Inverse := true;
    MenuAnimation.Start;
+end;
+
+procedure TRoomForm.RoomViewDblClick(Sender: TObject);
+begin
+     RoomMenu.Popup(RoomView.Height/2, RoomView.Width);
 end;
 
 procedure TRoomForm.RoomViewItemClick(const Sender: TObject;

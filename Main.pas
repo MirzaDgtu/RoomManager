@@ -77,6 +77,7 @@ type
     procedure ReportFileBtnClick(Sender: TObject);
     procedure RigthBtnClick(Sender: TObject);
     procedure LeftBtnClick(Sender: TObject);
+    procedure OrdersViewClick(Sender: TObject);
 
   private
     FIdOrder: string;
@@ -405,6 +406,11 @@ procedure TMainForm.Create(Sender: TObject);
 begin
    PanelMenuHide();
    PanelSettingHide();
+end;
+
+procedure TMainForm.OrdersViewClick(Sender: TObject);
+begin
+      PanelsHide();
 end;
 
 procedure TMainForm.OrdersViewItemClick(const Sender: TObject;
