@@ -26,6 +26,11 @@ type
     RoomBS: TBindSourceDB;
     RoomBL: TBindingsList;
     LinkListControlToField1: TLinkListControlToField;
+    RoomHeaderTB: TToolBar;
+    HomeBtn: TButton;
+    RoomLbl: TLabel;
+    RefreshPBtn: TButton;
+    AddPBtn: TButton;
     procedure MenuBtnClick(Sender: TObject);
     procedure AddBtnClick(Sender: TObject);
     procedure CorrBtnClick(Sender: TObject);
@@ -35,6 +40,7 @@ type
     procedure RoomViewItemClick(const Sender: TObject;
       const AItem: TListViewItem);
     procedure RoomViewClick(Sender: TObject);
+    procedure HomeBtnClick(Sender: TObject);
   private
     FAdressRoom: string;
     FPriceRoom: String;
@@ -309,6 +315,11 @@ begin
     {$IFDEF ANDROID}
         Action := TCloseAction.caFree;
     {$ENDIF}
+end;
+
+procedure TRoomForm.HomeBtnClick(Sender: TObject);
+begin
+  Close();
 end;
 
 procedure TRoomForm.MenuBtnClick(Sender: TObject);

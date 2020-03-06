@@ -240,7 +240,7 @@ object RoomDetailForm: TRoomDetailForm
       Size.Height = 48.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      TintColor = claSilver
+      TintColor = claSlategray
       object GridPanelLayout1: TGridPanelLayout
         Align = Client
         Size.Width = 430.000000000000000000
@@ -279,9 +279,9 @@ object RoomDetailForm: TRoomDetailForm
           Margins.Right = 10.000000000000000000
           Margins.Bottom = 10.000000000000000000
           Position.X = 10.000000000000000000
-          Position.Y = 2.000000000000000000
+          Position.Y = 5.000000000000000000
           Size.Width = 195.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 38.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 8
           Text = #1054#1090#1084#1077#1085#1072
@@ -296,9 +296,9 @@ object RoomDetailForm: TRoomDetailForm
           Margins.Right = 10.000000000000000000
           Margins.Bottom = 10.000000000000000000
           Position.X = 225.000000000000000000
-          Position.Y = 2.000000000000000000
+          Position.Y = 5.000000000000000000
           Size.Width = 195.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 38.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 6
           Text = #1057#1086#1093#1088#1072#1085#1080#1090#1100

@@ -4,9 +4,6 @@ Coordinates=126,232,75,33
 [RefreshBtn]
 Coordinates=497,323,69,51
 
-[CloseBtn]
-Coordinates=10,402,59,51
-
 [ReportDetailLV]
 Coordinates=621,10,89,213
 Visible=True
@@ -27,7 +24,7 @@ Coordinates=576,323,58,51
 Coordinates=441,402,80,33
 
 []
-Coordinates=250,111,91,36
+Coordinates=10,402,59,51
 
 [ModuleData.RoomDBQuery]
 Coordinates=183,323,149,51

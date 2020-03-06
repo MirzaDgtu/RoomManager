@@ -186,11 +186,15 @@ begin
    RoomF := TRoomForm.Create(Application);
 
    ModuleData.RoomQuery.Active := False;
-   ModuleData.RoomQuery.SQL.Text := Format(SSQLGetRoomFree, [FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
-                                                             FormatDateTime('yyyy-mm-dd', DateEOrder.Date),
-                                                             FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
-                                                             FormatDateTime('yyyy-mm-dd', DateEOrder.Date)]);
-   ModuleData.RoomQuery.Active := True;
+   if (StateEdit.Text = EmptyStr) or
+      (StateEdit.Text = Trim('Выручка')) then
+         ModuleData.RoomQuery.SQL.Text := Format(SSQLGetRoomFree, [FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
+                                                                   FormatDateTime('yyyy-mm-dd', DateEOrder.Date),
+                                                                   FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
+                                                                   FormatDateTime('yyyy-mm-dd', DateEOrder.Date)])
+   else
+         ModuleData.RoomQuery.SQL.Text :=  SSQLGetRoom;
+         ModuleData.RoomQuery.Active := True;
 
     try
       RoomF.IsOwner := 'OrderForm';

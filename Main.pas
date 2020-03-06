@@ -10,7 +10,7 @@ uses
   FMX.Layouts, FMX.TabControl, FMX.Ani, System.ImageList, FMX.ImgList,
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, System.Rtti, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.Components, Data.Bind.GenData, Fmx.Bind.GenData,
-  Data.Bind.ObjectScope, FMX.Menus, Data.Bind.DBScope, FMX.DialogService;
+  Data.Bind.ObjectScope, FMX.Menus, Data.Bind.DBScope, FMX.DialogService, System.IOUtils;
 
 type
   TMainForm = class(TForm)
@@ -48,10 +48,15 @@ type
     ToolBar1: TToolBar;
     TotalReportLbl: TLabel;
     ReportDetailBtn: TButton;
+    ReportFileBtn: TButton;
+    ToolBar2: TToolBar;
+    LeftBtn: TButton;
+    MainLbl: TLabel;
+    RigthBtn: TButton;
+    procedure Create(Sender: TObject);
     procedure MenuBtnClick(Sender: TObject);
     procedure RoomBtnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure OrdersViewClick(Sender: TObject);
     procedure Rectangle1Click(Sender: TObject);
     procedure AddBtnClick(Sender: TObject);
     procedure RefreshBtnClick(Sender: TObject);
@@ -69,6 +74,10 @@ type
     procedure ReportLVItemClick(const Sender: TObject;
       const AItem: TListViewItem);
     procedure ReportDetailBtnClick(Sender: TObject);
+    procedure ReportFileBtnClick(Sender: TObject);
+    procedure RigthBtnClick(Sender: TObject);
+    procedure LeftBtnClick(Sender: TObject);
+
   private
     FIdOrder: string;
     FEndDate: variant;
@@ -84,6 +93,7 @@ type
     procedure PanelSettingHide();
     procedure PanelReportView();
     procedure PanelReportHide();
+    procedure PanelsHide();
 
     procedure SetIdOrder(const Value: string);
     procedure SetBegDate(const Value: variant);
@@ -91,6 +101,7 @@ type
 
     procedure RefreshReport(DateB, DateE: variant);
     procedure SetIdRoomReport(const Value: string);
+
 
   public
     { Public declarations }
@@ -102,7 +113,7 @@ type
     property IdOrder: string read FIdOrder write SetIdOrder;
 
     property IdRoomReport: string read FIdRoomReport write SetIdRoomReport;
-  end;
+end;
 
 var
   MainForm: TMainForm;
@@ -138,25 +149,29 @@ begin
               ShowModal(
                         procedure(ModalResult: TModalResult)
                           Begin
-                              if ModalResult = mrOk then
-                                Begin
-                                    try
-                                      try
-                                        OrderA.add(FormatDateTime('yyyy-mm-dd hh:MM:ss', Now),
-                                                                  FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
-                                                                  FormatDateTime('yyyy-mm-dd', DateEOrder.Date),
-                                                                  IdRoom.ToInteger,
-                                                                  PhoneEdit.Text,
-                                                                  PriceEdit.Text,
-                                                                  IdTypeDoc.ToInteger);
-                                      finally
-                                           RefreshBtnClick(Self);
-                                      end;
-                                    except
-                                        on Err: Exception do
-                                          ShowMessage('Ошибка создания заявки!' + #13 + 'Сообщение: ' + Err.Message);
+                              if (Length(StateEdit.Text) > 0) and
+                                 (Length(RoomLbl.Text) > 0)then
+                                    Begin
+                                      if ModalResult = mrOk then
+                                        Begin
+                                            try
+                                              try
+                                                OrderA.add(FormatDateTime('yyyy-mm-dd hh:MM:ss', Now),
+                                                                          FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
+                                                                          FormatDateTime('yyyy-mm-dd', DateEOrder.Date),
+                                                                          IdRoom.ToInteger,
+                                                                          PhoneEdit.Text,
+                                                                          PriceEdit.Text,
+                                                                          IdTypeDoc.ToInteger);
+                                              finally
+                                                   RefreshBtnClick(Self);
+                                              end;
+                                            except
+                                                on Err: Exception do
+                                                  ShowMessage('Ошибка создания заявки!' + #13 + 'Сообщение: ' + Err.Message);
+                                            end;
+                                        end;
                                     end;
-                                end;
                           end
                         );
            {$ENDIF}
@@ -164,25 +179,29 @@ begin
 
 
            {$IFDEF MSWINDOWS}
-              if ShowModal = mrOk then
-                Begin
-                    try
-                      try
-                        OrderA.add(FormatDateTime('yyyy-mm-dd hh:MM:ss', Now),
-                                                  FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
-                                                  FormatDateTime('yyyy-mm-dd', DateEOrder.Date),
-                                                  IdRoom.ToInteger,
-                                                  PhoneEdit.Text,
-                                                  PriceEdit.Text,
-                                                  IdTypeDoc.ToInteger);
-                      finally
-                          RefreshBtnClick(Self);
-                      end;
-                    except
-                        on Err: Exception do
-                          ShowMessage('Ошибка создания заявки!' + #13 + 'Сообщение: ' + Err.Message);
-                    end;
-                End;
+                      if ShowModal = mrOk then
+                        Begin
+                          if (Length(StateEdit.Text) > 0) and
+                             (Length(RoomLbl.Text) > 0)then
+                               Begin
+                                  try
+                                    try
+                                      OrderA.add(FormatDateTime('yyyy-mm-dd hh:MM:ss', Now),
+                                                                FormatDateTime('yyyy-mm-dd', DateBOrder.Date),
+                                                                FormatDateTime('yyyy-mm-dd', DateEOrder.Date),
+                                                                IdRoom.ToInteger,
+                                                                PhoneEdit.Text,
+                                                                PriceEdit.Text,
+                                                                IdTypeDoc.ToInteger);
+                                    finally
+                                        RefreshBtnClick(Self);
+                                    end;
+                                  except
+                                      on Err: Exception do
+                                        ShowMessage('Ошибка создания заявки!' + #13 + 'Сообщение: ' + Err.Message);
+                                  end;
+                               end;
+                        End;
            {$ENDIF}
         End;
     finally
@@ -362,6 +381,11 @@ begin
 end;
 
 
+procedure TMainForm.LeftBtnClick(Sender: TObject);
+begin
+  Tabs.Previous();
+end;
+
 procedure TMainForm.MenuBtnClick(Sender: TObject);
 begin
     PanelSettingHide();
@@ -374,12 +398,10 @@ end;
 
 procedure TMainForm.OrdersTabClick(Sender: TObject);
 begin
-    PanelMenuHide();
-    PanelSettingHide();
-    PanelReportHide();
+    PanelsHide();
 end;
 
-procedure TMainForm.OrdersViewClick(Sender: TObject);
+procedure TMainForm.Create(Sender: TObject);
 begin
    PanelMenuHide();
    PanelSettingHide();
@@ -440,6 +462,13 @@ begin
     AnimalSetting.Inverse := False;
     AnimalSetting.StartValue := MainForm.Height + 20;
     AnimalSetting.Start;
+end;
+
+procedure TMainForm.PanelsHide;
+begin
+  PanelMenuHide();
+  PanelSettingHide();
+  PanelReportHide();
 end;
 
 procedure TMainForm.RangeRectBtnClick(Sender: TObject);
@@ -615,6 +644,51 @@ begin
     End;
 end;
 
+procedure TMainForm.ReportFileBtnClick(Sender: TObject);
+var
+    XMLStr: TStringList;
+  I: Integer;
+begin
+  XMLStr := TStringList.Create();
+  if not ModuleData.ReportQuery.IsEmpty then
+    Begin
+      try
+          try
+             XMLStr.Add('<?xml version="1.0" encoding="windows-1251"?>');
+                XMLStr.Add('<row>');
+             for I := 0 to ModuleData.ReportQuery.RecordCount-1 do
+              Begin
+                XMLStr.Add('<room>');
+                  XMLStr.Add('<roomstr>');
+                    XMLStr.Add(ModuleData.ReportQuery.FieldByName('RoomStr').AsString);
+                  XMLStr.Add('</roomstr>');
+                  XMLStr.Add('<income>');
+                    XMLStr.Add(ModuleData.ReportQuery.FieldByName('StrIncome').AsString);
+                  XMLStr.Add('</income>');
+                  XMLStr.Add('<expence>');
+                    XMLStr.Add(ModuleData.ReportQuery.FieldByName('StrExpence').AsString);
+                  XMLStr.Add('</expence>');
+                  XMLStr.Add('<pricemerge>');
+                    XMLStr.Add(ModuleData.ReportQuery.FieldByName('PriceMerge').AsString);
+                  XMLStr.Add('</pricemerge>');
+                  XMLStr.Add('<total>');
+                    XMLStr.Add(ModuleData.ReportQuery.FieldByName('TotalPrice').AsString);
+                  XMLStr.Add('</total>');
+
+                XMLStr.Add('</room>');
+                ModuleData.ReportQuery.Next;
+              End;
+            XMLStr.Add('</row>');
+             XMLStr.SaveToFile('Report-' + FormatDateTime('dd.mm.yyyy', Now()) + '.xml');
+          finally
+            PanelReportHide();
+          end;
+      finally
+        ShowMessage('Файл отчета успешно создан!');
+      end;
+    End;
+end;
+
 procedure TMainForm.ReportLVClick(Sender: TObject);
 begin
     PanelReportHide();
@@ -632,6 +706,11 @@ begin
     PanelMenuHide();
     PanelSettingHide();
     PanelReportHide();
+end;
+
+procedure TMainForm.RigthBtnClick(Sender: TObject);
+begin
+  Tabs.Next();
 end;
 
 procedure TMainForm.RoomBtnClick(Sender: TObject);

@@ -67,3 +67,6 @@ Coordinates=460,10,116,123
 [StateBL]
 Coordinates=148,242,82,33
 
+[ModuleData.ReportQuery]
+Visible=False
+

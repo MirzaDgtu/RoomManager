@@ -21,9 +21,10 @@ object RoomForm: TRoomForm
     Size.Height = 48.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    TintColor = claSilver
+    TintColor = claSlategray
     object MenuBtn: TButton
       Align = Right
+      IconTintColor = claPowderblue
       Position.X = 352.000000000000000000
       Size.Width = 48.000000000000000000
       Size.Height = 48.000000000000000000
@@ -32,6 +33,17 @@ object RoomForm: TRoomForm
       TabOrder = 0
       Text = 'MenuBtn'
       OnClick = MenuBtnClick
+    end
+    object AddPBtn: TButton
+      Align = Left
+      IconTintColor = claPowderblue
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'additembutton'
+      TabOrder = 2
+      Text = 'AddPBtn'
+      OnClick = AddBtnClick
     end
   end
   object RoomView: TListView
@@ -47,7 +59,7 @@ object RoomForm: TRoomForm
     Margins.Right = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
     Size.Width = 400.000000000000000000
-    Size.Height = 654.000000000000000000
+    Size.Height = 606.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
@@ -158,7 +170,7 @@ object RoomForm: TRoomForm
       Margins.Right = 5.000000000000000000
       Margins.Bottom = 10.000000000000000000
       Position.X = 289.000000000000000000
-      Position.Y = -20.000000000000000000
+      Position.Y = -68.000000000000000000
       Size.Width = 116.000000000000000000
       Size.Height = 672.000000000000000000
       Size.PlatformDefault = False
@@ -238,6 +250,50 @@ object RoomForm: TRoomForm
           OnClick = RefreshBtnClick
         end
       end
+    end
+  end
+  object RoomHeaderTB: TToolBar
+    Size.Width = 410.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    TintColor = claSlategray
+    object HomeBtn: TButton
+      Align = Left
+      IconTintColor = claPowderblue
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'backtoolbutton'
+      TabOrder = 2
+      Text = 'HomeBtn'
+      OnClick = HomeBtnClick
+    end
+    object RoomLbl: TLabel
+      Align = VertCenter
+      StyledSettings = [Family, Size]
+      Position.X = 48.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 314.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.FontColor = claLime
+      TextSettings.HorzAlign = Center
+      Text = #1050#1074#1072#1088#1090#1080#1088#1099
+      TabOrder = 0
+    end
+    object RefreshPBtn: TButton
+      Align = Right
+      IconTintColor = claPowderblue
+      Position.X = 362.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'refreshtoolbutton'
+      TabOrder = 1
+      Text = 'RefreshPBtn'
+      OnClick = RefreshBtnClick
     end
   end
   object RoomBS: TBindSourceDB

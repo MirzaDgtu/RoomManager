@@ -12,19 +12,20 @@ object StatesForm: TStatesForm
   object Layout: TLayout
     Align = Client
     Size.Width = 407.000000000000000000
-    Size.Height = 700.000000000000000000
+    Size.Height = 652.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     object StateTB: TToolBar
       Align = Bottom
-      Position.Y = 652.000000000000000000
+      Position.Y = 604.000000000000000000
       Size.Width = 407.000000000000000000
       Size.Height = 48.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      TintColor = claSilver
+      TintColor = claSlategray
       object MenuBtn: TButton
         Align = Right
+        IconTintColor = claPowderblue
         Position.X = 359.000000000000000000
         Size.Width = 48.000000000000000000
         Size.Height = 48.000000000000000000
@@ -33,6 +34,17 @@ object StatesForm: TStatesForm
         TabOrder = 0
         Text = 'MenuBtn'
         OnClick = MenuBtnClick
+      end
+      object AddPBtn: TButton
+        Align = Left
+        IconTintColor = claPowderblue
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'additembutton'
+        TabOrder = 2
+        Text = 'AddPBtn'
+        OnClick = AddBtnClick
       end
     end
     object StatesLV: TListView
@@ -44,7 +56,7 @@ object StatesForm: TStatesForm
       Margins.Top = 5.000000000000000000
       Margins.Bottom = 5.000000000000000000
       Size.Width = 407.000000000000000000
-      Size.Height = 642.000000000000000000
+      Size.Height = 594.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
@@ -97,7 +109,7 @@ object StatesForm: TStatesForm
           Align = VertCenter
           Fill.Color = claBlack
           Padding.Top = 50.000000000000000000
-          Opacity = 0.699999988079071100
+          Opacity = 0.699999988079071000
           Position.X = 10.000000000000000000
           Position.Y = 148.000000000000000000
           Size.Width = 84.000000000000000000
@@ -164,6 +176,50 @@ object StatesForm: TStatesForm
           StopValue = 0.000000000000000000
         end
       end
+    end
+  end
+  object StateHeaderTB: TToolBar
+    Size.Width = 407.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    TintColor = claSlategray
+    object RefreshPBtn: TButton
+      Align = Right
+      IconTintColor = claPowderblue
+      Position.X = 359.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'refreshtoolbutton'
+      TabOrder = 0
+      Text = 'RefreshPBtn'
+      OnClick = RefreshBtnClick
+    end
+    object HomeBtn: TButton
+      Align = Left
+      IconTintColor = claPowderblue
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'backtoolbutton'
+      TabOrder = 2
+      Text = 'HomeBtn'
+      OnClick = HomeBtnClick
+    end
+    object StateHeaderLbl: TLabel
+      Align = VertCenter
+      StyledSettings = [Family, Size]
+      Position.X = 48.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 311.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.FontColor = claLime
+      TextSettings.HorzAlign = Center
+      Text = #1057#1090#1072#1090#1100#1080' '#1088#1072#1089#1093#1086#1076#1086#1074
+      TabOrder = 3
     end
   end
   object StateBS: TBindSourceDB

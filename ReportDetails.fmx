@@ -12,7 +12,7 @@ object ReportDetailForm: TReportDetailForm
   object FormLayout: TLayout
     Align = Client
     Size.Width = 403.000000000000000000
-    Size.Height = 779.000000000000000000
+    Size.Height = 731.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     object ReportDetailLV: TListView
@@ -23,7 +23,7 @@ object ReportDetailForm: TReportDetailForm
       Align = Client
       DisableFocusEffect = False
       Size.Width = 403.000000000000000000
-      Size.Height = 731.000000000000000000
+      Size.Height = 683.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
@@ -81,7 +81,7 @@ object ReportDetailForm: TReportDetailForm
         Position.X = 283.000000000000000000
         Position.Y = 58.000000000000000000
         Size.Width = 115.000000000000000000
-        Size.Height = 663.000000000000000000
+        Size.Height = 615.000000000000000000
         Size.PlatformDefault = False
         Visible = False
         TabOrder = 0
@@ -92,7 +92,7 @@ object ReportDetailForm: TReportDetailForm
           Padding.Bottom = 50.000000000000000000
           Opacity = 0.699999988079071000
           Position.X = 10.000000000000000000
-          Position.Y = 142.000000000000000000
+          Position.Y = 118.000000000000000000
           Size.Width = 95.000000000000000000
           Size.Height = 378.000000000000000000
           Size.PlatformDefault = False
@@ -121,34 +121,67 @@ object ReportDetailForm: TReportDetailForm
     end
     object SettingTB: TToolBar
       Align = Bottom
-      Position.Y = 731.000000000000000000
+      Position.Y = 683.000000000000000000
       Size.Width = 403.000000000000000000
       Size.Height = 48.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      TintColor = claSkyblue
-      object CloseBtn: TButton
-        Align = Left
-        IconTintColor = claRed
-        Size.Width = 48.000000000000000000
-        Size.Height = 48.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'escapetoolbutton'
-        TabOrder = 0
-        Text = 'CloseBtn'
-        OnClick = CloseBtnClick
-      end
+      TintColor = claSlategray
       object MenuBtn: TButton
         Align = Right
+        IconTintColor = claPowderblue
         Position.X = 355.000000000000000000
         Size.Width = 48.000000000000000000
         Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'drawertoolbutton'
-        TabOrder = 1
+        TabOrder = 0
         Text = 'MenuBtn'
         OnClick = MenuBtnClick
       end
+    end
+  end
+  object ReportHeaderTB: TToolBar
+    Size.Width = 403.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    TintColor = claSlategray
+    object HomeBtn: TButton
+      Align = Left
+      IconTintColor = claPowderblue
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'backtoolbutton'
+      TabOrder = 0
+      Text = 'HomeBtn'
+      OnClick = HomeBtnClick
+    end
+    object RefreshPBtn: TButton
+      Align = Right
+      IconTintColor = claPowderblue
+      Position.X = 355.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'refreshtoolbutton'
+      TabOrder = 1
+      Text = 'RefreshPBtn'
+      OnClick = RefreshBtnClick
+    end
+    object HeaderLbl: TLabel
+      Align = VertCenter
+      StyledSettings = [Family, Size, Style]
+      Position.X = 48.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 307.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.FontColor = claLime
+      TextSettings.HorzAlign = Center
+      Text = #1044#1077#1090#1072#1083#1100#1085#1099#1081' '#1086#1090#1095#1077#1090
+      TabOrder = 2
     end
   end
   object ReportDetailBS: TBindSourceDB

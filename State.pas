@@ -27,6 +27,11 @@ type
     StateBS: TBindSourceDB;
     StateBL: TBindingsList;
     LinkListControlToField1: TLinkListControlToField;
+    StateHeaderTB: TToolBar;
+    RefreshPBtn: TButton;
+    HomeBtn: TButton;
+    StateHeaderLbl: TLabel;
+    AddPBtn: TButton;
     procedure MenuBtnClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure AddBtnClick(Sender: TObject);
@@ -35,6 +40,7 @@ type
     procedure RefreshBtnClick(Sender: TObject);
     procedure StatesLVItemClick(const Sender: TObject;
       const AItem: TListViewItem);
+    procedure HomeBtnClick(Sender: TObject);
   private
     FIdState: string;
     FDescription: string;
@@ -212,6 +218,11 @@ begin
   {$IFDEF ANDROID}
       Action := TCloseAction.caFree;
   {$ENDIF}
+end;
+
+procedure TStatesForm.HomeBtnClick(Sender: TObject);
+begin
+  Close();
 end;
 
 procedure TStatesForm.MenuBtnClick(Sender: TObject);

@@ -15,7 +15,6 @@ type
     FormLayout: TLayout;
     ReportDetailLV: TListView;
     SettingTB: TToolBar;
-    CloseBtn: TButton;
     MenuBtn: TButton;
     Menu_Layout: TLayout;
     MenuRR: TRoundRect;
@@ -24,10 +23,14 @@ type
     ReportDetailBS: TBindSourceDB;
     ReportDetailBL: TBindingsList;
     LinkListControlToField1: TLinkListControlToField;
-    procedure CloseBtnClick(Sender: TObject);
+    ReportHeaderTB: TToolBar;
+    HomeBtn: TButton;
+    RefreshPBtn: TButton;
+    HeaderLbl: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure RefreshBtnClick(Sender: TObject);
     procedure MenuBtnClick(Sender: TObject);
+    procedure HomeBtnClick(Sender: TObject);
   private
     { Private declarations }
     procedure PanelMenuView();
@@ -47,17 +50,17 @@ uses AppData;
 
 { TReportDetailForm }
 
-procedure TReportDetailForm.CloseBtnClick(Sender: TObject);
-begin
-  Close();
-end;
-
 procedure TReportDetailForm.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
       {$IFDEF ANDROID}
           Action := TCloseAction.caFree;
       {$ENDIF}
+end;
+
+procedure TReportDetailForm.HomeBtnClick(Sender: TObject);
+begin
+  Close();
 end;
 
 procedure TReportDetailForm.MenuBtnClick(Sender: TObject);
