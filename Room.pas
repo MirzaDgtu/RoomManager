@@ -46,7 +46,6 @@ type
       const AItem: TListViewItem);
     procedure RoomViewClick(Sender: TObject);
     procedure HomeBtnClick(Sender: TObject);
-    procedure RoomViewDblClick(Sender: TObject);
   private
     FAdressRoom: string;
     FPriceRoom: String;
@@ -68,6 +67,8 @@ type
 
   public
     { Public declarations }
+    procedure PanelMenuView();
+    procedure PanelMenuHide();
 
     property IsOwner: string read FIsOwner write SetIsOwner;
 
@@ -95,10 +96,7 @@ var
     RoomBeh: TRoomAction;
     ModuleData: TModuleData;
 begin
-   Menu_Layout.Visible := False;
-   MenuAnimation.Inverse := true;
-   MenuAnimation.Start;
-
+   PanelMenuHide();
    RoomD := TRoomDetailForm.Create(Application);
    RoomBeh := TRoomAction.Create;
    ModuleData := TModuleData.Create(Application);
@@ -178,93 +176,90 @@ var
     RoomD: TRoomDetailForm;
     RoomBeh: TRoomAction;
 begin
-   Menu_Layout.Visible := False;
-   MenuAnimation.Inverse := true;
-   MenuAnimation.Start;
+   PanelMenuHide();
 
-   RoomD := TRoomDetailForm.Create(Application);
-   RoomBeh := TRoomAction.Create;
+   if Length(Trim(IdRoom)) > 0  then
+    Begin
+       RoomD := TRoomDetailForm.Create(Application);
+       RoomBeh := TRoomAction.Create;
 
-
-   try
-        with RoomD do
-          Begin
-            if Length(Trim(IdRoom)) > 0  then
+       try
+            with RoomD do
               Begin
-                  {$IFDEF ANDROID}
-                      CityEdit.Text := City;
-                      AdressEdit.Text := AdressRoom;
-                      HomeNumEdit.Text := NumHome;
-                      NumRoomEdit.Text := NumApartment;
-                      NumberSpin.Value := CountRoom.ToSingle;
-                      PriceEdit.Text := PriceRoom;
+                      {$IFDEF ANDROID}
+                          CityEdit.Text := City;
+                          AdressEdit.Text := AdressRoom;
+                          HomeNumEdit.Text := NumHome;
+                          NumRoomEdit.Text := NumApartment;
+                          NumberSpin.Value := CountRoom.ToSingle;
+                          PriceEdit.Text := PriceRoom;
 
-                      ShowModal(
-                                 procedure(ModalResult: TModalResult)
-                                  Begin
-                                    if ModalResult = mrOk then
-                                       Begin
-                                         if (RoomD.NumberSpin.Value > 0) and
-                                            (Length(Trim(RoomD.AdressEdit.Text)) > 0) then
-                                              Begin
-                                                 try
-                                                     RoomBeh.correction(RoomD.CityEdit.Text,
-                                                                        RoomD.AdressEdit.Text,
-                                                                        RoomD.HomeNumEdit.Text.ToInteger,
-                                                                        RoomD.NumRoomEdit.Text.ToInteger,
-                                                                        RoomD.NumberSpin.Value.ToString.ToInteger,
-                                                                        RoomD.PriceEdit.Text,
-                                                                        IdRoom.ToInteger);
-                                                 finally
-                                                    Self.RoomView.BeginUpdate;
-                                                      ModuleData.RoomQuery.Active := False;
-                                                      ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
-                                                      ModuleData.RoomQuery.Active := True;
+                          ShowModal(
+                                     procedure(ModalResult: TModalResult)
+                                      Begin
+                                        if ModalResult = mrOk then
+                                           Begin
+                                             if (RoomD.NumberSpin.Value > 0) and
+                                                (Length(Trim(RoomD.AdressEdit.Text)) > 0) then
+                                                  Begin
+                                                     try
+                                                         RoomBeh.correction(RoomD.CityEdit.Text,
+                                                                            RoomD.AdressEdit.Text,
+                                                                            RoomD.HomeNumEdit.Text.ToInteger,
+                                                                            RoomD.NumRoomEdit.Text.ToInteger,
+                                                                            RoomD.NumberSpin.Value.ToString.ToInteger,
+                                                                            RoomD.PriceEdit.Text,
+                                                                            IdRoom.ToInteger);
+                                                     finally
+                                                        Self.RoomView.BeginUpdate;
+                                                          ModuleData.RoomQuery.Active := False;
+                                                          ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
+                                                          ModuleData.RoomQuery.Active := True;
 
-                                                      RoomBS.DataSet.Refresh;
-                                                    Self.RoomView.EndUpdate;
-                                                 end;
-                                              end;
-                                       end;
-                                  end
-                               );
-                  {$ENDIF}
+                                                          RoomBS.DataSet.Refresh;
+                                                        Self.RoomView.EndUpdate;
+                                                     end;
+                                                  end;
+                                           end;
+                                      end
+                                   );
+                      {$ENDIF}
 
-                  {$IFDEF MSWINDOWS}
+                      {$IFDEF MSWINDOWS}
 
-                      if ShowModal = mrOk then
-                      Begin
-                       if (NumberSpin.Value > 0) and
-                          (Length(Trim(RoomD.AdressEdit.Text)) > 0) then
+                          if ShowModal = mrOk then
                           Begin
-                            try
-                               RoomBeh.correction(RoomD.CityEdit.Text,
-                                                  RoomD.AdressEdit.Text,
-                                                  RoomD.HomeNumEdit.Text.ToInteger,
-                                                  RoomD.NumRoomEdit.Text.ToInteger,
-                                                  RoomD.NumberSpin.Value.ToString.ToInteger,
-                                                  RoomD.PriceEdit.Text,
-                                                  IdRoom.ToInteger);
-                            finally
-                            end;
+                           if (NumberSpin.Value > 0) and
+                              (Length(Trim(RoomD.AdressEdit.Text)) > 0) then
+                              Begin
+                                try
+                                   RoomBeh.correction(RoomD.CityEdit.Text,
+                                                      RoomD.AdressEdit.Text,
+                                                      RoomD.HomeNumEdit.Text.ToInteger,
+                                                      RoomD.NumRoomEdit.Text.ToInteger,
+                                                      RoomD.NumberSpin.Value.ToString.ToInteger,
+                                                      RoomD.PriceEdit.Text,
+                                                      IdRoom.ToInteger);
+                                finally
+                                end;
+                              End;
                           End;
-                      End;
-                  {$ENDIF}
+                      {$ENDIF}
               End;
-          End;
-   finally
-      {$IFDEF MSWINDOWS}
-         FreeAndNil(RoomD);
-      {$ENDIF}
-          Self.RoomView.BeginUpdate;
-            ModuleData.RoomQuery.Active := False;
-            ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
-            ModuleData.RoomQuery.Active := True;
+       finally
+          {$IFDEF MSWINDOWS}
+             FreeAndNil(RoomD);
+          {$ENDIF}
+              Self.RoomView.BeginUpdate;
+                ModuleData.RoomQuery.Active := False;
+                ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
+                ModuleData.RoomQuery.Active := True;
 
-            RoomBS.DataSet.Refresh;
-          Self.RoomView.EndUpdate;
-      FreeAndNil(RoomBeh);
-   end;
+                RoomBS.DataSet.Refresh;
+              Self.RoomView.EndUpdate;
+          FreeAndNil(RoomBeh);
+       end;
+    End;
 end;
 
 
@@ -330,6 +325,18 @@ end;
 
 procedure TRoomForm.MenuBtnClick(Sender: TObject);
 begin
+    PanelMenuView();
+end;
+
+procedure TRoomForm.PanelMenuHide;
+begin
+   Menu_Layout.Visible := False;
+   MenuAnimation.Inverse := true;
+   MenuAnimation.Start;
+end;
+
+procedure TRoomForm.PanelMenuView;
+begin
     Menu_Layout.Position.Y := Self.Height + 20;
     Menu_Layout.Visible := True;
 
@@ -340,9 +347,7 @@ end;
 
 procedure TRoomForm.RefreshBtnClick(Sender: TObject);
 begin
-   Menu_Layout.Visible := False;
-   MenuAnimation.Inverse := true;
-   MenuAnimation.Start;
+   PanelMenuHide();
 
    try
     Self.RoomView.BeginUpdate;
@@ -359,14 +364,7 @@ end;
 
 procedure TRoomForm.RoomViewClick(Sender: TObject);
 begin
-   Menu_Layout.Visible := False;
-   MenuAnimation.Inverse := true;
-   MenuAnimation.Start;
-end;
-
-procedure TRoomForm.RoomViewDblClick(Sender: TObject);
-begin
-     RoomMenu.Popup(RoomView.Height/2, RoomView.Width);
+   PanelMenuHide();
 end;
 
 procedure TRoomForm.RoomViewItemClick(const Sender: TObject;

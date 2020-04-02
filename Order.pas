@@ -230,6 +230,7 @@ begin
 
     try
       RoomF.IsOwner := 'OrderForm';
+      RoomF.AddPBtn.Enabled := False;
       {$IFDEF ANDROID}
         RoomF.ShowModal(
                           procedure(ModalResult: TModalResult)
