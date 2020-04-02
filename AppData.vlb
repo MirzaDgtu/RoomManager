@@ -26,7 +26,7 @@ Coordinates=172,233,69,33
 Coordinates=19,70,68,33
 
 []
-Coordinates=298,1,82,33
+Coordinates=10,10,72,303
 
 [RoomQueryNumApartment]
 Coordinates=446,1,147,33
@@ -36,9 +36,6 @@ Coordinates=446,53,132,33
 
 [RoomQueryNumHome]
 Coordinates=200,80,124,33
-
-[OrderQuery]
-Coordinates=10,10,72,303
 
 [RoomQueryCity]
 Coordinates=248,304,92,33

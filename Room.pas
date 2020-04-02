@@ -186,13 +186,14 @@ begin
        try
             with RoomD do
               Begin
+                      CityEdit.Text := City;
+                      AdressEdit.Text := AdressRoom;
+                      HomeNumEdit.Text := NumHome;
+                      NumRoomEdit.Text := NumApartment;
+                      NumberSpin.Value := CountRoom.ToSingle;
+                      PriceEdit.Text := PriceRoom;
+
                       {$IFDEF ANDROID}
-                          CityEdit.Text := City;
-                          AdressEdit.Text := AdressRoom;
-                          HomeNumEdit.Text := NumHome;
-                          NumRoomEdit.Text := NumApartment;
-                          NumberSpin.Value := CountRoom.ToSingle;
-                          PriceEdit.Text := PriceRoom;
 
                           ShowModal(
                                      procedure(ModalResult: TModalResult)

@@ -71,11 +71,6 @@ object ModuleData: TModuleData
     Left = 104
     Top = 72
   end
-  object OrderQuery: TFDQuery
-    Connection = Connection
-    Left = 101
-    Top = 120
-  end
   object StateQuery: TFDQuery
     Connection = Connection
     Left = 176
@@ -206,6 +201,66 @@ object ModuleData: TModuleData
     object S: TWideStringField
       FieldName = 'Date_Create'
       Size = 100
+    end
+  end
+  object OrderQuery: TFDQuery
+    Connection = Connection
+    Left = 101
+    Top = 120
+    object OrderQueryID: TIntegerField
+      FieldName = 'ID'
+    end
+    object OrderQueryDate_Create: TWideMemoField
+      FieldName = 'Date_Create'
+      BlobType = ftWideMemo
+      Size = 30
+    end
+    object OrderQueryRoom: TIntegerField
+      FieldName = 'Room'
+    end
+    object OrderQueryPhone: TStringField
+      FieldName = 'Phone'
+      Size = 30
+    end
+    object OrderQueryPrice: TFloatField
+      FieldName = 'Price'
+    end
+    object OrderQueryDateCorr: TWideMemoField
+      FieldName = 'DateCorr'
+      BlobType = ftWideMemo
+    end
+    object OrderQueryTypeDoc: TIntegerField
+      FieldName = 'TypeDoc'
+    end
+    object OrderQueryRoomStr: TWideStringField
+      FieldName = 'RoomStr'
+      Size = 150
+    end
+    object OrderQueryMergeDate: TWideStringField
+      FieldName = 'MergeDate'
+      Size = 50
+    end
+    object OrderQueryDateBeg: TWideStringField
+      FieldName = 'DateBeg'
+      Size = 50
+    end
+    object OrderQueryDateEnd: TWideStringField
+      FieldName = 'DateEnd'
+      Size = 50
+    end
+    object OrderQueryDescription: TStringField
+      FieldName = 'Description'
+      Size = 50
+    end
+    object OrderQueryTypeDocID: TIntegerField
+      FieldName = 'TypeDocID'
+    end
+    object OrderQueryCreate_Time: TWideStringField
+      FieldName = 'Create_Time'
+      Size = 50
+    end
+    object OrderQueryScreen: TBlobField
+      FieldName = 'Screen'
     end
   end
 end

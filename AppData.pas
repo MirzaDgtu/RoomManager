@@ -27,7 +27,6 @@ type
     RoomQueryCountRoom: TIntegerField;
     RoomQueryCity: TStringField;
     OrderDBQuery: TFDQuery;
-    OrderQuery: TFDQuery;
     RoomQueryScreen: TBlobField;
     RoomQueryAdressStr: TWideStringField;
     StateQuery: TFDQuery;
@@ -65,6 +64,22 @@ type
     ReportDetailQueryRoomStr: TWideStringField;
     ReportDetailQueryScreen: TBlobField;
     S: TWideStringField;
+    OrderQuery: TFDQuery;
+    OrderQueryID: TIntegerField;
+    OrderQueryDate_Create: TWideMemoField;
+    OrderQueryRoom: TIntegerField;
+    OrderQueryPhone: TStringField;
+    OrderQueryPrice: TFloatField;
+    OrderQueryDateCorr: TWideMemoField;
+    OrderQueryTypeDoc: TIntegerField;
+    OrderQueryRoomStr: TWideStringField;
+    OrderQueryMergeDate: TWideStringField;
+    OrderQueryDateBeg: TWideStringField;
+    OrderQueryDateEnd: TWideStringField;
+    OrderQueryDescription: TStringField;
+    OrderQueryTypeDocID: TIntegerField;
+    OrderQueryCreate_Time: TWideStringField;
+    OrderQueryScreen: TBlobField;
     procedure ConnectionBeforeConnect(Sender: TObject);
   private
     { Private declarations }
@@ -79,6 +94,8 @@ var
 implementation
 
 {%CLASSGROUP 'FMX.Controls.TControl'}
+
+uses sConsts;
 
 {$R *.dfm}
 

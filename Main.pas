@@ -28,9 +28,7 @@ type
     CorrBtn: TButton;
     DeleteBtn: TButton;
     RefreshBtn: TButton;
-    OrdersBS: TBindSourceDB;
     OrdersBL: TBindingsList;
-    LinkListControlToField1: TLinkListControlToField;
     SettingBtn: TButton;
     SettingLayout: TLayout;
     SettingRect: TRoundRect;
@@ -53,6 +51,8 @@ type
     LeftBtn: TButton;
     MainLbl: TLabel;
     RigthBtn: TButton;
+    OrdersBS: TBindSourceDB;
+    LinkListControlToField1: TLinkListControlToField;
     procedure Create(Sender: TObject);
     procedure MenuBtnClick(Sender: TObject);
     procedure RoomBtnClick(Sender: TObject);

@@ -124,7 +124,8 @@ resourcestring
                           '                                      WHERE ID = 6)  ' +
                           '              END) as Blob)  as Screen,  ' +
                           '        T.Description,  ' +
-                          '        T.ID as ''TypeDocID'' ' +
+                          '        T.ID as ''TypeDocID'', ' +
+                          '        ''Время заказа: '' || time(O.Date_Create) as ''Create_Time'' ' +
                           'FROM Orders O          ' +
                           '     LEFT JOIN Room R On R.ID = O.Room ' +
                           '     LEFT JOIN TypeDoc T ON T.ID = O.TypeDoc ' +
