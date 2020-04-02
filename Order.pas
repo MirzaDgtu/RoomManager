@@ -45,6 +45,10 @@ type
     StateBS: TBindSourceDB;
     StateBL: TBindingsList;
     LinkListControlToField1: TLinkListControlToField;
+    StatesHeaderTB: TToolBar;
+    BackBtn: TButton;
+    RefreshBtn: TButton;
+    StateHeaderLB: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DateBOrderChange(Sender: TObject);
     procedure RoomBtnClick(Sender: TObject);
@@ -60,6 +64,8 @@ type
       var KeyChar: Char; Shift: TShiftState);
     procedure PriceEditKeyDown(Sender: TObject; var Key: Word;
       var KeyChar: Char; Shift: TShiftState);
+    procedure BackBtnClick(Sender: TObject);
+    procedure RefreshBtnClick(Sender: TObject);
   private
     { Private declarations }
     FPstatusCorr: Boolean;
@@ -93,6 +99,11 @@ implementation
 {$R *.fmx}
 
 uses sConsts, AppData, Room;
+
+procedure TOrderForm.BackBtnClick(Sender: TObject);
+begin
+    PanelStateHide();
+end;
 
 procedure TOrderForm.CancelBtnClick(Sender: TObject);
 begin
@@ -188,6 +199,16 @@ procedure TOrderForm.PriceEditKeyDown(Sender: TObject; var Key: Word;
 begin
    if (KeyChar < '0')or( KeyChar >'9') then KeyChar:=#0;
 
+end;
+
+procedure TOrderForm.RefreshBtnClick(Sender: TObject);
+begin
+    try
+       Self.StateLV.BeginUpdate;
+       Self.StateBS.DataSet.Refresh;
+    finally
+       Self.StateLV.EndUpdate;
+    end;
 end;
 
 procedure TOrderForm.RoomBtnClick(Sender: TObject);

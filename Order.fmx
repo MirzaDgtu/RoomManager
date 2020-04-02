@@ -339,75 +339,118 @@ object OrderForm: TOrderForm
         end
       end
     end
-    object StateLayout: TLayout
+  end
+  object StateLayout: TLayout
+    Align = Client
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Size.Width = 436.000000000000000000
+    Size.Height = 384.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 3
+    object StateAnimation: TFloatAnimation
+      AnimationType = InOut
+      Duration = 0.500000000000000000
+      PropertyName = 'Position.Y'
+      StartValue = 0.000000000000000000
+      StopValue = 0.000000000000000000
+    end
+    object StateRect: TRectangle
       Align = Client
-      Margins.Left = 10.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Margins.Right = 10.000000000000000000
-      Margins.Bottom = 10.000000000000000000
+      Fill.Color = claBlack
+      Opacity = 0.699999988079071000
       Size.Width = 436.000000000000000000
       Size.Height = 336.000000000000000000
       Size.PlatformDefault = False
-      Visible = False
+    end
+    object StateLV: TListView
+      ItemAppearanceClassName = 'TDynamicAppearance'
+      ItemEditAppearanceClassName = 'TDynamicAppearance'
+      HeaderAppearanceClassName = 'TListHeaderObjects'
+      FooterAppearanceClassName = 'TListHeaderObjects'
+      Align = Client
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Size.Width = 416.000000000000000000
+      Size.Height = 321.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
+        item
+          AppearanceObjectName = 'Description'
+          AppearanceClassName = 'TTextObjectAppearance'
+          Appearance.Font.StyleExt = {00070000000000000004000000}
+          Appearance.TextColor = claBlack
+          Appearance.Width = 324.000000000000000000
+          Appearance.Height = 44.000000000000000000
+          Appearance.VertAlign = Center
+          Appearance.PlaceOffset.X = 35.000000000000000000
+        end
+        item
+          AppearanceObjectName = 'Screen'
+          AppearanceClassName = 'TImageObjectAppearance'
+          Appearance.Width = 35.000000000000000000
+        end
+        item
+          AppearanceObjectName = 'ID'
+          AppearanceClassName = 'TTextObjectAppearance'
+          Appearance.Width = 100.000000000000000000
+          Appearance.Visible = False
+        end>
+      ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
+        item
+          AppearanceObjectName = 'Text1'
+          AppearanceClassName = 'TTextObjectAppearance'
+        end>
+      CanSwipeDelete = False
+      OnItemClick = StateLVItemClick
+    end
+    object StatesHeaderTB: TToolBar
+      Size.Width = 436.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 2
-      object StateAnimation: TFloatAnimation
-        AnimationType = InOut
-        Duration = 0.500000000000000000
-        PropertyName = 'Position.Y'
-        StartValue = 0.000000000000000000
-        StopValue = 0.000000000000000000
-      end
-      object StateRect: TRectangle
-        Align = Client
-        Fill.Color = claBlack
-        Opacity = 0.699999988079071000
-        Size.Width = 436.000000000000000000
-        Size.Height = 336.000000000000000000
+      TintColor = claSlategray
+      object BackBtn: TButton
+        Align = Left
+        IconTintColor = claLime
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
-      end
-      object StateLV: TListView
-        ItemAppearanceClassName = 'TDynamicAppearance'
-        ItemEditAppearanceClassName = 'TDynamicAppearance'
-        HeaderAppearanceClassName = 'TListHeaderObjects'
-        FooterAppearanceClassName = 'TListHeaderObjects'
-        Align = Client
-        Margins.Left = 20.000000000000000000
-        Margins.Top = 20.000000000000000000
-        Margins.Right = 20.000000000000000000
-        Margins.Bottom = 20.000000000000000000
-        Size.Width = 396.000000000000000000
-        Size.Height = 296.000000000000000000
-        Size.PlatformDefault = False
+        StyleLookup = 'arrowlefttoolbutton'
         TabOrder = 1
-        ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
-          item
-            AppearanceObjectName = 'Description'
-            AppearanceClassName = 'TTextObjectAppearance'
-            Appearance.Font.StyleExt = {00070000000000000004000000}
-            Appearance.TextColor = claBlack
-            Appearance.Width = 324.000000000000000000
-            Appearance.Height = 44.000000000000000000
-            Appearance.VertAlign = Center
-            Appearance.PlaceOffset.X = 35.000000000000000000
-          end
-          item
-            AppearanceObjectName = 'Screen'
-            AppearanceClassName = 'TImageObjectAppearance'
-            Appearance.Width = 35.000000000000000000
-          end
-          item
-            AppearanceObjectName = 'ID'
-            AppearanceClassName = 'TTextObjectAppearance'
-            Appearance.Width = 100.000000000000000000
-            Appearance.Visible = False
-          end>
-        ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
-          item
-            AppearanceObjectName = 'Text1'
-            AppearanceClassName = 'TTextObjectAppearance'
-          end>
-        CanSwipeDelete = False
-        OnItemClick = StateLVItemClick
+        Text = 'BackBtn'
+        OnClick = BackBtnClick
+      end
+      object RefreshBtn: TButton
+        Align = Right
+        IconTintColor = claLime
+        Position.X = 388.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'refreshtoolbutton'
+        TabOrder = 0
+        Text = 'BackBtn'
+        OnClick = RefreshBtnClick
+      end
+      object StateHeaderLB: TLabel
+        Align = VertCenter
+        StyledSettings = [Family, Size, Style]
+        Position.X = 48.000000000000000000
+        Position.Y = 12.000000000000000000
+        Size.Width = 340.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.FontColor = claLime
+        TextSettings.HorzAlign = Center
+        Text = '&'#1042#1099#1073#1086#1088' '#1089#1090#1072#1090#1100#1080
+        TabOrder = 2
       end
     end
   end
