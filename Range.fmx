@@ -147,6 +147,7 @@ object RangeForm: TRangeForm
             object CancelBtn: TButton
               Align = VertCenter
               StyledSettings = [Family, Size, FontColor]
+              IconTintColor = claRed
               ModalResult = 2
               Margins.Left = 5.000000000000000000
               Margins.Top = 5.000000000000000000
@@ -165,7 +166,8 @@ object RangeForm: TRangeForm
             end
             object SaveBtn: TButton
               Align = VertCenter
-              StyledSettings = [Family, Size, FontColor]
+              StyledSettings = [Family, Size]
+              IconTintColor = claAqua
               ModalResult = 1
               Position.X = 260.000000000000000000
               Size.Width = 48.000000000000000000
@@ -175,6 +177,7 @@ object RangeForm: TRangeForm
               TabOrder = 1
               Text = 'Ok'
               TextSettings.Font.StyleExt = {00070000000000000004000000}
+              TextSettings.FontColor = claAqua
               TintColor = claSpringgreen
             end
           end

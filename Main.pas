@@ -556,7 +556,7 @@ begin
          ModuleData.OrderQuery.Active := False;
          ModuleData.OrderQuery.SQL.Text := Format(SSQLGetOrders, [BegDate,
                                                                   EndDate]);
-        ModuleData.OrderQuery.Active := True;
+         ModuleData.OrderQuery.Active := True;
 
          OrdersBS.DataSet.Refresh;
     finally

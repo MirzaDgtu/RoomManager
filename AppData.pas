@@ -79,7 +79,7 @@ type
     OrderQueryDescription: TStringField;
     OrderQueryTypeDocID: TIntegerField;
     OrderQueryCreate_Time: TWideStringField;
-    OrderQueryScreen: TBlobField;
+    OrderQueryScreen: TWideStringField;
     procedure ConnectionBeforeConnect(Sender: TObject);
   private
     { Private declarations }
