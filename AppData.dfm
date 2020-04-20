@@ -259,9 +259,8 @@ object ModuleData: TModuleData
       FieldName = 'Create_Time'
       Size = 50
     end
-    object OrderQueryScreen: TWideStringField
+    object OrderQueryScreen: TBlobField
       FieldName = 'Screen'
-      Size = 0
     end
   end
 end
