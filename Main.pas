@@ -33,9 +33,6 @@ type
     SettingLayout: TLayout;
     SettingRect: TRoundRect;
     AnimalSetting: TFloatAnimation;
-    RangeRectBtn: TRectangle;
-    SettingRectBtn: TRectangle;
-    StateRectBtn: TRectangle;
     ReportLV: TListView;
     Report_Layout: TLayout;
     ReportRR: TRoundRect;
@@ -53,6 +50,10 @@ type
     RigthBtn: TButton;
     OrdersBS: TBindSourceDB;
     LinkListControlToField1: TLinkListControlToField;
+    SettingRectBtn: TSpeedButton;
+    RangeRectBtn: TSpeedButton;
+    StateRectBtn: TSpeedButton;
+    IL: TImageList;
     procedure Create(Sender: TObject);
     procedure MenuBtnClick(Sender: TObject);
     procedure RoomBtnClick(Sender: TObject);
@@ -102,6 +103,8 @@ type
 
     procedure RefreshReport(DateB, DateE: variant);
     procedure SetIdRoomReport(const Value: string);
+
+    procedure RefreshOrdersView();
 
 
   public
@@ -164,12 +167,12 @@ begin
                                                                           PhoneEdit.Text,
                                                                           PriceEdit.Text,
                                                                           IdTypeDoc.ToInteger);
-                                              finally
-                                                   RefreshBtnClick(Self);
-                                              end;
-                                            except
+                                              except
                                                 on Err: Exception do
                                                   ShowMessage('Ошибка создания заявки!' + #13 + 'Сообщение: ' + Err.Message);
+                                              end;
+                                            finally
+                                              RefreshOrdersView();
                                             end;
                                         end;
                                     end;
@@ -194,12 +197,12 @@ begin
                                                                 PhoneEdit.Text,
                                                                 PriceEdit.Text,
                                                                 IdTypeDoc.ToInteger);
-                                    finally
-                                        RefreshBtnClick(Self);
-                                    end;
-                                  except
+                                    except
                                       on Err: Exception do
                                         ShowMessage('Ошибка создания заявки!' + #13 + 'Сообщение: ' + Err.Message);
+                                    end;
+                                  finally
+                                     RefreshOrdersView();
                                   end;
                                end;
                         End;
@@ -260,7 +263,7 @@ begin
                                                                 IdTypeDoc.ToInteger,
                                                                 IdOrder.ToInteger);
                                            finally
-                                              RefreshBtnClick(Self);
+                                              RefreshOrdersView();
                                            end;
                                         End;
                                   End
@@ -280,7 +283,7 @@ begin
                                           IdTypeDoc.ToInteger,
                                           IdOrder.ToInteger);
                       finally
-                         RefreshBtnClick(Self);
+                         RefreshOrdersView();
                       end;
 
 
@@ -341,13 +344,7 @@ begin
                                    end);
         End;
    finally
-      Self.OrdersView.BeginUpdate;
-        ModuleData.RoomQuery.Active := False;
-        ModuleData.RoomQuery.SQL.Text := SSQLGetRoom;
-        ModuleData.RoomQuery.Active := True;
-
-        OrdersBS.DataSet.Refresh;
-      Self.OrdersView.EndUpdate;
+      RefreshOrdersView();
    end;
 end;
 
@@ -562,6 +559,23 @@ begin
     finally
        OrdersView.EndUpdate;
     end;
+end;
+
+procedure TMainForm.RefreshOrdersView;
+begin
+    PanelMenuHide();
+
+      try
+         OrdersView.BeginUpdate;
+           ModuleData.OrderQuery.Active := False;
+           ModuleData.OrderQuery.SQL.Text := Format(SSQLGetOrders, [BegDate,
+                                                                    EndDate]);
+           ModuleData.OrderQuery.Active := True;
+
+           OrdersBS.DataSet.Refresh;
+      finally
+         OrdersView.EndUpdate;
+      end;
 end;
 
 procedure TMainForm.RefreshReport(DateB, DateE: variant);

@@ -14,10 +14,10 @@ Coordinates=840,40,40,33
 Visible=False
 
 [MenuBtn]
-Coordinates=693,375,58,51
+Coordinates=462,393,58,51
 
 []
-Coordinates=506,55,94,231
+Coordinates=649,601,78,33
 Visible=True
 ExplicitSubNodes=
 LayerNames=
@@ -27,36 +27,36 @@ Coordinates=272,10,65,33
 Visible=False
 
 [OrdersView]
-Coordinates=337,10,89,321
+Coordinates=10,28,89,339
 Visible=True
 
 [RoomBtn]
-Coordinates=672,524,60,51
+Coordinates=838,470,60,51
 
 [ModuleData.StoredProc]
-Coordinates=876,524,131,51
+Coordinates=10,393,131,51
 
 [ModuleData.RoomDBQuery]
-Coordinates=181,524,149,51
+Coordinates=297,547,149,51
 
 [ModuleData.RoomQuery]
 Coordinates=365,10,134,33
 Visible=False
 
 [DeleteBtn]
-Coordinates=199,601,62,51
+Coordinates=546,393,62,51
 
 [RefreshBtn]
-Coordinates=515,375,69,51
+Coordinates=89,547,69,51
 
 [AddBtn]
-Coordinates=948,375,51,51
+Coordinates=271,393,51,51
 
 [CorrBtn]
-Coordinates=593,524,53,51
+Coordinates=10,547,53,51
 
 [ModuleData.OrderDBQuery]
-Coordinates=341,375,148,51
+Coordinates=220,470,148,51
 
 [OrdersBL]
 Coordinates=307,241,61,33
@@ -68,26 +68,20 @@ ModelLayerNames=1;0
 Coordinates=785,10,120,231
 
 [MenuRect]
-Coordinates=287,601,63,33
+Coordinates=10,624,63,33
 
 [TB]
 Coordinates=351,10,40,33
 Visible=False
 
 [SettingRect]
-Coordinates=753,601,71,33
-
-[SettingRectBtn]
-Coordinates=178,678,88,33
+Coordinates=187,624,71,33
 
 [SettingLayout]
-Coordinates=540,601,83,33
-
-[RangeRectBtn]
-Coordinates=938,601,85,33
+Coordinates=472,547,83,33
 
 [SettingBtn]
-Coordinates=777,375,66,51
+Coordinates=10,470,66,51
 
 [AnimalSetting]
 Coordinates=596,166,83,33
@@ -100,33 +94,30 @@ Visible=False
 Coordinates=10,375,116,123
 
 [ReportLV]
-Coordinates=10,10,98,339
+Coordinates=324,10,98,339
 Visible=True
 
 [ModuleData.StateDBQuery]
-Coordinates=10,524,145,51
-
-[StateRectBtn]
-Coordinates=649,601,78,33
+Coordinates=667,470,145,51
 
 [ModuleData.ReportQuery]
-Coordinates=376,601,138,33
+Coordinates=778,547,138,33
 Visible=True
 
 [RefreshReportBtn]
-Coordinates=464,524,103,51
+Coordinates=710,393,103,51
 
 [Report_Layout]
-Coordinates=292,678,87,33
+Coordinates=581,547,87,33
 
 [ReportRR]
-Coordinates=850,601,62,33
+Coordinates=99,624,62,33
 
 [AnimalReport]
 Coordinates=596,430,81,33
 
 [ReportBS]
-Coordinates=188,37,123,285
+Coordinates=502,37,123,285
 
 [ModuleData.ReportDetailQuery]
 Visible=False
@@ -137,36 +128,48 @@ Coordinates=127,10,133,33
 Visible=False
 
 [ToolBar2]
-Coordinates=94,678,58,33
+Coordinates=694,547,58,33
 
 [ReportFileBtn]
-Coordinates=356,524,82,51
+Coordinates=839,393,82,51
 
 [LeftBtn]
-Coordinates=10,601,50,51
+Coordinates=634,393,50,51
 
 [ModuleData.ReportTotalQuery]
-Coordinates=152,375,163,69
+Coordinates=651,10,163,69
 
 [ReportDetailBtn]
-Coordinates=758,524,92,51
+Coordinates=102,470,92,51
 
 [ToolBar1]
-Coordinates=10,678,58,33
+Coordinates=284,624,58,33
 
 [TotalReportLbl]
-Coordinates=86,601,87,51
+Coordinates=184,547,87,51
 
 [MainLbl]
-Coordinates=869,375,53,51
+Coordinates=588,470,53,51
 
 [RigthBtn]
-Coordinates=610,375,57,51
+Coordinates=505,470,57,51
 
 [ModuleData.OrderQuery]
 Coordinates=450,10,133,33
 Visible=False
 
 [OrdersBS]
-Coordinates=550,10,119,357
+Coordinates=179,10,119,357
+
+[SettingRectBtn]
+Coordinates=348,393,88,51
+
+[RangeRectBtn]
+Coordinates=394,470,85,51
+
+[StateRectBtn]
+Coordinates=167,393,78,51
+
+[IL]
+Coordinates=559,485,40,33
 

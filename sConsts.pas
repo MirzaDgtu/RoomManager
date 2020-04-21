@@ -116,16 +116,21 @@ resourcestring
                           '        R.Price as ''PriceRoom'', ' +
                           '        O.DateCorr,    ' +
                           '        O.TypeDoc,     ' +
-                          '        CAST((CASE O.TypeDoc WHEN  1 THEN (SELECT Screen   ' +
-                          '                                      FROM ImageIcon ' +
-                          '                                      WHERE ID = 5)  ' +
-                          '                       ELSE		  	 (SELECT Screen    ' +
-                          '                                      FROM ImageIcon ' +
-                          '                                      WHERE ID = 6)  ' +
-                          '              END) as Blob)  as Screen,  ' +
+                       {   '        IfNULL(CAST((CASE O.TypeDoc WHEN  1 THEN (SELECT Screen   ' +
+                          '                                                  FROM ImageIcon ' +
+                          '                                                  WHERE ID = 5)  ' +
+                          '                       ELSE		  	              (SELECT Screen    ' +
+                          '                                                  FROM ImageIcon ' +
+                          '                                                  WHERE ID = 6)  ' +
+                          '              END) as Blob), 0x0)  as Screen,  ' +  }
+
+                          '        (SELECT Screen   ' +
+                          '         FROM ImageIcon ' +
+                          '         WHERE ID = 5 ) as ''Screen'', ' +
+
                           '        T.Description,  ' +
                           '        T.ID as ''TypeDocID'', ' +
-                          '        ''Время заказа: '' || time(O.Date_Create) as ''Create_Time'' ' +
+                          '        (CAST(''Время заказа: '' || time(O.Date_Create) as TEXT)) as ''Create_Time'' ' +
                           'FROM Orders O          ' +
                           '     LEFT JOIN Room R On R.ID = O.Room ' +
                           '     LEFT JOIN TypeDoc T ON T.ID = O.TypeDoc ' +
